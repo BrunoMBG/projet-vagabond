@@ -1,0 +1,1 @@
+<?php require RACINE . "/app/view/page404.php"; ?>

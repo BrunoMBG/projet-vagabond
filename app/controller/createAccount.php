@@ -1,0 +1,1 @@
+<?php require RACINE . "/model/db_connection.php"; ?>
