@@ -1,0 +1,15 @@
+{
+  "name": "projet-vagabond",
+  "version": "1.0.0",
+  "description": "blog de voyage",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch public/sass/style.scss:public/style/style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bruno BRAGA",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.98.0"
+  }
+}

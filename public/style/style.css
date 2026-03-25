@@ -1,0 +1,20 @@
+/* poppins-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/poppins-v24-latin-regular.woff2") format("woff2");
+}
+/* roboto-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/roboto-v51-latin-regular.woff2") format("woff2");
+}
+/* ========== Couleurs ========== */
+/* ========== Fonts ==========*/
+
+/*# sourceMappingURL=style.css.map */
