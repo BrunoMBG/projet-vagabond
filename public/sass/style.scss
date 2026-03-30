@@ -1,113 +1,131 @@
-    @use 'fonts' as *;
-    @use 'variables' as *;
+@use "fonts" as *;
+@use "variables" as *;
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-        text-decoration: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ===================== Header ===================== */
+.header {
+  background-color: $couleurPrimaire;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+
+  /* Menu et logo*/
+  .menuIconeLogo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Logo */
+    a {
+      color: $couleurTertiaire;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
-    /* ===================== Header ===================== */
-    .header {
-        background-color: $couleurPrimaire;
-        height: 70px;
-        display: flex;
-        align-items: center;
-        padding: 0 5%;
+    /* Menu burger */
+    .menuBurger {
+      background-color: $couleurTertiaire;
+      border: none;
+      border-radius: 5px;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: $couleurPrimaire;
 
-        /* Menu et logo*/
-        .menuIconeLogo {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+      &:hover {
+        background-color: $couleurSecondaire;
+        color: $couleurTertiaire;
+      }
 
-            /* Logo */
+      .icon-close {
+        display: none;
+      }
+    }
+  }
+
+  /* Menu liens */
+  .navMenu {
+    position: absolute;
+    top: 65px;
+    right: 30px;
+    width: 50%;
+    background-color: $couleurTertiaire;
+    display: none;
+    padding: 20px 0;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+
+        a {
+          color: $couleurPrimaire;
+          font-size: 1.1rem;
+
+          &:hover {
+            color: $couleurSecondaire;
+          }
+        }
+
+        /* sous-menu */
+        .underMenu {
+          display: none;
+          margin-top: 20px;
+
+          li {
+            margin: 15px 0;
             a {
-                color: $couleurTertiaire;
-                font-size: 1.5rem;
-                font-weight: bold;
-                text-transform: uppercase;
+              font-size: 1.1rem;
             }
+          }
 
-            /*Menu burger*/
-            .menuBurger {
-                background-color: $couleurTertiaire;
-                border: none;
-                border-radius: 5px;
-                width: 45px;
-                height: 45px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.2rem;
-                color: $couleurPrimaire;
-
-                &:hover {
-                    background-color: $couleurSecondaire;
-                    color: $couleurTertiaire;
-                }
-
-                /* Icône menu fermer */
-                .icon-close {
-                    display: none;
-                }
-            }
+          /* Classe activée */
+          &.open {
+            display: block;
+          }
         }
-
-        /* Menu liens*/
-        .navMenu {
-            position: absolute;
-            top: 65px;
-            right: 30px;
-            width: 50%;
-            background-color: $couleurTertiaire;
-            display: none;
-            padding: 20px 0;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-
-            ul {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                li {
-                    margin: 15px 0;
-
-                    a {
-                        color: $couleurPrimaire;
-                        font-size: 1.1rem;
-
-                        &:hover {
-                            color: $couleurSecondaire;
-                        }
-                    }
-                }
-            }
-        }
-
-        /* Menu active */
-        &.active {
-            .navMenu {
-                display: block;
-            }
-
-            .menuIconeLogo .menuBurger {
-                background-color: $couleurSecondaire;
-                color: $couleurTertiaire;
-
-                .icon-burger {
-                    display: none;
-                }
-
-                .icon-close {
-                    display: block;
-                }
-            }
-        }
-
-
+      }
     }
+  }
+
+  /* Menu active */
+  &.active {
+    .navMenu {
+      display: block;
+    }
+
+    .menuIconeLogo .menuBurger {
+      background-color: $couleurSecondaire;
+      color: $couleurTertiaire;
+
+      .icon-burger {
+        display: none;
+      }
+
+      .icon-close {
+        display: block;
+      }
+    }
+  }
+}

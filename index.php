@@ -1,4 +1,5 @@
     <!--  ==================== Config global ==================== -->
+      <?php session_start();?>
     <?php require __DIR__ . '/app/config/config.php'; ?>
 
     <!--  ==================== Head ==================== -->
