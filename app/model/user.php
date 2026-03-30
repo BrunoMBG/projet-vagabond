@@ -14,16 +14,16 @@ function registerUser(PDO $db, string $lastName, string $firstName, string $emai
     try {
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        
+
         $sql = "INSERT INTO utilisateurs (nom , prenom, email, password, id_role) VALUES (?, ?, ?, ?, ?)";
 
         $query = $db->prepare($sql);
 
 
-        return $query->execute([$lastName, $firstName, $email, $hash, 2]);
+        return $query->execute([$lastName, $firstName, $email, $hash, 3]);
     } catch (PDOException $e) {
-        // Log de l'erreur (ex: email déjà existant) pour le debug
-        error_log("Erreur SQL Register : " . $e->getMessage());
+
+        error_log("Erreur Register : " . $e->getMessage());
         return false;
     }
 }

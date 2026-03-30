@@ -6,9 +6,9 @@ require RACINE . '/app/model/user.php';
 function register()
 {
     global $db;
-
+ $error ="";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        
 
         $lastName  = htmlspecialchars($_POST['nom'] ?? '');
         $firstName = htmlspecialchars($_POST['prenom'] ?? '');
@@ -19,7 +19,7 @@ function register()
         if (!empty($lastName) && !empty($firstName) && !empty($email) && !empty($password)) {
 
             $success = registerUser($db, $lastName, $firstName, $email, $password);
-
+           
             if ($success) {
 
                 header("Location: index.php?action=login&success=1");
