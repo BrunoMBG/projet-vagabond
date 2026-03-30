@@ -52,13 +52,13 @@ class Form
         $this->html .= "</p>";
     }
     /**
-     * Ajoute un message d'erreur au formulaire s'il existe
+     * Ajoute un message d'erreur au formulaire
      * @param string $message Le texte de l'erreur
      */
-    public function setError(string $message): void
+    public function setError(string $message =""): void
     {
         if (!empty($message)) {
-            $this->html .= "<p class=\"error-message\"\">";
+            $this->html .= "<p class=\"error-message\"\>";
             $this->html .= $message;
             $this->html .= "</p>\n";
         }

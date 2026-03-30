@@ -32,13 +32,6 @@ function register()
         }
     }
 
-
-
-
-
-
-
-
     $form = new Form("index.php?action=register", "post");
 
     $form->setInput("nom", "Votre Nom :", "text");
