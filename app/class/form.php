@@ -51,7 +51,18 @@ class Form
         $this->html .= "<textarea name=\"$name\" id=\"$name\" rows=\"$rows\"></textarea>";
         $this->html .= "</p>";
     }
-
+    /**
+     * Ajoute un message d'erreur au formulaire s'il existe
+     * @param string $message Le texte de l'erreur
+     */
+    public function setError(string $message): void
+    {
+        if (!empty($message)) {
+            $this->html .= "<p class=\"error-message\"\">";
+            $this->html .= $message;
+            $this->html .= "</p>\n";
+        }
+    }
     /**
      * Crée un paragraphe avec un input du type submit intérieur
      * @param string $value la value du input

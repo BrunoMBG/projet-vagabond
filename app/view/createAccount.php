@@ -4,7 +4,8 @@
 <body>
     <h1>S'inscrire</h1>
     <!-- ==================== Formulaire ==================== -->
-    <?php echo $formRegister; ?>
+    <?= $formRegister; ?>
+
 </body>
 
 </html>

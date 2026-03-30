@@ -1,21 +1,56 @@
 <?php
 
-    require RACINE . '/app/class/form.php';
-    function register()
-    {
+require RACINE . '/app/class/form.php';
+require RACINE . '/app/model/user.php';
 
-        $form = new Form("index.php?action=register", "post");
+function register()
+{
+    global $db;
 
-        $form->setInput("nom", "Votre Nom :", "text");
-        $form->setInput("prenom", "Votre Prénom :", "text");
-        $form->setInput("email", "Adresse Email :", "email");
-        $form->setInput("password", "Mot de passe :", "password");
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $form->setSubmit("Créer mon compte");
 
-        $formRegister = $form->getForm();
+        $lastName  = htmlspecialchars($_POST['nom'] ?? '');
+        $firstName = htmlspecialchars($_POST['prenom'] ?? '');
+        $email     = htmlspecialchars($_POST['email'] ?? '');
+        $password  = $_POST['password'] ?? '';
 
-        require RACINE . '/app/view/createAccount.php';
+        // 2. VÉRIFICATION (Optionnel mais conseillé)
+        if (!empty($lastName) && !empty($firstName) && !empty($email) && !empty($password)) {
+
+            $success = registerUser($db, $lastName, $firstName, $email, $password);
+
+            if ($success) {
+
+                header("Location: index.php?action=login&success=1");
+                exit;
+            } else {
+                $error = "L'inscription a échoué.";
+            }
+        } else {
+            $error = "Veuillez remplir tous les champs.";
+        }
     }
 
-    register();
+
+
+
+
+
+
+
+    $form = new Form("index.php?action=register", "post");
+
+    $form->setInput("nom", "Votre Nom :", "text");
+    $form->setInput("prenom", "Votre Prénom :", "text");
+    $form->setInput("email", "Adresse Email :", "email");
+    $form->setInput("password", "Mot de passe :", "password");
+    $form->setError($error);
+    $form->setSubmit("Créer mon compte");
+
+    $formRegister = $form->getForm();
+
+    require RACINE . '/app/view/createAccount.php';
+}
+
+register();

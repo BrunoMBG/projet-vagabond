@@ -25,4 +25,4 @@ function connectDB(): PDO
         die("Erreur de connexion à la base : " . $e->getMessage());
     }
 }
-$pdo = connectDB();
+$db = connectDB();
