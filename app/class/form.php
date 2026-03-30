@@ -55,7 +55,7 @@ class Form
      * Ajoute un message d'erreur au formulaire
      * @param string $message Le texte de l'erreur
      */
-    public function setError(string $message =""): void
+    public function setError(string $message = ""): void
     {
         if (!empty($message)) {
             $this->html .= "<p class=\"error-message\"\>";
@@ -63,6 +63,28 @@ class Form
             $this->html .= "</p>\n";
         }
     }
+
+    /**
+     * Ajoute un paragraphe de texte au formulaire.
+     * @param string $text Le contenu du texte.
+     * @param string $class classe CSS.
+     */
+    public function setText(string $class = "", string $text): void
+    {
+        $this->html .= "<p class='$class'>$text</p>";
+    }
+
+    /**
+     * Ajoute un lien au formulaire.
+     * @param string $href L'URL.
+     * @param string $text Le texte du lien.
+     * @param string $class classe CSS.
+     */
+    public function setLink(string $href,  string $class = "", string $text,): void
+    {
+        $this->html .= "<a href='$href' class='$class'>$text</a>";
+    }
+
     /**
      * Crée un paragraphe avec un input du type submit intérieur
      * @param string $value la value du input
