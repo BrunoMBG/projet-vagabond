@@ -69,18 +69,17 @@ class Form
      * @param string $text Le contenu du texte.
      * @param string $class classe CSS.
      */
-    public function setText(string $class = "", string $text): void
+    public function setText(string $text, string $class = ""): void
     {
         $this->html .= "<p class='$class'>$text</p>";
     }
-
     /**
      * Ajoute un lien au formulaire.
      * @param string $href L'URL.
      * @param string $text Le texte du lien.
      * @param string $class classe CSS.
      */
-    public function setLink(string $href,  string $class = "", string $text,): void
+    public function setLink(string $href, string $text, string $class = ""): void
     {
         $this->html .= "<a href='$href' class='$class'>$text</a>";
     }
