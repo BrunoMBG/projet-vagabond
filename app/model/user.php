@@ -40,3 +40,23 @@ function isEmailExists(PDO $db, string $email): bool
     $query->execute([$email]);
     return $query->fetchColumn() > 0;
 }
+
+/**
+ * Cherche un email dans la base de données.
+ * @param PDO $db Connexion à la base de données.
+ * @param string $email L'email à chercher.
+ * @return array bool Les données de l'utilisateur ou false si non trouvé.
+ */
+function getUserByEmail(PDO $db, string $email)
+{
+    try {
+        $sql = "SELECT * FROM utilisateurs WHERE email = ?";
+        $query = $db->prepare($sql);
+        $query->execute([$email]);
+
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getUserByEmail : " . $e->getMessage());
+        return false;
+    }
+}
