@@ -55,7 +55,9 @@ function login()
     $form->setInput("password", "Mot de passe :", "password");
     $form->setError($error);
     $form->setSubmit("Se connecter");
-
+    $form->setLink("index.php?action=forgotten", "Mot de passe oublié ?", "");
+    $form->setText("Pas encore de compte ? ", "");
+    $form->setLink("index.php?action=register", "Créer un compte", "");
 
     $formLogin = $form->getForm();
     require RACINE . "/app/view/login.php";
