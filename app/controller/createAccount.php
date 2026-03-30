@@ -3,23 +3,29 @@
 require RACINE . '/app/class/form.php';
 require RACINE . '/app/model/user.php';
 
+/**
+ * Gère l'inscription des utilisateurs.
+ * Traite la soumission du formulaire,
+ * enregistre l'utilisateur en base de données et prépare l'affichage du formulaire.
+ * * @global PDO $db Connexion à la base de données.
+ * * @return void
+ */
 function register()
 {
     global $db;
- $error ="";
+    $error = "";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        
+
 
         $lastName  = htmlspecialchars($_POST['nom'] ?? '');
         $firstName = htmlspecialchars($_POST['prenom'] ?? '');
         $email     = htmlspecialchars($_POST['email'] ?? '');
         $password  = $_POST['password'] ?? '';
 
-        // 2. VÉRIFICATION (Optionnel mais conseillé)
         if (!empty($lastName) && !empty($firstName) && !empty($email) && !empty($password)) {
 
             $success = registerUser($db, $lastName, $firstName, $email, $password);
-           
+
             if ($success) {
 
                 header("Location: index.php?action=login&success=1");

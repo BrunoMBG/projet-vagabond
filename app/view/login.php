@@ -5,6 +5,8 @@
     <!--  ==================== Header ==================== -->
     <?php require RACINE . '/app/view/partials/header.php'; ?>
     <h1>se connecter</h1>
+        <!-- ==================== Formulaire ==================== -->
+    <?= $formLogin ; ?>
 </body>
 
 </html>
