@@ -2,7 +2,9 @@
 <?php require RACINE . '/app/view/partials/head.php'; ?>
 
 <body>
-    <h1>accueil</h1>
+    <!--  ==================== Header ==================== -->
+    <?php require RACINE . '/app/view/partials/header.php'; ?>
+
 </body>
-    <a href="index.php?action=register">S'inscrire</a>
+
 </html>

@@ -9,5 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Feuille de style -->
     <link rel="stylesheet" href="./public/style/style.css">
+    <!-- Menu burger -->
+    <script src="./public/js/menu.js" defer></script>
     <title>Document</title>
 </head>

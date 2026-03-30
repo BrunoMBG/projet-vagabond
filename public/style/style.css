@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* poppins-regular - latin */
 @font-face {
   font-display: swap;
@@ -16,5 +17,105 @@
 }
 /* ========== Couleurs ========== */
 /* ========== Fonts ==========*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* ===================== Header ===================== */
+.header {
+  background-color: #1A2A3A;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  /* Menu et logo*/
+}
+.header .menuIconeLogo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Logo */
+}
+.header .menuIconeLogo a {
+  color: #F8F9FA;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.header .menuIconeLogo {
+  /*Menu burger*/
+}
+.header .menuIconeLogo .menuBurger {
+  background-color: #F8F9FA;
+  border: none;
+  border-radius: 5px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #1A2A3A;
+}
+.header .menuIconeLogo .menuBurger:hover {
+  background-color: #F2994A;
+  color: #F8F9FA;
+}
+.header .menuIconeLogo .menuBurger {
+  /* Icône menu fermer */
+}
+.header .menuIconeLogo .menuBurger .icon-close {
+  display: none;
+}
+.header {
+  /* Menu liens*/
+}
+.header .navMenu {
+  position: absolute;
+  top: 65px;
+  right: 30px;
+  width: 50%;
+  background-color: #F8F9FA;
+  display: none;
+  padding: 20px 0;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.header .navMenu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header .navMenu ul li {
+  margin: 15px 0;
+}
+.header .navMenu ul li a {
+  color: #1A2A3A;
+  font-size: 1.1rem;
+}
+.header .navMenu ul li a:hover {
+  color: #F2994A;
+}
+.header {
+  /* Menu active */
+}
+.header.active .navMenu {
+  display: block;
+}
+.header.active .menuIconeLogo .menuBurger {
+  background-color: #F2994A;
+  color: #F8F9FA;
+}
+.header.active .menuIconeLogo .menuBurger .icon-burger {
+  display: none;
+}
+.header.active .menuIconeLogo .menuBurger .icon-close {
+  display: block;
+}
 
 /*# sourceMappingURL=style.css.map */
