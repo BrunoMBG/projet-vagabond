@@ -26,6 +26,9 @@ function handleRequest(string $action = "default"): void
         case "register":
             require RACINE . "/app/controller/createAccount.php";
             break;
+        case "logout":
+            require RACINE . "/app/controller/logout.php";
+            break;
         default:
             require RACINE . "/app/controller/page404.php";
             break;
