@@ -19,23 +19,23 @@ function login()
         $passwordValue = $_POST['password'] ?? '';
         if (!empty($email) && !empty($passwordValue)) {
 
-
+            // Récupération des informations saisies par l'utilisateur depuis le modèle
             $user = getUserByEmail($db, $email);
 
             if ($user) {
-
+                // Comparaison du    mot de passe saisi avec le mot de passe hash dans la base de données
                 if (password_verify($passwordValue, $user['password'])) {
 
-
+                    // Vérifie si la session est déjà active et active la session si elle n'est pas active
                     if (session_status() === PHP_SESSION_NONE) {
                         session_start();
                     }
-
+                    // Stockage des informations utilisateur
                     $_SESSION['user_id'] = $user['id_utilisateur'];
                     $_SESSION['user_nom'] = $user['nom'];
                     $_SESSION['user_role'] = $user['id_role'];
 
-
+                    // Redirection vers la page d'accueil après connexion réussie
                     header("Location: index.php?action=default");
                     exit;
                 } else {
@@ -48,17 +48,18 @@ function login()
             $error = "Veuillez remplir tous les champs.";
         }
     }
-
+    // Création du formulaire
     $form = new Form("index.php?action=login", "post");
 
     $form->setInput("email", "Email :", "email");
     $form->setInput("password", "Mot de passe :", "password");
     $form->setError($error);
     $form->setSubmit("Se connecter");
+    // Ajout des liens utilitaires
     $form->setLink("index.php?action=forgotten", "Mot de passe oublié ?", "");
     $form->setText("Pas encore de compte ? ", "");
     $form->setLink("index.php?action=register", "Créer un compte", "");
-
+    // Affichage du formulaire
     $formLogin = $form->getForm();
     require RACINE . "/app/view/login.php";
 }
