@@ -1,4 +1,4 @@
-<!--  ==================== Head ==================== -->
+<?php // ==================== Head ==================== ?>
 <?php require_once RACINE . '/app/view/partials/head.php'; ?>
 
 <body>
