@@ -1,5 +1,5 @@
 <!--  ==================== Head ==================== -->
-<?php require RACINE . '/app/view/partials/head.php'; ?>
+<?php require_once RACINE . '/app/view/partials/head.php'; ?>
 
 <body>
     <!--  ==================== Header ==================== -->
