@@ -51,7 +51,7 @@ function register()
     // Affichage du formulaire
     $formRegister = $form->getForm();
 
-    require RACINE . '/app/view/createAccount.php';
+    require RACINE . '/app/view/register.php';
 }
 
 register();
