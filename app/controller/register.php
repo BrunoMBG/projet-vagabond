@@ -24,6 +24,7 @@ function register()
 
         if (!empty($lastName) && !empty($firstName) && !empty($email) && !empty($password)) {
 
+            // Récupération des informations saisies par l'utilisateur depuis le modèle
             $success = registerUser($db, $lastName, $firstName, $email, $password);
 
             if ($success) {
@@ -37,16 +38,17 @@ function register()
             $error = "Veuillez remplir tous les champs.";
         }
     }
-
+    // Création du formulaire
     $form = new Form("index.php?action=register", "post");
 
     $form->setInput("nom", "Votre Nom :", "text");
     $form->setInput("prenom", "Votre Prénom :", "text");
     $form->setInput("email", "Adresse Email :", "email");
     $form->setInput("password", "Mot de passe :", "password");
+    // Message d'erreur
     $form->setError($error);
     $form->setSubmit("Créer mon compte");
-
+    // Affichage du formulaire
     $formRegister = $form->getForm();
 
     require RACINE . '/app/view/createAccount.php';

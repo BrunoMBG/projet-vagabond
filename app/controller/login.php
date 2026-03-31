@@ -49,6 +49,7 @@ function login()
 
     $form->setInput("email", "Email :", "email");
     $form->setInput("password", "Mot de passe :", "password");
+    // Message d'erreur
     $form->setError($error);
     $form->setSubmit("Se connecter");
     // Ajout des liens utilitaires
