@@ -30,11 +30,11 @@ class Form
      * @param string $type Le type d'input (text, password, email, etc.).
      * @return void
      */
-    public function setInput(string $name, string $label, string $type): void
+    public function setInput(string $name, string $label, string $type, string $value = ""): void
     {
         $this->html .= "<p>";
         $this->html .= "<label for =\"$name\">$label</label>\n";
-        $this->html .= "<input type = \"$type\" name =\"$name\" id=\"$name\">";
+        $this->html .= "<input type = \"$type\" name =\"$name\" id=\"$name\" value=\"$value\" >";
         $this->html .= "</p>";
     }
 

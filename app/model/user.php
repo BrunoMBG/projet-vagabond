@@ -60,3 +60,17 @@ function getUserByEmail(PDO $db, string $email)
         return false;
     }
 }
+
+
+function updateProfil($db, $id, $nom, $prenom, $email, $password = null)
+{
+    if (!empty($password)) {
+        $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id_utilisateur = ?";
+        $update = [$nom, $prenom, $email, password_hash($password, PASSWORD_DEFAULT), $id];
+    } else {
+        $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ? WHERE id_utilisateur = ?";
+        $update = [$nom, $prenom, $email, $id];
+    }
+    $query = $db->prepare($sql);
+    return $query->execute($update);
+}
