@@ -22,12 +22,18 @@ function handleRequest(string $action = "default"): void
             break;
         case "login":
             require RACINE . "/app/controller/login.php";
+            login();
             break;
         case "register":
             require RACINE . "/app/controller/register.php";
+            register();
             break;
         case "logout":
             require RACINE . "/app/controller/logout.php";
+            break;
+        case "profile":
+            require RACINE . "/app/controller/profile.php";
+            showProfile();
             break;
         default:
             require RACINE . "/app/controller/page404.php";

@@ -25,10 +25,17 @@ function login()
             if ($user) {
                 // Comparaison du    mot de passe saisi avec le mot de passe hash dans la base de données
                 if (password_verify($passwordValue, $user['password'])) {
+                    // Stockage des informations de l'utilisateur en session 
+                    $_SESSION['user'] = [
+                        'id'     => $user['id_utilisateur'],
+                        'nom'    => $user['nom'],
+                        'prenom' => $user['prenom'],
+                        'email'  => $user['email'],
+                        'role'   => $user['id_role']
+                    ];
 
                     // Stockage des informations utilisateur
                     $_SESSION['user_id'] = $user['id_utilisateur'];
-                    $_SESSION['user_nom'] = $user['nom'];
                     $_SESSION['user_role'] = $user['id_role'];
 
                     // Redirection vers la page d'accueil après connexion réussie
@@ -61,7 +68,7 @@ function login()
     require RACINE . "/app/view/login.php";
 }
 
-login()
+
 ?>
 
 

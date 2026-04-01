@@ -36,7 +36,7 @@
                          <?php endif; ?>
 
                          <!-- Liens utilisateur connecté -->
-                         <li><a href="#"><i class="fa-solid fa-user"></i> Informations personnelles </a></li>
+                         <li><a href="index.php?action=profile"><i class="fa-solid fa-user"></i> Informations personnelles </a></li>
                          <li><a href="#"><i class="fa-solid fa-user"></i> Modifier le profil</a></li>
                          <li><a href="index.php?action=logout" class="logout-link"><i class="fa-solid fa-power-off"></i> Déconnexion</a></li>
                      </ul>

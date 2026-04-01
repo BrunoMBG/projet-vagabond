@@ -54,4 +54,4 @@ function register()
     require RACINE . '/app/view/register.php';
 }
 
-register();
+
