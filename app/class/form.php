@@ -53,16 +53,30 @@ class Form
     }
     /**
      * Ajoute un message d'erreur au formulaire
-     * @param string $message Le texte de l'erreur
+     * @param string $message Le texte de l'erreur à afficher
      */
     public function setError(string $message = ""): void
     {
+        // N'ajoute le code HTML que si le message n'est pas vide
         if (!empty($message)) {
             $this->html .= "<p class=\"error-message\"\>";
             $this->html .= $message;
             $this->html .= "</p>\n";
         }
     }
+
+    /**
+     * Ajoute un message de success au formulaire
+     * * @param string $messageSuccess Le texte de succès à afficher.
+     */
+    public function setSuccess(string $messageSuccess): void
+    {
+        // N'ajoute le code HTML que si le message n'est pas vide
+        if (!empty($messageSuccess)) {
+            $this->html .= "<p style='color: green;'>$messageSuccess</p>";
+        }
+    }
+
 
     /**
      * Ajoute un paragraphe de texte au formulaire.
