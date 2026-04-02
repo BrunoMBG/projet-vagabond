@@ -92,8 +92,6 @@ function updateProfil($db, $id, $nom, $prenom, $email, $password = null) : bool
  */
 function getAllUsers(PDO $db) : array
 {
-    // Attention : vérifie bien si ta table s'appelle 'users' ou 'utilisateurs' 
-    // car dans ton updateProfil tu utilisais 'utilisateurs' !
     $sql = "SELECT id_utilisateur, nom, prenom, email, id_role FROM utilisateurs ORDER BY nom ASC";
     $query = $db->prepare($sql);
     $query->execute();
