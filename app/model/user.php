@@ -105,7 +105,7 @@ function getAllUsers(PDO $db): array
  */
 function getAllRoles(PDO $db): array
 {
-    $sql = "SELECT id_role, libelle FROM roles ORDER BY id_role ASC";
+    $sql = "SELECT id_role, libelle FROM role ORDER BY id_role ASC";
     $query = $db->query($sql);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
