@@ -41,7 +41,11 @@ function handleRequest(string $action = "default"): void
             break;
         case "dashboard":
             require RACINE . "/app/controller/admin.php";
-           dashboard();
+            dashboard();
+            break;
+        case "user_list":
+            require RACINE . "/app/controller/admin.php";
+            userList();
             break;
         default:
             require RACINE . "/app/controller/page404.php";

@@ -2,6 +2,7 @@
 require RACINE . "/app/model/user.php";
 /**
  * Gère l'accès au tableau de bord administrateur.
+ * * @global PDO $db Connexion à la base de données.
  * * @return void
  *  */
 function dashboard(): void
@@ -26,4 +27,27 @@ function dashboard(): void
     }
 
     require RACINE . "/app/view/admin/dashboard.php";
+}
+
+
+/**
+ * Affiche la page de gestion des utilisateurs
+ * * @global PDO $db Connexion à la base de données.
+ * * @return void
+ */
+function userList()
+{
+    global $db;
+
+    //  Vérifier si l'utilisateur est bien Admin
+    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
+        header('Location: index.php?action=default');
+        exit;
+    }
+
+    // Récupérer tous les utilisateurs via le modèle
+    $users = getAllUsers($db);
+
+
+    require_once RACINE . '/app/view/admin/user_list.php';
 }

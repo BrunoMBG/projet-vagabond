@@ -38,7 +38,7 @@
                                     
                                     <?php // Si c'est l'administrateur, affiche la gestion des utilisateurs ?>
                                     <?php if ($_SESSION['user_role'] === 1): ?>
-                                        <li><a href="#"> Gestion des utilisateurs</a></li>
+                                        <li><a href="index.php?action=user_list"> Gestion des utilisateurs</a></li>
                                     <?php endif; ?>
                                 </ul>
                              </li>
