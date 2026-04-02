@@ -42,12 +42,12 @@ function isEmailExists(PDO $db, string $email): bool
 }
 
 /**
- * Cherche un email dans la base de données.
- * @param PDO $db Connexion à la base de données.
+ * Cherche un utilisateur par son email dans la base de données.
+ * * @param PDO $db Connexion à la base de données.
  * @param string $email L'email à chercher.
- * @return array bool Les données de l'utilisateur ou false si non trouvé.
+ * @return array|false Les données de l'utilisateur ou false si non trouvé.
  */
-function getUserByEmail(PDO $db, string $email)
+function getUserByEmail(PDO $db, string $email) : array|false
 {
     try {
         $sql = "SELECT * FROM utilisateurs WHERE email = ?";
@@ -61,8 +61,18 @@ function getUserByEmail(PDO $db, string $email)
     }
 }
 
-
-function updateProfil($db, $id, $nom, $prenom, $email, $password = null)
+/**
+ * Met à jour les informations de profil de l'utilisateur.
+ * si le champ est vide, le mot de passe actuel est conservé.
+ * * @param PDO $db Connexion à la base de données
+ * @param int $id Identifiant de l'utilisateur
+ * @param string $nom Nouveau nom
+ * @param string $prenom Nouveau prénom
+ * @param string $email Nouvel email
+ * @param string|null $password Nouveau mot de passe
+ * @return bool True si la mise à jour a réussi, false sinon
+ */
+function updateProfil($db, $id, $nom, $prenom, $email, $password = null) : bool
 {
     if (!empty($password)) {
         $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id_utilisateur = ?";
