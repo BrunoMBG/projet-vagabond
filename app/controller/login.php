@@ -15,7 +15,7 @@ function login()
     $error = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = htmlspecialchars($_POST['email'] ?? '');
+        $email = htmlspecialchars(trim($_POST['email'] ?? ''));
         $passwordValue = $_POST['password'] ?? '';
         if (!empty($email) && !empty($passwordValue)) {
 
