@@ -29,7 +29,7 @@
                         <?php // Si l'utilisateur est admin ou rédacteur, affiche le tableau de bord ?>
                           <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 1 || $_SESSION['user_role'] === 2)): ?>
                              <li>
-                                 <a href="#">
+                                 <a href="#" class="menuOpenAdmin">
                                      Tableau de bord<i class="fa-solid fa-chevron-down"></i>
                                  </a>
                                   <ul class="adminMenu">

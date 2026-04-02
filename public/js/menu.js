@@ -25,13 +25,15 @@ const displayMenu = () => {
    * @returns {Element} L'élément avec la classe .underMenu
    */
   const hideMenu = document.querySelector(".underMenu");
-  // Clic sur le bouton Burger
+
+  // Clic sur le  Burger
   if (btnMenuBurger && getHeader) {
     btnMenuBurger.addEventListener("click", () => {
       getHeader.classList.toggle("active");
     });
   }
-  // Clic sur le bouton sous-menu
+
+  // Clic sur le sous-menu mon compte
   if (displayMenuBurger && hideMenu) {
     displayMenuBurger.addEventListener("click", (e) => {
       e.preventDefault();
@@ -39,6 +41,23 @@ const displayMenu = () => {
     });
   }
 
+ /**
+   * @returns {Element} L'élément avec la classe .menuOpenAdmin
+   */
+  const displayAdmin = document.querySelector(".menuOpenAdmin");
+
+   /**
+   * @returns {Element} L'élément avec la classe .adminMenu
+   */
+  const displayMenuAdmin = document.querySelector(".adminMenu");
+
+ // Clic sur le sous-menu admin
+  if (displayAdmin && displayMenuAdmin) {
+    displayAdmin.addEventListener("click", (e) => {
+      e.preventDefault();
+      displayMenuAdmin.classList.toggle("open");
+    });
+  }
 }
 
 displayMenu();
