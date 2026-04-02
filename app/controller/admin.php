@@ -56,9 +56,11 @@ function userList()
 }
 
 /**
- * Traite la modification du rôle d'un utilisateur 
- * @global PDO $db Connexion à la base de données
- * @return void
+ * Cette fonction vérifie les droits d'accès, met à jour le rôle
+ * Génère un message de confirmation (success/error) en session 
+ * avant de rediriger l'administrateur vers la liste des utilisateurs.
+ * * @global PDO $db Connexion à la base de données.
+ * @return void 
  */
 function userUpdateRole() {
     global $db;
@@ -75,10 +77,19 @@ function userUpdateRole() {
         $id_user =  $_POST['id_utilisateur'];
         $new_role = $_POST['changeRole'];
 
-        // Appel de la fonction du modèle pour réaliser le changement de
+        // Appel de la fonction du modèle pour réaliser le changement du rôle
         if (updateUserRole($db, $id_user, $new_role)) {
-  
            
+            $_SESSION['displayMessage'] = [
+                'type' => 'success',
+                'message' => "Le rôle de l'utilisateur a été mis à jour."
+            ];
+           
+        }else {
+            $_SESSION['displayMessage'] = [
+                'type' => 'error',
+                'message' => "Une erreur est survenue lors de la mise à jour."
+            ];
         }
     }
 

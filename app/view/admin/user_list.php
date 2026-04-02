@@ -1,11 +1,9 @@
-<?php // ==================== Head ==================== 
-?>
+<?php // ==================== Head ==================== ?>
 
 <?php require_once RACINE . '/app/view/partials/head.php'; ?>
 
 <body>
-    <?php // ==================== Header ==================== 
-    ?>
+    <?php // ==================== Header ==================== ?>
     <?php require RACINE . '/app/view/partials/header.php'; ?>
 
     <main">
@@ -14,6 +12,19 @@
             <?php if ($_SESSION['user_role'] == 1): ?>
                 <section>
                     <h2>Gestion des Utilisateurs</h2>
+
+                    <?php //  SESSION d'affichage des messages  
+                    ?>
+                    <?php if (isset($_SESSION['displayMessage'])): ?>
+
+                        <?php // Ajout la classe CSS et affiche le texte sécurisé ?>
+                        <div class="messageRole-<?= $_SESSION['displayMessage']['type'] ?>">
+                            <?= htmlspecialchars($_SESSION['displayMessage']['message']) ?>
+                        </div>
+
+                        <?php // Détruit la variable de session immédiatement après l'affichage ?>
+                        <?php unset($_SESSION['displayMessage']); ?>
+                    <?php endif; ?>
 
                     <table>
                         <!-- Les titres du tableau -->
@@ -27,8 +38,7 @@
                         </thead>
                         <!-- Les cellules -->
                         <tbody>
-                            <?php // Boucle sur chaque utilisateur récupéré via le contrôleur 
-                            ?>
+                            <?php // Boucle sur chaque utilisateur récupéré via le contrôleur ?>
                             <?php foreach ($users as $user): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($user['prenom']) ?></td>
@@ -44,8 +54,7 @@
                                         <form action="index.php?action=user_update_role" method="POST">
                                             <input type="hidden" name="id_utilisateur" value="<?= $user['id_utilisateur'] ?>">
 
-                                            <?php // Pré-sélection du rôle actuel 
-                                            ?>
+                                            <?php // Pré-sélection du rôle actuel ?>
                                             <select name="changeRole">
                                                 <?php foreach ($roles as $role): ?>
                                                     <option value="<?= $role['id_role'] ?>" <?= ($user['id_role'] == $role['id_role']) ? 'selected' : '' ?>>
@@ -54,8 +63,7 @@
                                                 <?php endforeach; ?>
                                             </select>
 
-                                            <?php // Boutton de validation 
-                                            ?>
+                                            <?php // Boutton de validation ?>
                                             <button type="submit">OK</button>
 
                                         </form>
@@ -63,6 +71,7 @@
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
+
                     </table>
                 </section>
             <?php endif; ?>
