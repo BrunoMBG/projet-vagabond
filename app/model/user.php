@@ -86,13 +86,18 @@ function updateProfil($db, $id, $nom, $prenom, $email, $password = null): bool
 }
 
 /**
- * Récupère la liste de tous les utilisateurs
- * @param PDO $db Connexion à la base de données
- * @return array
+ * Récupère tous les utilisateurs et leurs rôles
+ * * Cette fonction lie la table 'utilisateurs' et 'role' pour obtenir 
+ * le libellé du rôle en plus des données de l'utilisateur.
+ * * @param PDO $db Connexion à la base de données.
+ * @return array Liste associative contenant les colonnes de l'utilisateur et 'libelle'.
  */
 function getAllUsers(PDO $db): array
 {
-    $sql = "SELECT id_utilisateur, nom, prenom, email, id_role FROM utilisateurs ORDER BY nom ASC";
+    $sql = "SELECT u.id_utilisateur, u.nom, u.prenom, u.email, u.id_role, r.libelle 
+            FROM utilisateurs u
+            INNER JOIN role r ON u.id_role = r.id_role 
+            ORDER BY u.nom ASC";
     $query = $db->prepare($sql);
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
