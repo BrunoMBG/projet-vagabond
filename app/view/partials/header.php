@@ -29,7 +29,7 @@
                         <?php // Si l'utilisateur est admin, ça affiche le tableau de bord ?>
                          <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1): ?>
                              <li>
-                                 <a href="#">
+                                 <a href="index.php?action=dashboard">
                                      Tableau de bord
                                  </a>
                              </li>

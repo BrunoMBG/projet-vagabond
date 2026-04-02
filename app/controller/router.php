@@ -39,6 +39,10 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/profile_edit.php";
             editProfile();
             break;
+        case "dashboard":
+            require RACINE . "/app/controller/admin.php";
+           dashboard();
+            break;
         default:
             require RACINE . "/app/controller/page404.php";
             break;
