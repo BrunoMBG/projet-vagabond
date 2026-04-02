@@ -26,12 +26,21 @@
                      <!-- Sous-menu -->
                      <ul class="underMenu">
 
-                        <?php // Si l'utilisateur est admin, ça affiche le tableau de bord ?>
-                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1): ?>
+                        <?php // Si l'utilisateur est admin ou rédacteur, affiche le tableau de bord ?>
+                          <?php if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 1 || $_SESSION['user_role'] === 2)): ?>
                              <li>
-                                 <a href="index.php?action=dashboard">
-                                     Tableau de bord
+                                 <a href="#">
+                                     Tableau de bord<i class="fa-solid fa-chevron-down"></i>
                                  </a>
+                                  <ul class="adminMenu">
+                                    <li><a href="#">Ajouter un article</a></li>
+                                    <li><a href="#">Gestion articles</a></li>
+                                    
+                                    <?php // Si c'est l'administrateur, affiche la gestion des utilisateurs ?>
+                                    <?php if ($_SESSION['user_role'] === 1): ?>
+                                        <li><a href="#"> Gestion des utilisateurs</a></li>
+                                    <?php endif; ?>
+                                </ul>
                              </li>
                          <?php endif; ?>
 
