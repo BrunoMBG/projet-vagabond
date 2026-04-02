@@ -56,13 +56,16 @@ function userList()
 }
 
 /**
- * Cette fonction vérifie les droits d'accès, met à jour le rôle
- * Génère un message de confirmation (success/error) en session 
- * avant de rediriger l'administrateur vers la liste des utilisateurs.
- * * @global PDO $db Connexion à la base de données.
- * @return void 
+ * Met à jour le rôle d'un utilisateur.
+ * Vérifie que l'utilisateur connecté est administrateur, empêche la modification
+ * de son propre rôle, puis met à jour le rôle en base de données.
+ * Génère un message de succès ou d'erreur en session avant de rediriger
+ * vers la liste des utilisateurs.
+ * @global PDO $db Connexion à la base de données.
+ * @return void
  */
-function userUpdateRole() {
+function userUpdateRole()
+{
     global $db;
     require_once RACINE . '/app/model/user.php';
 
@@ -77,15 +80,24 @@ function userUpdateRole() {
         $id_user =  $_POST['id_utilisateur'];
         $new_role = $_POST['changeRole'];
 
+        // Vérifie si l'utilisateur tente de modifier son propre rôle.
+        if ($id_user == $_SESSION['user_id']) {
+            $_SESSION['displayMessage'] = [
+                'type' => 'error',
+                'message' => "Vous ne pouvez pas modifier votre propre rôle."
+            ];
+            header('Location: index.php?action=user_list');
+            exit;
+        }
+
         // Appel de la fonction du modèle pour réaliser le changement du rôle
         if (updateUserRole($db, $id_user, $new_role)) {
-           
+
             $_SESSION['displayMessage'] = [
                 'type' => 'success',
                 'message' => "Le rôle de l'utilisateur a été mis à jour."
             ];
-           
-        }else {
+        } else {
             $_SESSION['displayMessage'] = [
                 'type' => 'error',
                 'message' => "Une erreur est survenue lors de la mise à jour."
@@ -93,7 +105,7 @@ function userUpdateRole() {
         }
     }
 
-   
+
     header('Location: index.php?action=user_list');
     exit;
 }
