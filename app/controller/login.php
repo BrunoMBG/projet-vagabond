@@ -56,10 +56,9 @@ function login()
 
     $form->setInput("email", "Email :", "email");
     $form->setInput("password", "Mot de passe :", "password");
-    // Si une erreur a été détectée
-    if (!empty($error)) {
-        $form->setError($error);
-    }
+    // Message d'erreur
+    $form->setError($error);
+
     $form->setSubmit("Se connecter");
     // Ajout des liens utilitaires
     $form->setLink("index.php?action=forgotten", "Mot de passe oublié ?", "");

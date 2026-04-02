@@ -56,10 +56,9 @@ function editProfile()
     $form->setInput("email", "Email :", "email", $user['email']);
     $form->setInput("password", "Nouveau mot de passe :", "password");
 
-    // Si une erreur a été détectée
-    if (!empty($error)) {
-        $form->setError($error);
-    }
+    // Message d'erreur
+    $form->setError($error);
+
     $form->setSubmit("Enregistrer les modifications");
     // Affichage du formulaire
     $formEdit = $form->getForm();
