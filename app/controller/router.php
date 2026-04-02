@@ -47,6 +47,10 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/admin.php";
             userList();
             break;
+        case "user_update_role":
+            require RACINE . "/app/controller/admin.php";
+            userUpdateRole();
+            break;
         default:
             require RACINE . "/app/controller/page404.php";
             break;

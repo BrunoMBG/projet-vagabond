@@ -42,7 +42,7 @@
 
                                             <?php // Pré-sélection du rôle actuel 
                                             ?>
-                                            <select>
+                                            <select name="changeRole">
                                                 <?php foreach ($roles as $role): ?>
                                                     <option value="<?= $role['id_role'] ?>" <?= ($user['id_role'] == $role['id_role']) ? 'selected' : '' ?>>
                                                         <?= htmlspecialchars($role['libelle']) ?>

@@ -116,7 +116,7 @@ function getAllRoles(PDO $db): array
  * @param int $id_user id d'utilisateur
  * @param int =id_role id du rôle d'utilisateur
  */
-function updateRole(PDO $db, int $id_user, int $id_role): bool
+function updateUserRole(PDO $db, int $id_user, int $id_role): bool
 {
     $sql = "UPDATE utilisateurs SET id_role = ? WHERE id_utilisateur = ?";
     $query = $db->prepare($sql);

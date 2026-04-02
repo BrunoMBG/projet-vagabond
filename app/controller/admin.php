@@ -54,3 +54,35 @@ function userList()
 
     require_once RACINE . '/app/view/admin/user_list.php';
 }
+
+/**
+ * Traite la modification du rôle d'un utilisateur 
+ * @global PDO $db Connexion à la base de données
+ * @return void
+ */
+function userUpdateRole() {
+    global $db;
+    require_once RACINE . '/app/model/user.php';
+
+    // Vérifie si l'utilisateur est connecté et possède le rôle Admin
+    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
+        header('Location: index.php?action=default');
+        exit;
+    }
+
+    // Vérifie si les données ont bien été changé
+    if (isset($_POST['id_utilisateur'], $_POST['changeRole'])) {
+        $id_user =  $_POST['id_utilisateur'];
+        $new_role = $_POST['changeRole'];
+
+        // Appel de la fonction du modèle pour réaliser le changement de
+        if (updateUserRole($db, $id_user, $new_role)) {
+  
+           
+        }
+    }
+
+   
+    header('Location: index.php?action=user_list');
+    exit;
+}
