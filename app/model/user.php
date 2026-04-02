@@ -2,7 +2,7 @@
 
 /**
  * Enregistre un nouveau utilisateur avec les informations du formulaire.
- * * @param PDO connexion à la base de données.
+ * @param PDO connexion à la base de données.
  * @param string $lastName nom de famille de l'utilisateur.
  * @param string $firstName prénom de l'utilisateur.
  * @param string $email adresse email.
@@ -43,11 +43,11 @@ function isEmailExists(PDO $db, string $email): bool
 
 /**
  * Cherche un utilisateur par son email dans la base de données.
- * * @param PDO $db Connexion à la base de données.
+ * @param PDO $db Connexion à la base de données.
  * @param string $email L'email à chercher.
  * @return array|false Les données de l'utilisateur ou false si non trouvé.
  */
-function getUserByEmail(PDO $db, string $email) : array|false
+function getUserByEmail(PDO $db, string $email): array|false
 {
     try {
         $sql = "SELECT * FROM utilisateurs WHERE email = ?";
@@ -64,7 +64,7 @@ function getUserByEmail(PDO $db, string $email) : array|false
 /**
  * Met à jour les informations de profil de l'utilisateur.
  * si le champ est vide, le mot de passe actuel est conservé.
- * * @param PDO $db Connexion à la base de données
+ * @param PDO $db Connexion à la base de données
  * @param int $id Identifiant de l'utilisateur
  * @param string $nom Nouveau nom
  * @param string $prenom Nouveau prénom
@@ -72,7 +72,7 @@ function getUserByEmail(PDO $db, string $email) : array|false
  * @param string|null $password Nouveau mot de passe
  * @return bool True si la mise à jour a réussi, false sinon
  */
-function updateProfil($db, $id, $nom, $prenom, $email, $password = null) : bool
+function updateProfil($db, $id, $nom, $prenom, $email, $password = null): bool
 {
     if (!empty($password)) {
         $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id_utilisateur = ?";
@@ -90,10 +90,22 @@ function updateProfil($db, $id, $nom, $prenom, $email, $password = null) : bool
  * @param PDO $db Connexion à la base de données
  * @return array
  */
-function getAllUsers(PDO $db) : array
+function getAllUsers(PDO $db): array
 {
     $sql = "SELECT id_utilisateur, nom, prenom, email, id_role FROM utilisateurs ORDER BY nom ASC";
     $query = $db->prepare($sql);
     $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Récupère tous les rôles disponibles en base de données
+ * @param PDO $db Connexion à la base de données
+ * @return array
+ */
+function getAllRoles(PDO $db): array
+{
+    $sql = "SELECT id_role, libelle FROM roles ORDER BY id_role ASC";
+    $query = $db->query($sql);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
