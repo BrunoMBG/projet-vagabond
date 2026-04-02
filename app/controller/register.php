@@ -17,9 +17,9 @@ function register()
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-        $lastName  = htmlspecialchars($_POST['nom'] ?? '');
-        $firstName = htmlspecialchars($_POST['prenom'] ?? '');
-        $email     = htmlspecialchars($_POST['email'] ?? '');
+        $lastName  = htmlspecialchars(trim($_POST['nom'] ?? ''));
+        $firstName = htmlspecialchars(trim($_POST['prenom'] ?? ''));
+        $email     = htmlspecialchars(trim($_POST['email'] ?? ''));
         $password  = $_POST['password'] ?? '';
 
         if (!empty($lastName) && !empty($firstName) && !empty($email) && !empty($password)) {
@@ -53,5 +53,3 @@ function register()
 
     require RACINE . '/app/view/register.php';
 }
-
-
