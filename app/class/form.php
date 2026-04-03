@@ -51,13 +51,28 @@ class Form
         $this->html .= "<textarea name=\"$name\" id=\"$name\" rows=\"$rows\"></textarea>";
         $this->html .= "</p>";
     }
+
+    /**
+     * Génère un champ d'upload de fichier.
+     * @param string $name Le nom de l'attribut.
+     * @param string $label Le texte affiché.
+     * @param string $accept Les types de fichiers autorisés.
+     * @return void
+     */
+    public function setFile(string $name, string $label, string $accept = "image/*"): void
+    {
+        $this->html .= "<p>";
+        $this->html .= "<label for=\"$name\">$label</label>\n";
+        $this->html .= "<input type=\"file\" name=\"$name\" id=\"$name\" accept=\"$accept\">";
+        $this->html .= "</p>";
+    }
+
     /**
      * Ajoute un message d'erreur au formulaire
      * @param string $message Le texte de l'erreur à afficher
      */
     public function setError(string $message = ""): void
     {
-        // N'ajoute le code HTML que si le message n'est pas vide
         if (!empty($message)) {
             $this->html .= "<p class=\"error-message\"\>";
             $this->html .= $message;
@@ -67,11 +82,10 @@ class Form
 
     /**
      * Ajoute un message de success au formulaire
-     * * @param string $messageSuccess Le texte de succès à afficher.
+     * @param string $messageSuccess Le texte de succès à afficher.
      */
     public function setSuccess(string $messageSuccess): void
     {
-        // N'ajoute le code HTML que si le message n'est pas vide
         if (!empty($messageSuccess)) {
             $this->html .= "<p style='color: green;'>$messageSuccess</p>";
         }
