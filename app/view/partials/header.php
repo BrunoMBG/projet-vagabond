@@ -33,7 +33,7 @@
                                      Tableau de bord<i class="fa-solid fa-chevron-down"></i>
                                  </a>
                                   <ul class="adminMenu">
-                                    <li><a href="#">Ajouter un article</a></li>
+                                    <li><a href="index.php?action=articleAdd">Ajouter un article</a></li>
                                     <li><a href="#">Gestion articles</a></li>
                                     
                                     <?php // Si c'est l'administrateur, affiche la gestion des utilisateurs ?>
