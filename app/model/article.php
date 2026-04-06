@@ -11,9 +11,9 @@ function getArticlesFavorites(PDO $db, ?int $id_user = null): array
     $sql = "SELECT a.*, 
                 (SELECT COUNT(*) 
                 FROM favoris f 
-                WHERE f.id_article = a.id_article 
+                WHERE f.id_article = a.id_recit 
                 AND f.id_utilisateur = ?) AS is_favori
-                FROM articles a
+                FROM recits a
                 ORDER BY a.date_creation DESC";
 
     $query = $db->prepare($sql);
