@@ -123,7 +123,30 @@ class Form
         $this->html .= "<input type=\"submit\" value=\"$value\">\n";
         $this->html .= "</p>\n";
     }
+  /**
+     * Génère et ajoute au formulaire une liste déroulante basée sur des données de la BDD.
+     * @param string $name Le nom du champ
+     * @param string $label Le texte affiché dans l'étiquette
+     * @param array  $options Le tableau contenant les données 
+     * @param string $value La clé du tableau correspondant à l'ID
+     * @param string $valueLabel La clé du tableau correspondant au texte à afficher
+     * @return void
+     */
+    public function setSelect(string $name, string $label, array $options, string $value, string $valueLabel): void
+    {
+        $this->html .= "<label for='$name'>$label</label>";
+        $this->html .= "<select name='$name' id='$name' required>";
+        $this->html .= "<option value=''>-- Choisissez une destination --</option>";
 
+        foreach ($options as $option) {
+
+            $id = $option[$value];
+            $val = $option[$valueLabel];
+            $this->html .= "<option value='$id'>" . htmlspecialchars($val) . "</option>";
+        }
+
+        $this->html .= "</select>";
+    }
     /**
      * Ferme les balises structurelles du formulaire
      * @return string formulaire crée
