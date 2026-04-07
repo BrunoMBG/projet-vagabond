@@ -23,10 +23,9 @@ function getArticlesFavorites(PDO $db, ?int $id_user = null): array
 }
 
 
-
 /**
  * Ajout un nouveau article dans la base de données.
- * @param PDO $db Connexion à la base de données..
+ * @param PDO $db Connexion à la base de données.
  * @param string $titre Le titre du récit.
  * @param string $contenu Le texte du récit.
  * @param string|null $image Le nom du fichier image.
@@ -42,7 +41,6 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
 
     $query = $db->prepare($sql);
 
-
     return $query->execute([
         $titre,
         $contenu,
@@ -50,4 +48,19 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
         $id_destination,
         $id_user
     ]);
+}
+
+
+/**
+ * Récupère la liste complète des destinations.
+ * Cette fonction extrait l'identifiant et le nom de chaque destination,
+ * classés par ordre alphabétique pour faciliter la lecture dans un formulaire.
+ * @param PDO $db Connexion à la base de données.
+ * @return array Un tableau associatif contenant les colonnes 'id_destination' et 'nom_destination'.
+ */
+function getAllDestinations(PDO $db): array
+{
+    $sql = "SELECT id_destination, nom_destination FROM destinations ORDER BY nom_destination ASC";
+    $query = $db->query($sql);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
