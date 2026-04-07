@@ -15,7 +15,8 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/home.php";
             break;
         case "blog":
-            require RACINE . "/app/controller/blog.php";
+            require RACINE . "/app/controller/article.php";
+            articleList();
             break;
         case "contact":
             require RACINE . "/app/controller/contact.php";

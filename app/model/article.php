@@ -72,11 +72,10 @@ function getAllDestinations(PDO $db): array
  */
 function getAllArticles($db)
 {
-    $sql = "SELECT a.*, d.nom_destination, u.pseudo 
-            FROM article a
-            JOIN destination d ON a.id_destination = d.id_destination
-            JOIN user u ON a.id_utilisateur = u.id_utilisateur
-            ORDER BY a.date_creation DESC";
+    $sql = "SELECT r.*, d.nom_destination 
+            FROM recits r
+            JOIN destinations d ON r.id_destination = d.id_destination
+            ORDER BY r.date_creation DESC";
 
     $query = $db->query($sql);
     return $query->fetchAll();

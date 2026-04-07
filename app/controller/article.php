@@ -16,8 +16,6 @@ function articleAdd()
         exit;
     }
 
-
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // tableau d'erreurs en session
@@ -116,4 +114,17 @@ function articleAdd()
     $formArticle = $form->getForm();
 
     require_once RACINE . '/app/view/admin/article.php';
+}
+
+/**
+ * Contrôleur : Gère l'affichage de la liste des récits de voyage
+ * Cette fonction récupère les données via le modèle et les transmet à la vue.
+ */
+function articleList() {
+    global $db;
+    require_once RACINE . '/app/model/article.php';
+    
+    $articles = getAllArticles($db);
+    
+    require_once RACINE . '/app/view/blog.php';
 }
