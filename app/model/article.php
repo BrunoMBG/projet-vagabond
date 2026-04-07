@@ -80,3 +80,21 @@ function getAllArticles($db)
     $query = $db->query($sql);
     return $query->fetchAll();
 }
+
+/**
+ * Récupère un seul article par son ID.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id id de l'article
+ */
+function getArticleById(PDO $db, int $id)
+{
+    $sql = "SELECT r.*, d.nom_destination 
+            FROM recits r
+            JOIN destinations d ON r.id_destination = d.id_destination
+            WHERE r.id_recit = ?";
+
+    $query = $db->prepare($sql);
+    $query->execute([$id]);
+    
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
