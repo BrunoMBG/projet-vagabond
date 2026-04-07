@@ -168,3 +168,52 @@ function articleView() : void
 
     require_once RACINE . '/app/view/article_single.php';
 }
+
+/**
+ * Gère l'ajout d'un nouveau commentaire.
+ * Cette fonction vérifie l'authentification de l'utilisateur, récupère les données
+ * du formulaire commentaire, appelle le modèle pour l'insertion et redirige vers l'article.
+ *  @return void
+ */
+function postComment() : void
+{
+    global $db;
+    require_once RACINE . '/app/model/article.php';
+
+    // Vérifie si l'utilisateur est bien connecté
+    if (!isset($_SESSION['user']['id'])) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];
+        header('Location: index.php?action=login');
+        exit;
+    }
+
+    // Vérifie si l'ID est présent dans l'URL, sinon assigne 0 par défaut
+    $id_recit = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+    // Récupère le commentaire depuis le formulaire, supprime les espaces en début et fin,
+    // sinon assigne une chaîne vide par défaut
+    $texte = isset($_POST['comment']) ? trim($_POST['comment']) : '';
+
+    // Récupère l'ID de l'utilisateur stocké en session (Clé 'id' d'après ton login)
+    $id_user = (int)$_SESSION['user']['id']; 
+
+    // Si le texte n'est pas vide et que l'ID de l'article est valide
+    if (!empty($texte) && $id_recit > 0) {
+        // Appelle le modèle pour ajouter le commentaire 
+        if (addComment($db, $id_recit, $id_user, $texte)) {
+            $_SESSION['displayMessage'] = ["type" => "success", "message" => "Votre commentaire a été publié !"];
+        } else {
+            $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Une erreur est survenue lors de l'envoi."];
+        }
+    }else {
+        // Message d'erreur si l'utilisateur tente d'envoyer un message vide
+        $_SESSION['displayMessage'] = [
+            "type" => "warning", 
+            "message" => "Votre commentaire ne peut pas être vide."
+        ];
+    }
+
+   
+    header("Location: index.php?action=articleView&id=" . $id_recit);
+    exit;
+}
