@@ -1,6 +1,14 @@
 <?php
-
-function articleAdd()
+/**
+ * Gère l'ajout d'un nouvel article .
+ * Vérifie l'authentification de l'utilisateur, récupère les 
+ * destinations, valide les données saisies (titre, contenu, destination), 
+ * Gère l'upload sécurisé d'une image, enregistre l'article en base de données 
+ * et affiche le formulaire de création.
+ * * @global PDO $db Connexion à la base de données.
+ * @return void
+ */
+function articleAdd() : void
 {
     global $db;
 
