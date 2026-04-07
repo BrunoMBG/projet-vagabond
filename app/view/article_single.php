@@ -14,13 +14,13 @@
                 class="img-fluid">
         </div>
     <?php endif; ?>
-    
+
     <?php // Contenu principal de l'article ?>
     <div class="article_content">
         <?= nl2br(htmlspecialchars($article['contenu'])) ?>
     </div>
 
-    <hr>
+    
     <?php // Commentaires ?>
     <section class="comments">
         <?php // Affiche le nombre total de commentaires ?>
