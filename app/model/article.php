@@ -41,12 +41,12 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
 
     $query = $db->prepare($sql);
 
-return $query->execute([
+    return $query->execute([
         $titre,
-        $contenu,     
+        $contenu,
         $image,
         $id_destination,
-        $id_user 
+        $id_user
     ]);
 }
 
@@ -63,4 +63,21 @@ function getAllDestinations(PDO $db): array
     $sql = "SELECT id_destination, nom_destination FROM destinations ORDER BY nom_destination ASC";
     $query = $db->query($sql);
     return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Récupère la liste de tous les articles avec leur destination et leur auteur.
+ * @param PDO $db Connexion à la base de données.
+ * @return array Liste des articles avec les informations de destination et d'utilisateur.
+ */
+function getAllArticles($db)
+{
+    $sql = "SELECT a.*, d.nom_destination, u.pseudo 
+            FROM article a
+            JOIN destination d ON a.id_destination = d.id_destination
+            JOIN user u ON a.id_utilisateur = u.id_utilisateur
+            ORDER BY a.date_creation DESC";
+
+    $query = $db->query($sql);
+    return $query->fetchAll();
 }
