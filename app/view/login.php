@@ -1,13 +1,5 @@
-<?php // ==================== Head ==================== ?>
-<?php require_once RACINE . '/app/view/partials/head.php'; ?>
-
-<body>
-
-    <?php // ==================== Header ==================== ?>
-    <?php require RACINE . '/app/view/partials/header.php'; ?>
-    <h1>se connecter</h1>
-    <?php // ==================== Formulaire ==================== ?>
-    <?= $formLogin ; ?>
-</body>
-
-</html>
+<h1>se connecter</h1>
+<?php // ==================== Formulaire ==================== ?>
+<section>
+    <?= $formLogin; ?>
+</section>
