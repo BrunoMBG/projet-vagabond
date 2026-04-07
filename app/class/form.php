@@ -17,9 +17,10 @@ class Form
      * @param string $action L'URL de destination du formulaire
      * @param string $method La méthode POST
      */
-    public function __construct(string $action, string $method = "post")
+    public function __construct(string $action, string $method = "post", bool $isMultipart = false)
     {
-        $this->html = "<form action=\"$action\" method=\"$method\">\n";
+        $enctype = $isMultipart ? ' enctype="multipart/form-data"' : '';
+        $this->html = "<form action=\"$action\" method=\"$method\"$enctype>\n";
     }
 
     /**
@@ -74,7 +75,7 @@ class Form
     public function setError(string $message = ""): void
     {
         if (!empty($message)) {
-            $this->html .= "<p class=\"error-message\"\>";
+            $this->html .= "<p class=\"error-message\">";
             $this->html .= $message;
             $this->html .= "</p>\n";
         }
@@ -123,7 +124,7 @@ class Form
         $this->html .= "<input type=\"submit\" value=\"$value\">\n";
         $this->html .= "</p>\n";
     }
-  /**
+    /**
      * Génère et ajoute au formulaire une liste déroulante basée sur des données de la BDD.
      * @param string $name Le nom du champ
      * @param string $label Le texte affiché dans l'étiquette

@@ -6,5 +6,5 @@
     <?php require RACINE . '/app/view/partials/header.php'; ?>
     <h1>Ajouter un article</h1>
 </body>
-
+     <?= $formArticle; ?>
 </html>

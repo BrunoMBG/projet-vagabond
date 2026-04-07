@@ -41,12 +41,12 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
 
     $query = $db->prepare($sql);
 
-    return $query->execute([
+return $query->execute([
         $titre,
-        $contenu,
+        $contenu,     
         $image,
         $id_destination,
-        $id_user
+        $id_user 
     ]);
 }
 
