@@ -138,9 +138,12 @@ function articleList() {
 }
 
 /**
- * Gère l'affichage d'un article complet .
- * Récupère les données via le modèle en fonction de l'ID passé dans l'URL.
- * * @return void
+ * Gère l'affichage détaillé d'un article et de ses commentaires.
+ * Récupère l'identifiant de l'article via l'URL, interroge le modèle
+ * pour obtenir les données du récit ainsi que la liste des commentaires associés,
+ * puis charge la vue correspondante.
+ *
+ * @return void 
  */
 function articleView() : void
 {
@@ -161,7 +164,7 @@ function articleView() : void
         header('Location: index.php?action=blog');
         exit;
     }
-
+    $comments = getCommentsByArticle($db, $id);
 
     require_once RACINE . '/app/view/article_single.php';
 }
