@@ -43,11 +43,11 @@ function articleAdd()
 
             // Vérifie si l'image a bien été transférée
             if ($_FILES['image_article']['error'] === 0) {
-                $uploadDir = RACINE . '/public/images/';
+                $uploadDir = RACINE . '/app/data/images/';
 
                 // Création du dossier de stockage s'il n'existe pas
                 if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
+                    mkdir($uploadDir, 0755, true);
                 }
 
                 // Vérifie  l'extension du fichier
@@ -59,7 +59,7 @@ function articleAdd()
                     $image_name = uniqid('art_') . '.' . $extension;
                     $destinationPath = $uploadDir . $image_name;
 
-                    // Déplacement du fichier vers  public/images/
+                    // Déplacement du fichier vers /app/data/images
                     if (!move_uploaded_file($_FILES['image_article']['tmp_name'], $destinationPath)) {
                         $_SESSION['errors'][] = "Erreur technique lors du transfert de l'image.";
                         $image_name = null;
