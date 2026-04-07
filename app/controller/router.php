@@ -56,6 +56,10 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/article.php";
             articleAdd();
             break;
+        case "articleView":
+            require RACINE . "/app/controller/article.php";
+            articleView();
+            break;
         case 'viewImage':
             require_once RACINE . '/app/controller/images.php';
             displayImage();

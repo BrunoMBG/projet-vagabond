@@ -136,3 +136,32 @@ function articleList() {
     
     require_once RACINE . '/app/view/blog.php';
 }
+
+/**
+ * Gère l'affichage d'un article complet .
+ * Récupère les données via le modèle en fonction de l'ID passé dans l'URL.
+ * * @return void
+ */
+function articleView() : void
+{
+    global $db;
+    
+   
+    require_once RACINE . '/app/model/article.php';
+
+    // Récupération de l'ID depuis l'URL
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
+
+    // Appel au modèle pour récupérer l'article spécifique
+    $article = getArticleById($db, $id);
+
+  // Gestion d'erreur : si l'article n'existe pas
+    if (!$article) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Cet article est introuvable."];
+        header('Location: index.php?action=blog');
+        exit;
+    }
+
+
+    require_once RACINE . '/app/view/article_single.php';
+}

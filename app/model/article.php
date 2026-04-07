@@ -85,6 +85,7 @@ function getAllArticles($db)
  * Récupère un seul article par son ID.
  * @param PDO $db Connexion à la base de données.
  * @param int $id id de l'article
+ * @return array Retourne les données de l'article ou false si non trouvé.
  */
 function getArticleById(PDO $db, int $id)
 {
