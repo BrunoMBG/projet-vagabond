@@ -99,3 +99,24 @@ function getArticleById(PDO $db, int $id)
     
     return $query->fetch(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Récupère tous les commentaires associés à un récit spécifique.
+ * Effectue une jointure avec la table 'utilisateurs' pour 
+ * récupérer automatiquement le nom et le prénom de l'auteur de chaque commentaire.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id_article L'identifiant unique du récit
+ * @return array Un tableau associatif contenant tous les commentaires trouvés,
+ * ou un tableau vide si aucun commentaire n'existe.
+ */
+function getCommentsByArticle(PDO $db, int $id_article) {
+    $sql = "SELECT c.*, u.nom, u.prenom 
+            FROM commentaires c
+            JOIN utilisateurs u ON c.id_utilisateur = u.id_utilisateur
+            WHERE c.id_recit = ? 
+            ORDER BY c.date_commentaire DESC"; 
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$id_article]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
