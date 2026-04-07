@@ -1,10 +1,6 @@
-<?php // ==================== Head ==================== ?>
-<?php require_once RACINE . '/app/view/partials/head.php'; ?>
+<h1>Ajouter un article</h1>
 
-<body>
-    <?php // ==================== Header ==================== ?>
-    <?php require RACINE . '/app/view/partials/header.php'; ?>
-    <h1>Ajouter un article</h1>
-</body>
-     <?= $formArticle; ?>
-</html>
+<section>
+    <?= $formArticle; ?>
+</section>
+
