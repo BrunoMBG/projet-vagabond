@@ -120,3 +120,24 @@ function getCommentsByArticle(PDO $db, int $id_article) {
     $stmt->execute([$id_article]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Enregistre un nouveau commentaire dans la base de données.
+ * Génère la date actuelle via 
+ * et l'insère avec l'ID du récit, l'ID de l'utilisateur et le texte du message.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id_recit L'identifiant de l'article.
+ * @param int $id_utilisateur L'identifiant de l'auteur du commentaire.
+ * @param string $commentaire Le contenu textuel du commentaire.
+ * * @return bool Retourne true si l'insertion a réussi, false en cas d'erreur.
+ */
+function addComment(PDO $db, int $id_recit, int $id_utilisateur, string $commentaire): bool
+{
+    $date = date('Y-m-d H:i:s'); 
+
+    $sql = "INSERT INTO commentaires (id_recit, id_utilisateur, commentaire, date_commentaire) 
+            VALUES (?, ?, ?, ?)";
+    
+    $query = $db->prepare($sql);
+    return $query->execute([$id_recit, $id_utilisateur, $commentaire, $date]);
+}
