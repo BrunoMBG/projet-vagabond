@@ -1,10 +1,13 @@
 <?php
 
 /**
- * Vérifie l'existence du fichier, nettoie les tampons de sortie pour éviter 
- * la corruption des données binaires, envoie les en-têtes HTTP 
+ * Cette fonction récupère une image sur le serveur, identifie dynamiquement 
+ * son type MIME (jpg, png, etc.) pour envoyer les bons en-têtes HTTP, et affiche 
+ * le flux binaire du fichier. Gère les erreurs 404 si le fichier est introuvable.
+ * * @param string $imageName Le nom du fichier image
+ * @return void
  */
-function getImage($imageName) {
+function getImage($imageName) : void {
     // Extrait le nom de l'image
     $safeName = basename($imageName);
     // Transfert l'image vers /app/data/images/
@@ -34,7 +37,10 @@ function getImage($imageName) {
 }
 
 /**
- * Géner l'affiche de l'image
+ * Cette fonction fait le lien entre la requête HTTP  
+ * et la fonction de traitement getImage(). Elle valide la présence du nom 
+ * de l'image et renvoie une erreur 400 en cas de paramètre manquant.
+ * * @return void
  */
 function displayImage() {
     // Récupére le nom de l'image via url, sinon le met vide 
