@@ -217,3 +217,33 @@ function postComment() : void
     header("Location: index.php?action=articleView&id=" . $id_recit);
     exit;
 }
+
+/**
+ * Gère l'ajout ou la suppression d'un favori.
+ */
+function toggleFavoriteController(PDO $db) {
+    //  Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['user'])) {
+        header("Location: index.php?action=login");
+        exit;
+    }
+
+    $id_user = $_SESSION['user']['id'];
+    
+    // Récupérer l'ID du récit depuis l'URL
+    $id_recit = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    if ($id_recit) {
+
+        if (isFavorite($db, $id_user, $id_recit)) {
+            removeFavorite($db, $id_user, $id_recit);
+        } else {
+            addFavorite($db, $id_user, $id_recit);
+        }
+    }
+
+
+    $redirect = $_SERVER['HTTP_REFERER'] ?? "index.php?action=article&id=" . $id_recit;
+    header("Location: " . $redirect);
+    exit;
+}
