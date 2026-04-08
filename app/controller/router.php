@@ -20,6 +20,7 @@ function handleRequest(string $action = "default"): void
             break;
         case "contact":
             require RACINE . "/app/controller/contact.php";
+            contact();
             break;
         case "login":
             require RACINE . "/app/controller/login.php";
