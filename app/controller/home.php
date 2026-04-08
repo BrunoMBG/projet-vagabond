@@ -2,7 +2,8 @@
 
     /**
      * Contrôleur de la page d'accueil
-     * * Récupère les 3 derniers récits de voyage via le modèle 
+     * 
+     * Récupère les 3 derniers récits de voyage via le modèle 
      * et les transmet à la vue home.php.
      */
 
