@@ -141,3 +141,17 @@ function addComment(PDO $db, int $id_recit, int $id_utilisateur, string $comment
     $query = $db->prepare($sql);
     return $query->execute([$id_recit, $id_utilisateur, $commentaire, $date]);
 }
+
+/**
+ * Vérifie si un récit spécifique est marqué comme favori par un utilisateur.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id_user L'identifiant de l'utilisateur (issu de la session).
+ * @param int $id_recit L'identifiant du récit à vérifier.
+ * @return bool Retourne true si le favori existe, sinon false.
+ */
+function isFavorite(PDO $db, int $id_user, int $id_recit): bool {
+    $sql = "SELECT 1 FROM favoris WHERE id_utilisateur = ? AND id_recit = ?";
+    $query = $db->prepare($sql);
+    $query->execute([$id_user, $id_recit]);
+    return (bool)$query->fetch();
+}
