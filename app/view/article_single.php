@@ -20,7 +20,19 @@
         <?= nl2br(htmlspecialchars($article['contenu'])) ?>
     </div>
 
-    
+    <?php // Ajouter/retirer des favoris?>
+    <div class="">
+        <?php if (isset($_SESSION['user'])): ?>
+            <a href="index.php?action=favorites&id=<?= (int)$article['id_recit'] ?>" >
+                <?php if (isFavorite($db, (int)$_SESSION['user']['id'], (int)$article['id_recit'])): ?>
+                    <span title="Retirer des favoris"><i class="fa-solid fa-heart"></i> Retirer des favoris</span>
+                <?php else: ?>
+                    <span title="Ajouter aux favoris"><i class="fa-regular fa-heart"></i> Ajouter aux favoris</span>
+                <?php endif; ?>
+            </a>
+        <?php endif; ?>
+    </div>
+
     <?php // Commentaires ?>
     <section class="comments">
         <?php // Affiche le nombre total de commentaires ?>

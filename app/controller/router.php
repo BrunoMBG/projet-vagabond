@@ -68,6 +68,10 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/article.php";
             postComment();
             break;
+        case 'favorites':
+            require RACINE . "/app/controller/article.php";
+            favorites();
+            break;
         default:
             require RACINE . "/app/controller/page404.php";
             break;

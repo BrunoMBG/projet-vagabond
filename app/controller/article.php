@@ -219,9 +219,18 @@ function postComment() : void
 }
 
 /**
- * Gère l'ajout ou la suppression d'un favori.
+ * Gère l'action de "Like/Unlike" pour un récit.
+ * Cette fonction vérifie d'abord l'authentification de l'utilisateur.
+ * Elle bascule l'état du favori
+ * Si le récit est déjà en favori : elle le supprime.
+ * Si le récit n'est pas en favori : elle l'ajoute.
+ * @return void
  */
-function toggleFavoriteController(PDO $db) {
+function favorites() {
+
+    global $db;
+    require_once RACINE . "/app/model/article.php";
+
     //  Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['user'])) {
         header("Location: index.php?action=login");
@@ -241,7 +250,6 @@ function toggleFavoriteController(PDO $db) {
             addFavorite($db, $id_user, $id_recit);
         }
     }
-
 
     $redirect = $_SERVER['HTTP_REFERER'] ?? "index.php?action=article&id=" . $id_recit;
     header("Location: " . $redirect);
