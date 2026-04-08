@@ -2,7 +2,15 @@
 require RACINE . '/app/model/user.php';
 require RACINE . '/app/class/form.php';
 
-function editProfile()
+/**
+ * Gère l'affichage et la modification du profil utilisateur.
+ * Cette fonction contrôle l'accès, traite la soumission
+ * du formulaire de mise à jour, valide les données,
+ * met à jour la base de données et synchronise les informations de la session.
+ * Elle permet également la modification optionnelle du mot de passe.
+ * * @return void
+ */
+function editProfile() : void
 {
     global $db;
     $user = $_SESSION['user'];
