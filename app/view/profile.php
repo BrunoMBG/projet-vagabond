@@ -2,9 +2,9 @@
 /**
  * Vue Informations Personnelles
  * 
- * * Affiche les informations du compte utilisateur :
- * - $user (array) : Données de l'utilisateur (nom, prenom, email, role).
- * - Traduit l'ID numérique du rôle en libellé compréhensible (Admin, Rédacteur, Membre).
+ * Affiche les informations du compte utilisateur :
+ * @var array $user Données de l'utilisateur (nom, prenom, email, role).
+ * Traduit l'ID numérique du rôle en libellé compréhensible (Admin, Rédacteur, Membre).
  */
 ?>
 <h1>

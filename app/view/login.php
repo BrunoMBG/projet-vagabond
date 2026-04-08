@@ -2,8 +2,8 @@
 /**
  * Vue Page de Connexion
  * 
- * Affiche l'interface d'authentification des utilisateurs :
- * $formLogin (string) : Bloc HTML complet généré par la classe 'Form'.
+ * Affiche l'interface d'authentification des utilisateurs.
+ * @var string $formLogin Bloc HTML complet généré par la classe 'Form'.
  */
 ?>
 

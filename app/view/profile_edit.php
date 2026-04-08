@@ -2,8 +2,8 @@
 
 /**
  * Vue Modification du Profil
- * Permet à l'utilisateur de mettre à jour ses informations personnelles :
- * $formEdit (string) : Bloc HTML du formulaire généré par la classe 'Form'.
+ * Permet à l'utilisateur de mettre à jour ses informations personnelles.
+ * @var string $formEdit Bloc HTML du formulaire généré par la classe 'Form'.
  */
 
 ?>

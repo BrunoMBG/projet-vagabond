@@ -4,7 +4,7 @@
      * Vue Formulaire de Contact
      * 
      * Affiche l'interface de prise de contact avec les utilisateurs
-     * $contactFormHtml (string) : Contenu HTML complet du formulaire pré-généré.
+     * @var string $contactFormHtml Contenu HTML complet du formulaire pré-généré.
      * Le formulaire est généralement construit via la classe Form dans le contrôleur.
      */
 

@@ -1,9 +1,10 @@
 <?php
 
 /**
- * ARCHITECTURE : Vue Inscription (Register)
- * * Affiche l'interface de création de compte pour les nouveaux visiteurs :
- * - $formRegister (string) : Bloc HTML complet généré par la classe 'Form'.
+ * Vue Inscription
+ * 
+ * Affiche l'interface de création de compte pour les nouveaux visiteurs :
+ * @var string $formRegister Bloc HTML complet généré par la classe 'Form'.
  */
 
 ?>
