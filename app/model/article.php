@@ -14,6 +14,7 @@
  * isFavorite           : Vérifie si un utilisateur a déjà liké un récit.
  * addFavorite          : Ajoute un lien de favori entre un utilisateur et un récit.
  * removeFavorite       : Supprime un récit des favoris d'un utilisateur.
+ * getLatestArticles    : Récupère les derniers récits (pour la page d'accueil).
  */
 
 /**
@@ -205,4 +206,22 @@ function removeFavorite(PDO $db, int $id_user, int $id_recit): bool
     $query = $db->prepare($sql);
 
     return $query->execute([$id_user, $id_recit]);
+}
+
+/**
+ * Récupère les derniers récits publiés avec une limite définie.
+ * * @param PDO $db Connexion à la base de données.
+ * @param int $limit Nombre d'articles à récupérer (par défaut 3).
+ * @return array Liste des articles les plus récents.
+ */
+function getLatestArticles($db, $limit = 3)
+{
+    $sql = "SELECT r.*, d.nom_destination 
+            FROM recits r
+            JOIN destinations d ON r.id_destination = d.id_destination
+            ORDER BY r.date_creation DESC
+            LIMIT $limit";
+
+    $query = $db->query($sql);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
