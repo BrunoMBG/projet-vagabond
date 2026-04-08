@@ -1,80 +1,115 @@
 <?php
 
-/**
- * Routeur principal.
- * * Analyse l'action demandée et charge le contrôleur correspondant.
- * Si l'action est inconnue ou absente, redirige vers la page d'accueil ou une erreur 404.
- *
- * @param string $action Le nom de la page demandée (par défaut "default").
- * @return void
- */
-function handleRequest(string $action = "default"): void
-{
-    switch ($action) {
-        case "default":
-            require RACINE . "/app/controller/home.php";
-            break;
-        case "blog":
-            require RACINE . "/app/controller/article.php";
-            articleList();
-            break;
-        case "contact":
-            require RACINE . "/app/controller/contact.php";
-            contact();
-            break;
-        case "login":
-            require RACINE . "/app/controller/login.php";
-            login();
-            break;
-        case "register":
-            require RACINE . "/app/controller/register.php";
-            register();
-            break;
-        case "logout":
-            require RACINE . "/app/controller/logout.php";
-            break;
-        case "profile":
-            require RACINE . "/app/controller/profile.php";
-            showProfile();
-            break;
-        case "profile_edit":
-            require RACINE . "/app/controller/profile_edit.php";
-            editProfile();
-            break;
-        case "dashboard":
-            require RACINE . "/app/controller/admin.php";
-            dashboard();
-            break;
-        case "user_list":
-            require RACINE . "/app/controller/admin.php";
-            userList();
-            break;
-        case "user_update_role":
-            require RACINE . "/app/controller/admin.php";
-            userUpdateRole();
-            break;
-        case "articleAdd":
-            require RACINE . "/app/controller/article.php";
-            articleAdd();
-            break;
-        case "articleView":
-            require RACINE . "/app/controller/article.php";
-            articleView();
-            break;
-        case 'viewImage':
-            require_once RACINE . '/app/controller/images.php';
-            displayImage();
-            break;
-        case "addComment":
-            require RACINE . "/app/controller/article.php";
-            postComment();
-            break;
-        case 'favorites':
-            require RACINE . "/app/controller/article.php";
-            favorites();
-            break;
-        default:
-            require RACINE . "/app/controller/page404.php";
-            break;
+    /**
+     *  Contrôleur Routeur
+     * router est le point d'entrée unique pour la navigation du site. 
+     * Réceptionne l'action envoyée par l'URL .
+     * Inclus le contrôleur nécessaire.
+     * Exécute la fonction associée à la page.
+     * Sécurise l'accès en gérant les pages inconnues (404).
+     *
+     * @param string $action Le nom de la page demandée (par défaut "default").
+     * @return void
+     */
+    function handleRequest(string $action = "default"): void
+    {
+        switch ($action) {
+            // Affiche la page d'accueil
+            case "default":
+                require RACINE . "/app/controller/home.php";
+                break;
+
+            // Gère l'affichage de la liste des articles
+            case "blog":
+                require RACINE . "/app/controller/article.php";
+                articleList();
+                break;
+
+            // Gère le formulaire de contact
+            case "contact":
+                require RACINE . "/app/controller/contact.php";
+                contact();
+                break;
+
+            // Gère l'authentification de l'utilisateur
+            case "login":
+                require RACINE . "/app/controller/login.php";
+                login();
+                break;
+
+            // Gère la création d'un nouveau compte
+            case "register":
+                require RACINE . "/app/controller/register.php";
+                register();
+                break;
+
+            // Gère la déconnexion de l'utilisateur
+            case "logout":
+                require RACINE . "/app/controller/logout.php";
+                break;
+
+            // Affiche le profil de l'utilisateur connecté
+            case "profile":
+                require RACINE . "/app/controller/profile.php";
+                showProfile();
+                break;
+
+            // Gère la modification des informations du profil
+            case "profile_edit":
+                require RACINE . "/app/controller/profile_edit.php";
+                editProfile();
+                break;
+
+            // Affiche le tableau de bord administration
+            case "dashboard":
+                require RACINE . "/app/controller/admin.php";
+                dashboard();
+                break;
+            // Gère l'affichage de la liste des utilisateurs 
+            case "user_list":
+                require RACINE . "/app/controller/admin.php";
+                userList();
+                break;
+
+            // Gère la modification des droits d'un utilisateur
+            case "user_update_role":
+                require RACINE . "/app/controller/admin.php";
+                userUpdateRole();
+                break;
+
+            // Gère l'ajout d'un nouvel article
+            case "articleAdd":
+                require RACINE . "/app/controller/article.php";
+                articleAdd();
+                break;
+
+            // Affiche le contenu d'un article spécifique
+            case "articleView":
+                require RACINE . "/app/controller/article.php";
+                articleView();
+                break;
+
+            // Gère la récupération et l'affichage sécurisé des images
+            case 'viewImage':
+                require_once RACINE . '/app/controller/images.php';
+                displayImage();
+                break;
+
+            // Gère l'ajout d'un commentaire sur un article
+            case "addComment":
+                require RACINE . "/app/controller/article.php";
+                postComment();
+                break;
+
+            // Gère l'ajout ou le retrait des articles favoris
+            case 'favorites':
+                require RACINE . "/app/controller/article.php";
+                favorites();
+                break;
+
+            // Redirige vers la page d'erreur 404 si l'action est inconnue
+            default:
+                require RACINE . "/app/controller/page404.php";
+                break;
+        }
     }
-}
