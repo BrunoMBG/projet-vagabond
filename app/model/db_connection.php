@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * Configuration de la Base de Données
+ *
+ * db_connection gère la communication initiale avec le serveur SQL
+ * connectDB : Initialise la connexion PDO avec les variables d'environnement.
+ * Initialise la variable globale $db utilisée dans toute l'application.
+ */
+
+/**
  * Établit une connexion à la base de données via PDO.
  *
  * Utilise les variables d'environnement pour récupérer les informations de connexion.

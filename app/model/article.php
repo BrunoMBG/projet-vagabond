@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * Modèle Article & Interactions
+ * 
+ * article centralise toutes les requêtes SQL liées aux récits de voyage.
+ * getArticlesFavorites : Récupère les récits et l'état des favoris pour un utilisateur.
+ * addArticle           : Enregistre un nouveau récit de voyage en base de données.
+ * getAllDestinations   : Liste toutes les destinations disponibles en (ordre alphabétique).
+ * getAllArticles       : Récupère l'intégralité des récits avec leurs destinations.
+ * getArticleById       : Récupère les détails d'un récit spécifique via son ID.
+ * getCommentsByArticle : Liste les commentaires d'un récit avec l'identité des auteurs.
+ * addComment           : Insère un nouveau commentaire pour un récit donné.
+ * isFavorite           : Vérifie si un utilisateur a déjà liké un récit.
+ * addFavorite          : Ajoute un lien de favori entre un utilisateur et un récit.
+ * removeFavorite       : Supprime un récit des favoris d'un utilisateur.
+ */
+
+/**
  * Récupère la liste des articles avec les infos auteur et favori
  * @param PDO $db Connexion à la base de données.
  * @param int|null $id_user ID de l'utilisateur pour vérifier ses favoris

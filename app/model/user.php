@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Modèle Utilisateur & Sécurité
+ * 
+ * user centralise toutes les requêtes SQL liées aux comptes utilisateurs :
+ * registerUser    : Enregistre un nouvel utilisateur (Rôle 'Membre' par défaut).
+ * isEmailExists   : Vérifie si l'email existe déjà en base.
+ * getUserByEmail  : Récupère les données complètes d'un utilisateur pour le login.
+ * updateProfil    : Modifie les informations personnelles et/ou le mot de passe.
+ * getAllUsers     : Liste l'ensemble des utilisateurs avec leurs libellés de rôle.
+ * getAllRoles     : Récupère les différents niveaux d'accréditation disponibles.
+ * updateUserRole  : Modifie les privilèges d'un utilisateur (Admin uniquement).
+ */
+
+/**
  * Enregistre un nouveau utilisateur avec les informations du formulaire.
  * @param PDO connexion à la base de données.
  * @param string $lastName nom de famille de l'utilisateur.
@@ -125,5 +138,5 @@ function updateUserRole(PDO $db, int $id_user, int $id_role): bool
 {
     $sql = "UPDATE utilisateurs SET id_role = ? WHERE id_utilisateur = ?";
     $query = $db->prepare($sql);
-    return $query->execute([ $id_role, $id_user]);
+    return $query->execute([$id_role, $id_user]);
 }
