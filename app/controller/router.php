@@ -1,7 +1,8 @@
 <?php
 
     /**
-     *  Contrôleur Routeur
+     * Contrôleur Routeur
+     * 
      * router est le point d'entrée unique pour la navigation du site. 
      * Réceptionne l'action envoyée par l'URL .
      * Inclus le contrôleur nécessaire.

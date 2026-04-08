@@ -2,6 +2,7 @@
 
     /**
      * Contrôleur du profil utilisateur
+     * 
      * *profile gère l'affichage des informations personnelles de l'utilisateur.
      * Vérifie si l'utilisateur est authentifié.
      * Récupère les données depuis la session.

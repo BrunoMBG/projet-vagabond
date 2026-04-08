@@ -2,6 +2,7 @@
 
     /**
      * Contrôleur de modification du profil
+     * 
      * profile_edit gère la mise à jour des informations personnelles.
      * Vérifie l'authentification de l'utilisateur.
      * Traite les données du formulaire et valide l'email.
