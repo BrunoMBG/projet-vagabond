@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * Vue d'un Article
+ * 
+ * Affiche le contenu complet d'un récit de voyage et ses interactions :
+ * $article (array)  : Données du récit (titre, contenu, image, id_recit).
+ * $comments (array) : Liste des commentaires associés.
+ * $db (PDO)         : Instance de connexion pour la vérification des favoris.
+ * $_SESSION['user'] pour l'affichage des options de favoris et commentaires.
+ */
+
+?>
+
 <article class="article-detail">
     <?php // Titre de l'article ?>
     <header>

@@ -1,3 +1,27 @@
-<h1>contact</h1>
+<?php
 
-<?= $contactFormHtml ; ?>
+    /**
+     * Vue Formulaire de Contact
+     * 
+     * Affiche l'interface de prise de contact avec les utilisateurs
+     * $contactFormHtml (string) : Contenu HTML complet du formulaire pré-généré.
+     * Le formulaire est généralement construit via la classe Form dans le contrôleur.
+     */
+
+?>
+
+<?php // Formulaire ?>
+<section class="">
+    <h1>Contactez-nous</h1>
+
+    <div class="">
+        <p>
+            Une question, une suggestion ou une envie de collaborer ?
+            Nous sommes à votre écoute.
+        </p>
+    </div>
+
+    <div class="form-wrapper">
+        <?= $contactFormHtml; ?>
+    </div>
+</section>

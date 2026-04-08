@@ -1,3 +1,16 @@
+<?php
+
+/**
+ * Vue Gestion des Utilisateurs (Admin)
+ * 
+ * * Interface permettant de modifier les privilèges des membres :
+ * - $users (array) : Liste des utilisateurs avec leurs rôles actuels.
+ * - $roles (array) : Liste de tous les rôles disponibles en base de données.
+ * - $_SESSION['displayMessage'] : Système de notification flash pour les retours d'action.
+ * - Accès strictement réservé au rôle Administrateur (ID 1).
+ */
+
+?>
 <?php if ($_SESSION['user_role'] === 1): ?>
     <section>
         <h2>Gestion des Utilisateurs</h2>

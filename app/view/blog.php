@@ -1,3 +1,14 @@
+<?php
+
+/**
+ * Vue Liste des Articles 
+ * 
+ * Affiche une grille de résumés de tous les récits de voyage :
+ * $articles (array) : Liste des récits (id_recit, titre, contenu, image).
+ * Utilise substr() pour limiter l'affichage du texte en page d'accueil.
+ */
+
+?>
 <h1>blog</h1>
 
 <section class="articlesContainer">
