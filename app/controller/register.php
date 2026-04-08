@@ -47,7 +47,7 @@ function register()
     $form->setInput("password", "Mot de passe :", "password");
     // Message d'erreur
     $form->setError($error);
-    $form->setSubmit("Créer mon compte");
+    $form->setSubmit("Créer mon compte", "");
     // Affichage du formulaire
     $formRegister = $form->getForm();
 

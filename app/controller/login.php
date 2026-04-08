@@ -59,7 +59,7 @@ function login()
     // Message d'erreur
     $form->setError($error);
 
-    $form->setSubmit("Se connecter");
+    $form->setSubmit("Se connecter", "");
     // Ajout des liens utilitaires
     $form->setLink("index.php?action=forgotten", "Mot de passe oublié ?", "");
     $form->setText("Pas encore de compte ? ", "");

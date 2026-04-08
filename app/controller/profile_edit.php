@@ -59,7 +59,7 @@ function editProfile()
     // Message d'erreur
     $form->setError($error);
 
-    $form->setSubmit("Enregistrer les modifications");
+    $form->setSubmit("Enregistrer les modifications", "");
     // Affichage du formulaire
     $formEdit = $form->getForm();
     require_once RACINE . '/app/view/profile_edit.php';

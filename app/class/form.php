@@ -116,12 +116,13 @@ class Form
     /**
      * Crée un paragraphe avec un input du type submit intérieur
      * @param string $value la value du input
+     * @param string $class classe CSS.
      * @return void
      */
-    public function setSubmit(string $value): void
+    public function setSubmit(string $value, string $class = ""): void
     {
         $this->html .= "<p>\n";
-        $this->html .= "<input type=\"submit\" value=\"$value\">\n";
+        $this->html .= "<input type=\"submit\" class='$class' value=\"$value\">\n";
         $this->html .= "</p>\n";
     }
     /**
