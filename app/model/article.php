@@ -96,7 +96,7 @@ function getArticleById(PDO $db, int $id)
 
     $query = $db->prepare($sql);
     $query->execute([$id]);
-    
+
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -109,12 +109,13 @@ function getArticleById(PDO $db, int $id)
  * @return array Un tableau associatif contenant tous les commentaires trouvés,
  * ou un tableau vide si aucun commentaire n'existe.
  */
-function getCommentsByArticle(PDO $db, int $id_article) {
+function getCommentsByArticle(PDO $db, int $id_article)
+{
     $sql = "SELECT c.*, u.nom, u.prenom 
             FROM commentaires c
             JOIN utilisateurs u ON c.id_utilisateur = u.id_utilisateur
             WHERE c.id_recit = ? 
-            ORDER BY c.date_commentaire DESC"; 
+            ORDER BY c.date_commentaire DESC";
 
     $stmt = $db->prepare($sql);
     $stmt->execute([$id_article]);
@@ -133,11 +134,11 @@ function getCommentsByArticle(PDO $db, int $id_article) {
  */
 function addComment(PDO $db, int $id_recit, int $id_utilisateur, string $commentaire): bool
 {
-    $date = date('Y-m-d H:i:s'); 
+    $date = date('Y-m-d H:i:s');
 
     $sql = "INSERT INTO commentaires (id_recit, id_utilisateur, commentaire, date_commentaire) 
             VALUES (?, ?, ?, ?)";
-    
+
     $query = $db->prepare($sql);
     return $query->execute([$id_recit, $id_utilisateur, $commentaire, $date]);
 }
@@ -149,7 +150,8 @@ function addComment(PDO $db, int $id_recit, int $id_utilisateur, string $comment
  * @param int $id_recit L'identifiant du récit à vérifier.
  * @return bool Retourne true si le favori existe, sinon false.
  */
-function isFavorite(PDO $db, int $id_user, int $id_recit): bool {
+function isFavorite(PDO $db, int $id_user, int $id_recit): bool
+{
     $sql = "SELECT 1 FROM favoris WHERE id_utilisateur = ? AND id_recit = ?";
     $query = $db->prepare($sql);
     $query->execute([$id_user, $id_recit]);
@@ -158,18 +160,33 @@ function isFavorite(PDO $db, int $id_user, int $id_recit): bool {
 
 /**
  * Ajoute un récit aux favoris d'un utilisateur.
- * * @param PDO $db Connexion à la base de données.
+ * @param PDO $db Connexion à la base de données.
  * @param int $id_user L'identifiant de l'utilisateur.
  * @param int $id_recit L'identifiant du récit.
  * @return bool Retourne true en cas de succès.
  */
-function addFavorite(PDO $db, int $id_user, int $id_recit): bool 
+function addFavorite(PDO $db, int $id_user, int $id_recit): bool
 {
     $sql = "INSERT IGNORE INTO favoris (id_utilisateur, id_recit, date_ajout) 
             VALUES (?, ?, ?)";
     $query = $db->prepare($sql);
-    
-    $date = date('Y-m-d H:i:s'); // Génère la date actuelle au format SQL
-    
+
+    $date = date('Y-m-d H:i:s');
+
     return $query->execute([$id_user, $id_recit, $date]);
+}
+
+/**
+ * Retire un récit des favoris d'un utilisateur.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id_user L'identifiant de l'utilisateur.
+ * @param int $id_recit L'identifiant du récit.
+ * @return bool Retourne true en cas de succès.
+ */
+function removeFavorite(PDO $db, int $id_user, int $id_recit): bool
+{
+    $sql = "DELETE FROM favoris WHERE id_utilisateur = ? AND id_recit = ?";
+    $query = $db->prepare($sql);
+
+    return $query->execute([$id_user, $id_recit]);
 }
