@@ -2,6 +2,7 @@
 
     /**
      * Contrôleur de déconnexion
+     * 
      * logout gère la fin de session utilisateur.
      * Réinitialise les variables de session.
      * Détruit la session en cours.

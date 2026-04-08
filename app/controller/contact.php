@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Contrôleur de la page de contact
+ * 
+ * contact gère la réception des messages envoyés par les visiteurs.
+ * Valide les entrées du formulaire.
+ * Utilise la fonction native mail() pour l'envoi.
+ * Génère le formulaire via la classe Form.
+ * Gère les retours utilisateurs (succès ou erreur).
+ */
+
 require RACINE . '/app/class/form.php';
 /**
  * Gère la page de contact : valide les données saisies, tente d'envoyer un email
