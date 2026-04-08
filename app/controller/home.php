@@ -2,9 +2,16 @@
 
     /**
      * Contrôleur de la page d'accueil
-     * 
-     * home gère l'affichage de la page principale du site.
-     * Il sert de point d'entrée par défaut et appelle la vue home.php.
+     * * Récupère les 3 derniers récits de voyage via le modèle 
+     * et les transmet à la vue home.php.
      */
+
+    
+    global $db;
+
+    require_once RACINE . "/app/model/article.php";
+
+    // Récupération des 3 derniers articles
+    $articles = getLatestArticles($db, 3);
 
     require RACINE . "/app/view/home.php";
