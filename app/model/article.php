@@ -155,3 +155,21 @@ function isFavorite(PDO $db, int $id_user, int $id_recit): bool {
     $query->execute([$id_user, $id_recit]);
     return (bool)$query->fetch();
 }
+
+/**
+ * Ajoute un récit aux favoris d'un utilisateur.
+ * * @param PDO $db Connexion à la base de données.
+ * @param int $id_user L'identifiant de l'utilisateur.
+ * @param int $id_recit L'identifiant du récit.
+ * @return bool Retourne true en cas de succès.
+ */
+function addFavorite(PDO $db, int $id_user, int $id_recit): bool 
+{
+    $sql = "INSERT IGNORE INTO favoris (id_utilisateur, id_recit, date_ajout) 
+            VALUES (?, ?, ?)";
+    $query = $db->prepare($sql);
+    
+    $date = date('Y-m-d H:i:s'); // Génère la date actuelle au format SQL
+    
+    return $query->execute([$id_user, $id_recit, $date]);
+}
