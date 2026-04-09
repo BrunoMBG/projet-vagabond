@@ -41,15 +41,17 @@ class Form
 
     /**
      * Crée un textarea pour les contenus longs (récits, commentaires)
-     *  @param string $name Le nom de l'attribut
-     *  @param string $label La description affichée pour l'utilisateur
+     * @param string $name Le nom de l'attribut
+     * @param string $label La description affichée pour l'utilisateur
+     * @param int $rows Le nombrede lignes
+     * @param $value Le contenu texte à afficher
      * @return void
      */
-    public function setTextarea(string $name, string $label, int $rows): void
+    public function setTextarea(string $name, string $label, int $rows, string $value = ""): void
     {
         $this->html .= "<p>";
         $this->html .= "<label for=\"$name\">$label</label>\n";
-        $this->html .= "<textarea name=\"$name\" id=\"$name\" rows=\"$rows\"></textarea>";
+        $this->html .= "<textarea name=\"$name\" id=\"$name\" rows=\"$rows\">" . htmlspecialchars($value) . "</textarea>";
         $this->html .= "</p>";
     }
 
