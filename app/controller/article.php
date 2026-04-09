@@ -165,6 +165,8 @@
     
         require_once RACINE . '/app/model/article.php';
         require_once RACINE . '/app/model/comments.php';
+        require_once RACINE . '/app/model/favorites.php';
+
         // Récupération de l'ID depuis l'URL
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
@@ -244,7 +246,8 @@
     function favorites() {
 
         global $db;
-        require_once RACINE . "/app/model/article.php";
+   
+        require_once RACINE . "/app/model/favorites.php";
 
         //  Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user'])) {
