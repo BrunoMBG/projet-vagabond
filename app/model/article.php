@@ -11,6 +11,7 @@
  * getLatestArticles    : Récupère les derniers récits (pour la page d'accueil).
  */
 
+
 /**
  * Ajout un nouveau article dans la base de données.
  * @param PDO $db Connexion à la base de données.
@@ -39,7 +40,6 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
 }
 
 
-
 /**
  * Récupère la liste de tous les articles avec leur destination.
  * @param PDO $db Connexion à la base de données.
@@ -55,6 +55,7 @@ function getAllArticles($db)
     $query = $db->query($sql);
     return $query->fetchAll();
 }
+
 
 /**
  * Récupère un seul article par son ID.
@@ -75,6 +76,7 @@ function getArticleById(PDO $db, int $id)
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
+
 /**
  * Récupère les derniers récits publiés avec une limite définie.
  * * @param PDO $db Connexion à la base de données.
@@ -91,4 +93,25 @@ function getLatestArticles($db, $limit = 3)
 
     $query = $db->query($sql);
     return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+/**
+ * Met à jour les informations d'un récit existant dans la base de données.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id L'identifiant unique du récit à modifier.
+ * @param string $titre Le titre du récit.
+ * @param string $contenu Le corps du texte.
+ * @param string|null $image Le nom du fichier image.
+ * @param int $id_destination L'identifiant de la destination associée.
+ * @return bool Retourne true si la mise à jour a réussi, false en cas d'échec.
+ */
+function updateArticle(PDO $db, int $id, string $titre, string $contenu, ?string $image, int $id_destination): bool
+{
+    $sql = "UPDATE recits 
+            SET titre = ?, contenu = ?, image = ?, id_destination = ? 
+            WHERE id_recit = ?";
+
+    $query = $db->prepare($sql);
+    return $query->execute([$titre, $contenu, $image, $id_destination, $id]);
 }
