@@ -323,7 +323,13 @@
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titre = htmlspecialchars($_POST['titre']);
-            $texte = htmlspecialchars($_POST['texte']);
+            
+            if (!empty($_POST['texte'])) {
+                $texte = $_POST['texte'];
+            } else {
+                $texte = $article['contenu'];
+            }
+
             $id_dest = (int)$_POST['id_destination'];
             
             // Garde l'anchien nom de l'image 
