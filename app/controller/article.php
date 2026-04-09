@@ -25,6 +25,7 @@
         global $db;
 
         require_once RACINE . '/app/model/article.php';
+        require_once RACINE . '/app/model/destinations.php';
         require_once RACINE . '/app/class/form.php';
 
         // Récupération des destinations pour le menu déroulant
