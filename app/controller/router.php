@@ -108,6 +108,18 @@
                 favorites();
                 break;
 
+            // Gère la modification d'un article
+            case 'articleEdit':
+                require RACINE . "/app/controller/article.php";
+                articleEdit();
+                break;
+
+            //  Gère l'affichage de l'interface 
+            case 'articleManagement':
+                    require RACINE . "/app/controller/article.php";
+                    articleManagement();
+                break;
+                
             // Redirige vers la page d'erreur 404 si l'action est inconnue
             default:
                 require RACINE . "/app/controller/page404.php";

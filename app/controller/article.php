@@ -9,6 +9,8 @@
      * articleView : Consultation détaillée d'un récit et de ses commentaires.
      * postComment : Gestion de l'ajout de commentaires par les utilisateurs.
      * favorites : Système de "Like/Unlike" pour mettre en favoris.
+     * articleManagement : Récupére la liste des récit 
+     * articleEdit : Gère la modification d'un article
      */
 
     /**
@@ -273,4 +275,106 @@
         $redirect = $_SERVER['HTTP_REFERER'] ?? "index.php?action=article&id=" . $id_recit;
         header("Location: " . $redirect);
         exit;
+    }
+
+
+    /**
+     * Gère l'affichage de l'interface de gestion des articles pour l'administration.
+     * Récupère la liste complète des récits et charge la vue 
+     * permettant de les lister ou de les modifier.
+     * @global PDO $db Connexion à la base de données.
+     * @return void
+     */
+    function articleManagement(): void 
+    {
+        global $db;
+        require_once RACINE . '/app/model/article.php';
+        
+        // Récupère tous les articles
+        $articles = getAllArticles($db);
+        
+        require_once RACINE . '/app/view/admin/articleEdit.php';
+    }
+
+
+    /**
+     * Gère la modification d'un récit.
+     * Récupère les données actuelles de l'article, traite la soumission
+     * du formulaire, gère le remplacement sécurisé de l'image sur le serveur (suppression 
+     * de l'ancienne) et met à jour la base de données.
+     * @global PDO $db Connexion à la base de données.
+     * @return void
+     */
+    function articleEdit(): void {
+        global $db;
+        require_once RACINE . '/app/model/article.php';
+        require_once RACINE . '/app/model/destinations.php';
+        require_once RACINE . '/app/class/form.php';
+
+        // Récupération de l'id de l'article via L'URL
+        $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+        $article = getArticleById($db, $id);
+
+        // Redirection si l'article n'existe pas
+        if (!$article) {
+            header('Location: index.php?action=articleManagement');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $titre = htmlspecialchars($_POST['titre']);
+            $texte = htmlspecialchars($_POST['texte']);
+            $id_dest = (int)$_POST['id_destination'];
+            
+            // Garde l'anchien nom de l'image 
+            $image_name = $article['image']; 
+
+            //  Vérifie si une image a bien éte ajouté
+            if (isset($_FILES['image_article']) && $_FILES['image_article']['error'] === 0) {
+                $uploadDir = RACINE . '/app/data/images/';
+                $extension = strtolower(pathinfo($_FILES['image_article']['name'], PATHINFO_EXTENSION));
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+                // Vérification du format d
+                if (in_array($extension, $allowedExtensions)) {
+                    // Générer un nouveau nom
+                    $new_image_name = uniqid('art_') . '.' . $extension;
+                    $destinationPath = $uploadDir . $new_image_name;
+
+                    // Déplacement du fichier vers le dossier 
+                    if (move_uploaded_file($_FILES['image_article']['tmp_name'], $destinationPath)) {
+
+                        // Supprimer l'ancienne image du dossier si elle existe
+                        if (!empty($article['image']) && file_exists($uploadDir . $article['image'])) {
+                            unlink($uploadDir . $article['image']);
+                        }
+                        // U!tilise le nouveau nom de l'image
+                        $image_name = $new_image_name;
+                    }
+                }
+            }
+
+            // Mise à jour en base de données
+            if (updateArticle($db, $id, $titre, $texte, $image_name, $id_dest)) {
+                $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
+                header('Location: index.php?action=articleManagement');
+                exit;
+            }
+        }
+        // Formulaire
+        $destinations = getAllDestinations($db);
+        $form = new Form("index.php?action=articleEdit&id=$id", "post", true);
+        
+    
+        $form->setInput("titre", "Titre", "text", $article['titre']);
+        $form->setSelect("id_destination", "Destination", $destinations, "id_destination", "nom_destination", $article['id_destination']);
+        
+     
+        $form->setFile("image_article", "");
+        
+        $form->setTextarea("texte", "Contenu", 10, $article['contenu']);
+        $form->setSubmit("Enregistrer les modifications");
+
+        $formEdit = $form->getForm();
+        require_once RACINE . '/app/view/admin/articleEdit.php';
     }

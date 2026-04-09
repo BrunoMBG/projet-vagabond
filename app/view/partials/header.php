@@ -34,7 +34,7 @@
                                  </a>
                                   <ul class="adminMenu">
                                     <li><a href="index.php?action=articleAdd">Ajouter un article</a></li>
-                                    <li><a href="#">Gestion articles</a></li>
+                                    <li><a href="index.php?action=articleEdit">Gestion articles</a></li>
                                     
                                     <?php // Si c'est l'administrateur, affiche la gestion des utilisateurs ?>
                                     <?php if ($_SESSION['user_role'] === 1): ?>
