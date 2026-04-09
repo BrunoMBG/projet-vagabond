@@ -149,11 +149,12 @@
         require_once RACINE . '/app/view/blog.php';
     }
 
-    /**
-     * Gère l'affichage détaillé d'un article et de ses commentaires.
-     * Récupère l'identifiant de l'article via l'URL, interroge le modèle
-     * pour obtenir les données du récit ainsi que la liste des commentaires associés,
-     * puis charge la vue correspondante.
+  /**
+     * Gère l'affichage détaillé d'un récit.
+     * Extrait l'identifiant du récit depuis l'URL.
+     * Interroge le modèle 'Article' pour les détails du contenu.
+     * Interroge le modèle 'Comments' pour récupérer les interactions associées.
+     * Charge la vue finale pour l'affichage utilisateur.
      *
      * @return void 
      */
@@ -163,7 +164,7 @@
         
     
         require_once RACINE . '/app/model/article.php';
-
+        require_once RACINE . '/app/model/comments.php';
         // Récupération de l'ID depuis l'URL
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
@@ -181,17 +182,19 @@
         require_once RACINE . '/app/view/article_single.php';
     }
 
-    /**
+ /**
      * Gère l'ajout d'un nouveau commentaire.
-     * Cette fonction vérifie l'authentification de l'utilisateur, récupère les données
-     * du formulaire commentaire, appelle le modèle pour l'insertion et redirige vers l'article.
-     *  @return void
+     * Vérifie l'authentification de l'utilisateur.
+     * Valide et nettoie les données du formulaire (ID récit et contenu).
+     * Sollicite le modèle 'Comments' pour l'insertion en base de données.
+     * Redirige l'utilisateur vers l'article avec un message de confirmation.
+     * @return void
      */
     function postComment() : void
     {
         global $db;
         require_once RACINE . '/app/model/article.php';
-
+        require_once RACINE . '/app/model/comments.php';
         // Vérifie si l'utilisateur est bien connecté
         if (!isset($_SESSION['user']['id'])) {
             $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];

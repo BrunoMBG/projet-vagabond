@@ -117,48 +117,6 @@ function getArticleById(PDO $db, int $id)
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-/**
- * Récupère tous les commentaires associés à un récit spécifique.
- * Effectue une jointure avec la table 'utilisateurs' pour 
- * récupérer automatiquement le nom et le prénom de l'auteur de chaque commentaire.
- * @param PDO $db Connexion à la base de données.
- * @param int $id_article L'identifiant unique du récit
- * @return array Un tableau associatif contenant tous les commentaires trouvés,
- * ou un tableau vide si aucun commentaire n'existe.
- */
-function getCommentsByArticle(PDO $db, int $id_article)
-{
-    $sql = "SELECT c.*, u.nom, u.prenom 
-            FROM commentaires c
-            JOIN utilisateurs u ON c.id_utilisateur = u.id_utilisateur
-            WHERE c.id_recit = ? 
-            ORDER BY c.date_commentaire DESC";
-
-    $stmt = $db->prepare($sql);
-    $stmt->execute([$id_article]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-/**
- * Enregistre un nouveau commentaire dans la base de données.
- * Génère la date actuelle via 
- * et l'insère avec l'ID du récit, l'ID de l'utilisateur et le texte du message.
- * @param PDO $db Connexion à la base de données.
- * @param int $id_recit L'identifiant de l'article.
- * @param int $id_utilisateur L'identifiant de l'auteur du commentaire.
- * @param string $commentaire Le contenu textuel du commentaire.
- * * @return bool Retourne true si l'insertion a réussi, false en cas d'erreur.
- */
-function addComment(PDO $db, int $id_recit, int $id_utilisateur, string $commentaire): bool
-{
-    $date = date('Y-m-d H:i:s');
-
-    $sql = "INSERT INTO commentaires (id_recit, id_utilisateur, commentaire, date_commentaire) 
-            VALUES (?, ?, ?, ?)";
-
-    $query = $db->prepare($sql);
-    return $query->execute([$id_recit, $id_utilisateur, $commentaire, $date]);
-}
 
 /**
  * Vérifie si un récit spécifique est marqué comme favori par un utilisateur.
