@@ -125,6 +125,11 @@
                     require RACINE . "/app/controller/article.php";
                     articleDelete();
                 break;
+
+            // Gère la récupération du mot de passe 
+            case 'forgotten':
+                    require RACINE . "/app/controller/forgot_password.php";
+                break;
                 
             // Redirige vers la page d'erreur 404 si l'action est inconnue
             default:
