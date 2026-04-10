@@ -11,5 +11,7 @@
     <link rel="stylesheet" href="./public/style/style.css">
     <!-- Menu burger -->
     <script src="./public/js/menu.js" defer></script>
+
+    <script src="./public/js/confirm-delete.js" defer></script>
     <title>Document</title>
 </head>
