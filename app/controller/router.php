@@ -129,6 +129,7 @@
             // Gère la récupération du mot de passe 
             case 'forgotten':
                     require RACINE . "/app/controller/forgot_password.php";
+                    passwordForgotController();
                 break;
                 
             // Redirige vers la page d'erreur 404 si l'action est inconnue

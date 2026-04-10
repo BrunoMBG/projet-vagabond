@@ -12,11 +12,6 @@
   <?php
     // On récupère l'action de l'URL, sinon on utilise "default"
     $action = $_GET["action"] ?? "default";
-
-    if ($action === 'viewImage') {
-      handleRequest($action);
-      exit; 
-    }
   ?>
 
   <?php // ==================== Head ==================== ?>
