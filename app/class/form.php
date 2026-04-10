@@ -16,6 +16,7 @@ class Form
      * Ouvre les balises structurelles du formulaire
      * @param string $action L'URL de destination du formulaire
      * @param string $method La méthode POST
+     * @param bool $isMultipart Définit si le formulaire accepte l'envoi de fichiers.
      */
     public function __construct(string $action, string $method = "post", bool $isMultipart = false)
     {
@@ -29,6 +30,7 @@ class Form
      * @param string $name Le nom de l'attribut
      * @param string $label La description affichée pour l'utilisateur
      * @param string $type Le type d'input (text, password, email, etc.).
+     * @param string $value La valeur initiale du champ.
      * @return void
      */
     public function setInput(string $name, string $label, string $type, string $value = ""): void
@@ -73,6 +75,7 @@ class Form
     /**
      * Ajoute un message d'erreur au formulaire
      * @param string $message Le texte de l'erreur à afficher
+     * @return void
      */
     public function setError(string $message = ""): void
     {
@@ -86,11 +89,12 @@ class Form
     /**
      * Ajoute un message de success au formulaire
      * @param string $messageSuccess Le texte de succès à afficher.
+     * @return void
      */
     public function setSuccess(string $messageSuccess): void
     {
         if (!empty($messageSuccess)) {
-            $this->html .= "<p style='color: green;'>$messageSuccess</p>";
+            $this->html .= "<p>$messageSuccess</p>";
         }
     }
 
@@ -99,6 +103,7 @@ class Form
      * Ajoute un paragraphe de texte au formulaire.
      * @param string $text Le contenu du texte.
      * @param string $class classe CSS.
+     * @return void
      */
     public function setText(string $text, string $class = ""): void
     {
