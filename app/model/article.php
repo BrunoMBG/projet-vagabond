@@ -28,6 +28,16 @@ function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int
             VALUES (?, ?, ?, ?, ?)";
 
     $query = $db->prepare($sql);
+
+    return $query->execute([
+        $titre,
+        $contenu,
+        $image,
+        $id_destination,
+        $id_user
+    ]);
+}
+
 /**
  * Supprime un récit de la base de données.
  * @param PDO $db Connexion à la base de données.
@@ -40,15 +50,6 @@ function deleteArticle(PDO $db, int $id): bool
     $query = $db->prepare($sql);
     return $query->execute([$id]);
 }
-    return $query->execute([
-        $titre,
-        $contenu,
-        $image,
-        $id_destination,
-        $id_user
-    ]);
-}
-
 
 /**
  * Récupère la liste de tous les articles avec leur destination.
@@ -63,7 +64,7 @@ function getAllArticles($db)
             ORDER BY r.date_creation DESC";
 
     $query = $db->query($sql);
-    return $query->fetchAll();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
@@ -125,17 +126,3 @@ function updateArticle(PDO $db, int $id, string $titre, string $contenu, ?string
     $query = $db->prepare($sql);
     return $query->execute([$titre, $contenu, $image, $id_destination, $id]);
 }
-
-
-// /**
-//  * Supprime un récit de la base de données.
-//  * @param PDO $db Connexion à la base de données.
-//  * @param int $id L'identifiant du récit à supprimer.
-//  * @return bool Retourne true en cas de succès.
-//  */
-// function deleteArticle(PDO $db, int $id): bool
-// {
-//     $sql = "DELETE FROM recits WHERE id_recit = ?";
-//     $query = $db->prepare($sql);
-//     return $query->execute([$id]);
-// }
