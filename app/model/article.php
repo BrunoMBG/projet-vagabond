@@ -127,15 +127,15 @@ function updateArticle(PDO $db, int $id, string $titre, string $contenu, ?string
 }
 
 
-/**
- * Supprime un récit de la base de données.
- * @param PDO $db Connexion à la base de données.
- * @param int $id L'identifiant du récit à supprimer.
- * @return bool Retourne true en cas de succès.
- */
-function deleteArticle(PDO $db, int $id): bool
-{
-    $sql = "DELETE FROM recits WHERE id_recit = ?";
-    $query = $db->prepare($sql);
-    return $query->execute([$id]);
-}
+// /**
+//  * Supprime un récit de la base de données.
+//  * @param PDO $db Connexion à la base de données.
+//  * @param int $id L'identifiant du récit à supprimer.
+//  * @return bool Retourne true en cas de succès.
+//  */
+// function deleteArticle(PDO $db, int $id): bool
+// {
+//     $sql = "DELETE FROM recits WHERE id_recit = ?";
+//     $query = $db->prepare($sql);
+//     return $query->execute([$id]);
+// }
