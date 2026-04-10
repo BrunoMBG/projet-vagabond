@@ -5,8 +5,9 @@
      * 
      * comments centralise toutes les requêtes SQL liées à la gestion 
      * des commentaires sur les récits de voyage.
-     * getCommentsByArticle, récupère la liste des commentaires d'un récit avec les infos auteurs.
-     * addComment, permet l'enregistrement d'un nouveau commentaire en base de données.
+     * getCommentsByArticle : récupère la liste des commentaires d'un récit avec les infos auteurs.
+     * addComment : permet l'enregistrement d'un nouveau commentaire en base de données.
+     * deleteCommentsByArticle : Supprime tous les commentaires associés à un récit spécifique
      */
 
     /**

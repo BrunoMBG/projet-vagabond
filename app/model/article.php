@@ -4,11 +4,12 @@
  * Modèle Article & Interactions
  * 
  * article centralise toutes les requêtes SQL liées aux récits de voyage.
- * addArticle           : Enregistre un nouveau récit de voyage en base de données.
- * getAllDestinations   : Liste toutes les destinations disponibles en (ordre alphabétique).
- * getAllArticles       : Récupère l'intégralité des récits avec leurs destinations.
- * getArticleById       : Récupère les détails d'un récit spécifique via son ID.
- * getLatestArticles    : Récupère les derniers récits (pour la page d'accueil).
+ * addArticle : Enregistre un nouveau récit de voyage en base de données.
+ * deleteArticle : Supprime un récit de la base de données.
+ * getAllArticles : Récupère l'intégralité des récits avec leurs destinations.
+ * getArticleById : Récupère les détails d'un récit spécifique via son ID.
+ * getLatestArticles : Récupère les derniers récits (pour la page d'accueil).
+ * updateArticle : Met à jour les informations d'un récit existant dans la base de données.
  */
 
 
