@@ -24,12 +24,22 @@
  */
 function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int $id_user, int $id_destination): bool
 {
-
     $sql = "INSERT INTO recits (titre, contenu, image, id_destination, id_utilisateur) 
             VALUES (?, ?, ?, ?, ?)";
 
     $query = $db->prepare($sql);
-
+/**
+ * Supprime un récit de la base de données.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id L'identifiant du récit à supprimer.
+ * @return bool Retourne true en cas de succès.
+ */
+function deleteArticle(PDO $db, int $id): bool
+{
+    $sql = "DELETE FROM recits WHERE id_recit = ?";
+    $query = $db->prepare($sql);
+    return $query->execute([$id]);
+}
     return $query->execute([
         $titre,
         $contenu,
@@ -114,4 +124,18 @@ function updateArticle(PDO $db, int $id, string $titre, string $contenu, ?string
 
     $query = $db->prepare($sql);
     return $query->execute([$titre, $contenu, $image, $id_destination, $id]);
+}
+
+
+/**
+ * Supprime un récit de la base de données.
+ * @param PDO $db Connexion à la base de données.
+ * @param int $id L'identifiant du récit à supprimer.
+ * @return bool Retourne true en cas de succès.
+ */
+function deleteArticle(PDO $db, int $id): bool
+{
+    $sql = "DELETE FROM recits WHERE id_recit = ?";
+    $query = $db->prepare($sql);
+    return $query->execute([$id]);
 }
