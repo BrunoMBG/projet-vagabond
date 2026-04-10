@@ -53,18 +53,32 @@ function deleteArticle(PDO $db, int $id): bool
 }
 
 /**
- * Récupère la liste de tous les articles avec leur destination.
- * @param PDO $db Connexion à la base de données.
- * @return array Liste des articles avec les informations de destination et d'utilisateur.
+ * Récupère la liste des articles avec leurs destinations associées.
+ * Permet un filtrage par destination si un identifiant est fourni.
+ * * @param PDO $db Connexion à la base de données.
+ * @param int|null $id_dest L'identifiant de la destination pour filtrer les résultats.
+ * @return array Liste associative des articles triés du plus récent au plus ancien.
  */
-function getAllArticles($db)
+function getAllArticles(PDO $db, ?int $id_dest = null): array
 {
     $sql = "SELECT r.*, d.nom_destination 
             FROM recits r
-            JOIN destinations d ON r.id_destination = d.id_destination
-            ORDER BY r.date_creation DESC";
+            JOIN destinations d ON r.id_destination = d.id_destination";
 
-    $query = $db->query($sql);
+    if ($id_dest !== null) {
+        $sql .= " WHERE r.id_destination = ?";
+    }
+
+    $sql .= " ORDER BY r.date_creation DESC";
+
+    $query = $db->prepare($sql);
+    
+    if ($id_dest !== null) {
+        $query->execute([$id_dest]);
+    } else {
+        $query->execute();
+    }
+
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
