@@ -51,9 +51,13 @@
                 <!-- Affichage du nom de la destination -->
                 <td><?= htmlspecialchars($article['nom_destination']) ?></td>
                 <td>
-                    <!-- Lien vers la page de modification avec l'ID de l'article -->
-                    <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="">
-                        <i class="fa-solid fa-pen"></i> Modifier
+                     <?php // Lien vers la page de modification avec l'ID de l'article  ?> 
+                    <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="btn btn-warning">Modifier</a>
+
+                    <?php // Lien vers la page de suppression avec l'ID de l'article  ?>
+                    <a href="index.php?action=articleDelete&id=<?= $article['id_recit'] ?>" 
+                    class="btnDelete">
+                    Supprimer
                     </a>
                 </td>
             </tr>

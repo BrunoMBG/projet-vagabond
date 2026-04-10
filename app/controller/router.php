@@ -119,6 +119,12 @@
                     require RACINE . "/app/controller/article.php";
                     articleManagement();
                 break;
+
+            // Gère la suppression d'un article
+            case 'articleDelete':
+                    require RACINE . "/app/controller/article.php";
+                    articleDelete();
+                break;
                 
             // Redirige vers la page d'erreur 404 si l'action est inconnue
             default:
