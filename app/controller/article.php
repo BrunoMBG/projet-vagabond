@@ -140,15 +140,27 @@ function articleAdd(): void
 }
 
 /**
- * Contrôleur : Gère l'affichage de la liste des récits de voyage
- * Cette fonction récupère les données via le modèle et les transmet à la vue.
+ * Gère l'affichage de la page du blog.
+ * Cette fonction récupère le filtre de la destination via l'URL,
+ * charge les articles correspondants ainsi que 
+ * la liste des destinations ayant au moins un article pour générer 
+ * les boutons de navigation.
+ * @global PDO $db Connexion à la base de données.
+ * @return void
  */
 function articleList()
 {
     global $db;
     require_once RACINE . '/app/model/article.php';
+    require_once RACINE . '/app/model/destinations.php';
 
-    $articles = getAllArticles($db);
+    // Récupèration la destination choisie dans l'URL si elle existe
+    $id_dest = isset($_GET['dest']) ? (int)$_GET['dest'] : null;
+
+    $articles = getAllArticles($db, $id_dest);
+
+    // Récupèeration des filtres, uniquement les destinations visitées
+    $filters = getVisitedDestinations($db);
 
     require_once RACINE . '/app/view/blog.php';
 }
