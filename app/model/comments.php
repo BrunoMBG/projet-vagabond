@@ -51,3 +51,17 @@
         $query = $db->prepare($sql);
         return $query->execute([$id_recit, $id_utilisateur, $commentaire, $date]);
     }
+
+
+    /**
+     * Supprime tous les commentaires associés à un récit spécifique.
+     * Cette méthode est appelée avant la suppression d'un article
+     * @param PDO $db Connexion à la base de données.
+     * @param int $id_recit L'identifiant du récit dont on veut supprimer les commentaires.
+     * @return bool Retourne true si la requête a été exécutée avec succès, false sinon.
+     */
+    function deleteCommentsByArticle(PDO $db, int $id_recit): bool {
+        $sql = "DELETE FROM commentaires WHERE id_recit = ?";
+        $query = $db->prepare($sql);
+        return $query->execute([$id_recit]);
+    }

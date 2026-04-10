@@ -390,26 +390,30 @@ function articleEdit(): void
 
 
 /**
- * Supprime un article ainsi que son image associée.
- *
- * Récupère l'identifiant depuis l'URL
- * Vérifie l'existence de l'article en base
- * Supprime le fichier image du disque si présent
- * Supprime l'article de la base de données
- * Définit un message de retour en session
- * Redirige vers la page de gestion des articles
+ * Gère la suppression complète d'un récit de voyage.
+ * Récupère l'identifiant du récit via l'URL.
+ * Vérifie l'existence du récit en base de données.
+ * Supprime tous les commentaires liés 
+ * Supprime le fichier image physiquement du serveur si présent.
+ * Supprime l'entrée du récit en base de données.
  * @return void
  */
 function articleDelete(): void
 {
     global $db;
     require_once RACINE . '/app/model/article.php';
+    require_once RACINE . '/app/model/comments.php';
+
 
     // Récupère l'id depuis l'URL, 0 par défaut si absent
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
     $article = getArticleById($db, $id);
 
     if ($article) {
+
+        // Suppression des commentaires
+        deleteCommentsByArticle($db, $id);
+
         // Supprimer l'image dans le dossier si elle existe
         if (!empty($article['image'])) {
             $filePath = RACINE . '/app/data/images/' . $article['image'];
