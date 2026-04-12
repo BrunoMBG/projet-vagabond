@@ -1,4 +1,14 @@
-<div class="auth-container">
+<?php
+/**
+ * Vue Formulaire de demande de récupération de mot de passe.
+ * 
+ * Cette page affiche un champ de saisie pour l'adresse email de l'utilisateur.
+ * Une fois le formulaire soumis, le contrôleur traitera la demande pour envoyer
+ * un lien de réinitialisation sécurisé par email.
+ */
+?>
+
+<div class="">
     
     <h1>Mot de passe oublié</h1>
     <?php // Formulaire ?>

@@ -2,23 +2,21 @@
 
 /**
  * Contrôleur pour la gestion de l'oubli de mot de passe.
- * * forgot_password gère l'affichage du formulaire de récupération et le traitement
- * de la demande : validation de l'email, génération du jeton (token) de sécurité
- * et envoi de l'email de réinitialisation via PHPMailer.
+ * 
+ * forgot_password gère les deux étapes clés de la récupération du mot de passe.
+ * La demande initiale : validation de l'email et envoi d'un lien sécurisé par email.
+ * La réinitialisation effective, saisie et hachage d'un nouveau mot de passe via un token.
  */
 
 /**
  * Gère la réinitialisation de mot de passe.
  * Initialise le formulaire via la classe Form.
- * Valide l'adresse email soumise en POST.
- * Génère un jeton unique et sécurisé.
- * Expédie un email contenant le lien de récupération.
- * Charge la vue correspondante pour afficher les messages de succès ou d'erreur.
- *
+ * Génère un token de sécurité unique.
+ * Construit l'URL de retour pour garantir.
  * @return void
  */
 
-function passwordForgotController()
+function passwordForgotController(): void
 {
     require_once RACINE . '/app/class/form.php';
     require_once RACINE . '/app/utils/mailer.php';
@@ -40,9 +38,20 @@ function passwordForgotController()
             require_once RACINE . '/app/model/user.php';
 
             if (storeResetToken($email, $token)) {
-                // Si l'enregistrement SQL réussit, on prépare et envoie le mail
                 $subject = "Réinitialisation de mot de passe - Projet Vagabond";
-                $resetLink = "http://localhost:8080/projet-vagabond/index.php?action=reset_password&token=" . $token;
+
+                // Détection du protocole
+                $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+
+                // Récupération du nom de domaine et du port
+                $host = $_SERVER['HTTP_HOST'];
+
+                // Récupération du chemin vers le dossier du projet
+                $uri = str_replace('index.php', '', $_SERVER['SCRIPT_NAME']); 
+
+                // Construction de l'URL complète pour la réinitialisation du mot de passe
+                $resetLink = $protocol . "://" . $host . $uri . "index.php?action=reset_password&token=" . $token;
+
                 $body = "<h1>Réinitialisation</h1><p>Cliquez ici : <a href='$resetLink'>$resetLink</a></p>";
 
                 if (sendEmail($email, $subject, $body)) {
@@ -51,13 +60,64 @@ function passwordForgotController()
                     $form->setError("Erreur lors de l'envoi de l'email.");
                 }
             } else {
-          
+
                 $form->setError("Une erreur est survenue lors de la préparation de la demande.");
             }
         }
     }
 
-     $formPassword= $form->getForm();
+    $formPassword = $form->getForm();
 
     require RACINE . "/app/view/forgot_password.php";
+}
+
+
+
+/**
+ * Gère la validation du token et la saisie du nouveau mot de passe.
+ * Récupère et vérifie la validité du token présent dans l'URL.
+ * Affiche le formulaire de changement de mot de passe si le token est valide.
+ * Hache le nouveau mot de passe (password_hash) avant enregistrement.
+ * Invalide le token après usage pour empêcher toute réutilisation.
+ * @return void
+ */
+function passwordResetController(): void
+{
+    $token = $_GET['token'] ?? null;
+
+    if (!$token) {
+        header("Location: index.php?action=default");
+        exit;
+    }
+
+    require_once RACINE . '/app/model/user.php';
+    $user = checkResetToken($token);
+
+    if (!$user) {
+        die("Ce lien est invalide ou a expiré.");
+    }
+
+    require_once RACINE . '/app/class/form.php';
+    $form = new Form("index.php?action=reset_password&token=" . $token, "post");
+    $form->setInput("password", "Nouveau mot de passe :", "password");
+    $form->setSubmit("Mettre à jour le mot de passe");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $password = $_POST['password'] ?? '';
+
+        if (!empty($password)) {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            if (updateUserPassword($user['id_utilisateur'], $hashedPassword)) {
+                $form->setSuccess("Mot de passe modifié ! <a href='index.php?action=login'>Connectez-vous</a>");
+            } else {
+                $form->setError("Une erreur est survenue lors de la mise à jour.");
+            }
+        } else {
+            $form->setError("Veuillez saisir un mot de passe.");
+        }
+    }
+
+    $formReset = $form->getForm();
+    require RACINE . "/app/view/reset_password.php";
 }

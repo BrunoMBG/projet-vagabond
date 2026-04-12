@@ -4,13 +4,16 @@
  * Modèle Utilisateur & Sécurité
  * 
  * user centralise toutes les requêtes SQL liées aux comptes utilisateurs :
- * registerUser    : Enregistre un nouvel utilisateur (Rôle 'Membre' par défaut).
- * isEmailExists   : Vérifie si l'email existe déjà en base.
- * getUserByEmail  : Récupère les données complètes d'un utilisateur pour le login.
- * updateProfil    : Modifie les informations personnelles et/ou le mot de passe.
- * getAllUsers     : Liste l'ensemble des utilisateurs avec leurs libellés de rôle.
- * getAllRoles     : Récupère les différents niveaux d'accréditation disponibles.
- * updateUserRole  : Modifie les privilèges d'un utilisateur (Admin uniquement).
+ * registerUser       : Enregistre un nouvel utilisateur (Rôle 'Membre' par défaut).
+ * isEmailExists      : Vérifie si l'email existe déjà en base.
+ * getUserByEmail     : Récupère les données complètes d'un utilisateur pour le login.
+ * updateProfil       : Modifie les informations personnelles et/ou le mot de passe.
+ * getAllUsers        : Liste l'ensemble des utilisateurs avec leurs libellés de rôle.
+ * getAllRoles        : Récupère les différents niveaux d'accréditation disponibles.
+ * updateUserRole     : Modifie les privilèges d'un utilisateur (Admin uniquement).
+ * storeResetToken    : Enregistre un jeton de récupération avec expiration (1h).
+ * checkResetToken    : Vérifie si un jeton est valide et non expiré.
+ * updateUserPassword : Met à jour le mot de passe et invalide le jeton utilisé.
  */
 
 /**
@@ -168,4 +171,38 @@ function storeResetToken(string $email, string $token): bool {
 }
 
 
+/**
+ * Cette fonction interroge la base de données pour trouver un utilisateur possédant
+ * le token fourni, à condition que celui-ci n'ait pas dépassé sa date d'expiration.
+ * @param string $token Le token de sécurité unique envoyé par email.
+ * @return array|false Retourne les données de l'utilisateur si le token est valide, 
+ * ou false si le token est inexistant ou expiré.
+ */
+function checkResetToken(string $token) {
 
+    global $db;
+    
+    $sql = "SELECT id_utilisateur FROM utilisateurs 
+            WHERE token = ? AND token_expiration > NOW()";
+    $query = $db->prepare($sql);
+    $query->execute([$token]);   
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Cette fonction enregistre le nouveau hash du mot de passe en base de données.
+ * Elle force également la suppression du token et de sa date d'expiration afin
+ * de rendre le lien de récupération à usage unique.
+ * @param int $id L'identifiant unique de l'utilisateur.
+ * @param string $hash Le nouveau mot de passe haché.
+ * @return bool Retourne true si la mise à jour a réussi, false en cas d'erreur.
+ */
+function updateUserPassword(int $id, string $hash) {
+    global $db;
+    // Ajout le nouveau mot de passe et vide le token pour qu'il ne soit plus réutilisable
+    $sql = "UPDATE utilisateurs 
+            SET password = ?, token = NULL, token_expiration = NULL 
+            WHERE id_utilisateur = ?";
+    $query = $db->prepare($sql);
+    return $query->execute([$hash, $id]);
+}
