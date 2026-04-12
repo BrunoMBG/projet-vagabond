@@ -4,21 +4,22 @@
  * Contrôleur de la page de contact
  * 
  * contact gère la réception des messages envoyés par les visiteurs.
- * Valide les entrées du formulaire.
- * Utilise la fonction native mail() pour l'envoi.
- * Génère le formulaire via la classe Form.
- * Gère les retours utilisateurs (succès ou erreur).
+ * Validation des entrées.
+ * Envoi sécurisé via SMTP avec PHPMailer.
+ * Génération du formulaire.
  */
 
-require RACINE . '/app/class/form.php';
+
 /**
- * Gère la page de contact : valide les données saisies, tente d'envoyer un email
- * au destinataire configuré, et génère le formulaire HTML 
- * via la classe Form pour affichage dans la vue.
- * * @return void
+ * Gère la page de contact : valide les données saisies, prépare le corps HTML
+ * et expédie l'email au destinataire via PHPMailer.
+ * @return void
  */
 function contact()
 {
+    require RACINE . '/app/class/form.php';
+    require RACINE . '/app/utils/mailer.php';
+
     global $db;
 
     $messageError = "";
@@ -37,45 +38,39 @@ function contact()
             // Configuration de l'email
             $to = "ex-email@exemple.com";
 
-            // Construction des headers du mail
-            $headers = "From: " . $email . "\r\n";
-            $headers .= "Reply-To: " . $email . "\r\n";
-            $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+            // Construction du sujet
+            $subject = "Nouveau message de : " . $nom . " " . $prenom . " - " . $sujet;
 
             // Construction du corps du mail
-            $body = "Nouveau message de contact :\n\n";
-            $body .= "Nom : $nom $prenom\n";
-            $body .= "Email : $email\n\n";
-            $body .= "Sujet : $sujet\n";
-            $body .= "Message :\n$message";
+            $body = "<h2>Vous avez reçu un nouveau message de contact</h2>";
+            $body .= "<p><strong>Nom :</strong> {$nom} {$prenom}</p>";
+            $body .= "<p><strong>Email :</strong> {$email}</p>";
+            $body .= "<p><strong>Sujet :</strong> {$sujet}</p>";
+            $body .= "<p><strong>Message :</strong><br>" . nl2br($message) . "</p>";
 
-            // Envoi du mail via la fonction mail
-            if (mail($to, "Contact Site - $sujet", $body, $headers)) {
+            // Envoi via PHPMailer
+            if (sendEmail($to, $subject, $body)) {
                 $messageSuccess = "Votre message a bien été envoyé !";
             } else {
-                // En cas d'erreur tecnique 
-                $messageError = "Le serveur n'a pas pu envoyer votre message. Réessayez plus tard.";
+                $messageError = "Le serveur de messagerie a rencontré un problème.";
             }
         } else {
-            $messageError = "Veuillez remplir tous les champs correctement (Email valide requis).";
+            $messageError = "Veuillez remplir tous les champs correctement.";
         }
     }
 
     // Création du formulaire
     $form = new Form("index.php?action=contact", "post");
 
-    $form->setText("Une question, une suggestion ou une envie de collaborer ? Nous sommes à votre écoute.", "contact-intro");
-
-
-    if ($messageError) $form->setError($messageError);
-    if ($messageSuccess) $form->setSuccess($messageSuccess);
+    $form->setText("Une question, une suggestion ou une envie de collaborer ? Nous sommes à votre écoute.", "");
 
     $form->setInput("nom", "Nom", "text");
     $form->setInput("prenom", "Prénom", "text");
     $form->setInput("email", "Email", "email");
     $form->setInput("sujet", "Sujet", "text");
     $form->setTextarea("message", "Votre Message", 5);
-
+    $form->setError($messageError);
+    $form->setSuccess($messageSuccess);
     $form->setSubmit("Envoyer le message");
 
     // Affichage du formulaire

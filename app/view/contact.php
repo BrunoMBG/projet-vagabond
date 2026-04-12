@@ -15,13 +15,6 @@
     <h1>Contactez-nous</h1>
 
     <div class="">
-        <p>
-            Une question, une suggestion ou une envie de collaborer ?
-            Nous sommes à votre écoute.
-        </p>
-    </div>
-
-    <div class="form-wrapper">
         <?= $contactFormHtml; ?>
     </div>
 </section>
