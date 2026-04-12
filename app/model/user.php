@@ -143,26 +143,29 @@ function updateUserRole(PDO $db, int $id_user, int $id_role): bool
 
 
 /**
- * Enregistre le jeton de réinitialisation et sa date d'expiration pour un utilisateur.
+ * Enregistre le token de réinitialisation et sa date d'expiration pour un utilisateur.
  * @param string $email L'email de l'utilisateur.
- * @param string $token Le jeton généré.
+ * @param string $token Le token généré.
  * @return bool True si la mise à jour a réussi, sinon false.
  */
 function storeResetToken(string $email, string $token): bool {
 
     global $db;
 
-    $sql = "UPDATE utilisateur 
+    $sql = "UPDATE utilisateurs 
             SET token = ?, 
                 token_expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) 
             WHERE email = ?";
 
     try {
-        $stmt = $db->prepare($sql);
+        $query = $db->prepare($sql);
         
-        return $stmt->execute([$token, $email]);
+        return $query->execute([$token, $email]);
     } catch (PDOException $e) {
   
         return false;
     }
 }
+
+
+
