@@ -12,6 +12,10 @@
 
 ?>
 
+<?php // Section hero 
+    require RACINE . "/app/view/partials/hero.php";
+?>
+
 <article class="article-detail">
     <?php // Titre de l'article ?>
     <header>

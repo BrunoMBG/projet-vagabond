@@ -10,6 +10,10 @@
 
 ?>
 
+<?php // Section hero 
+    require RACINE . "/app/view/partials/hero.php";
+?>
+
 <?php // Section système de filtres ?>
 <section class="filterContainer">
 
