@@ -10,6 +10,7 @@
  * getArticleById : Récupère les détails d'un récit spécifique via son ID.
  * getLatestArticles : Récupère les derniers récits (pour la page d'accueil).
  * updateArticle : Met à jour les informations d'un récit existant dans la base de données.
+ * getFavoriteArticles : Récupère la liste des récits marqués comme favoris par un utilisateur.
  */
 
 
@@ -143,4 +144,26 @@ function updateArticle(PDO $db, int $id, string $titre, string $ville, string $c
 
     $query = $db->prepare($sql);
     return $query->execute([$titre, $ville, $contenu, $image, $id_destination, $id]);
+}
+
+/**
+ * Récupère la liste des récits marqués comme favoris par un utilisateur.
+ * Cette fonction effectue une jointure entre la table 'recit' et 'favoris'
+ * pour extraire uniquement les articles liés à l'identifiant de l'utilisateur.
+ *
+ * @param PDO $db       Connexion à la base de données.
+ * @param int $userId   Identifiant de l'utilisateur dont on veut les favoris.
+ * @return array        Tableau associatif contenant les données des récits favoris.
+ */
+function getFavoriteArticles(PDO $db, int $userId) {
+    $sql = "SELECT r.* FROM recit r
+            INNER JOIN favoris f ON r.id_recit = f.id_recit
+            WHERE f.id_utilisateur = ?
+            ORDER BY r.date_creation DESC";
+            
+    $query= $db->prepare($sql);
+    
+    $query->execute([$userId]);
+    
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
