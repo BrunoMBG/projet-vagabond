@@ -1,0 +1,168 @@
+@use "variables" as *;
+
+.admin-view-container {
+    padding: 40px 5%;
+
+    h2 {
+        margin-bottom: 25px;
+        color: $couleurPrimaire;
+        font-size: 1.8rem;
+    }
+
+    /* -Messages */
+    .messageRole-success {
+        color: #16a34a;
+        margin-bottom: 12px;
+    }
+
+    .messageRole-error {
+        color: #e74c3c;
+        margin-bottom: 12px;
+    }
+
+    /* ================= Table ================= */
+    .table-article {
+        width: 100%;
+        display: block; 
+        border-collapse: collapse;
+
+        thead {
+            display: none;
+        }
+
+        tbody,
+        tr,
+        td {
+            display: block;
+            width: 100%;
+        }
+
+        tr {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: $couleurPrimaire;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                flex: 1;
+                text-align: left;
+            }
+
+            span {
+                display: inline-block;
+                padding: 4px 10px;
+                background: #f1f1f1;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: bold;
+                color: #555;
+            }
+        }
+
+        /* Formulaire */
+        form {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: flex-end;
+
+            select {
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            .btn-role {
+                background-color: $couleurSecondaire;
+                color: $couleurTertiaire;
+                border: none;
+                padding: 5px 12px;
+                border-radius: 4px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
+
+    /* Version PC */
+    @media (min-width: 769px) {
+        .table-article {
+            display: table;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+
+            thead {
+                display: table-header-group;
+                background-color: $couleurPrimaire;
+                color: #fff;
+
+                th {
+                    padding: 15px;
+                    text-align: left;
+                    text-transform: uppercase;
+                    font-size: 0.9rem;
+                    letter-spacing: 1px;
+                }
+            }
+
+            tbody {
+                display: table-row-group;
+            }
+
+            tr {
+                display: table-row;
+                background: none;
+                box-shadow: none;
+                border-radius: 0;
+                border: none;
+
+
+            }
+
+            td {
+                display: table-cell;
+                padding: 15px;
+                border-bottom: 1px solid #eee;
+                text-align: left;
+                width: auto;
+
+                &::before {
+                    display: none;
+                }
+            }
+
+            /* Formulaire */
+            form {
+                justify-content: flex-start;
+                gap: 8px;
+
+                select {
+                    padding: 8px 12px;
+                }
+
+                .btn-role {
+                    padding: 8px 15px;
+                }
+            }
+        }
+    }
+}

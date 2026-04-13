@@ -989,4 +989,158 @@ body {
   color: #16a34a;
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+.admin-view-container {
+  padding: 40px 5%;
+}
+.admin-view-container h2 {
+  margin-bottom: 25px;
+  color: #1A2A3A;
+  font-size: 1.8rem;
+}
+.admin-view-container {
+  /* -Messages */
+}
+.admin-view-container .messageRole-success {
+  color: #16a34a;
+  margin-bottom: 12px;
+}
+.admin-view-container .messageRole-error {
+  color: #e74c3c;
+  margin-bottom: 12px;
+}
+.admin-view-container {
+  /* ================= Table ================= */
+}
+.admin-view-container .table-article {
+  width: 100%;
+  display: block;
+  border-collapse: collapse;
+}
+.admin-view-container .table-article thead {
+  display: none;
+}
+.admin-view-container .table-article tbody,
+.admin-view-container .table-article tr,
+.admin-view-container .table-article td {
+  display: block;
+  width: 100%;
+}
+.admin-view-container .table-article tr {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.admin-view-container .table-article td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+}
+.admin-view-container .table-article td:last-child {
+  border-bottom: none;
+}
+.admin-view-container .table-article td::before {
+  content: attr(data-label);
+  font-weight: bold;
+  color: #1A2A3A;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  flex: 1;
+  text-align: left;
+}
+.admin-view-container .table-article td span {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #f1f1f1;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #555;
+}
+.admin-view-container .table-article {
+  /* Formulaire */
+}
+.admin-view-container .table-article form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-end;
+}
+.admin-view-container .table-article form select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.admin-view-container .table-article form .btn-role {
+  background-color: #F2994A;
+  color: #F8F9FA;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.admin-view-container {
+  /* Version PC */
+}
+@media (min-width: 769px) {
+  .admin-view-container .table-article {
+    display: table;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .admin-view-container .table-article thead {
+    display: table-header-group;
+    background-color: #1A2A3A;
+    color: #fff;
+  }
+  .admin-view-container .table-article thead th {
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  .admin-view-container .table-article tbody {
+    display: table-row-group;
+  }
+  .admin-view-container .table-article tr {
+    display: table-row;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+  }
+  .admin-view-container .table-article td {
+    display: table-cell;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    width: auto;
+  }
+  .admin-view-container .table-article td::before {
+    display: none;
+  }
+  .admin-view-container .table-article {
+    /* Formulaire */
+  }
+  .admin-view-container .table-article form {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .admin-view-container .table-article form select {
+    padding: 8px 12px;
+  }
+  .admin-view-container .table-article form .btn-role {
+    padding: 8px 15px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
