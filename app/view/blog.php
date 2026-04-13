@@ -61,7 +61,7 @@
                 <div class="last-article-content">
 
                     <?php // titre de l'article ?>
-                    <h2><?= htmlspecialchars($article['titre']) ?></h2>
+                    <h3><?= htmlspecialchars($article['titre']) ?></h3>
 
                     <?php // texte de l'article ?>
                     <p><?= nl2br(htmlspecialchars(substr($article['contenu'], 0, 100))) ?>...</p>
