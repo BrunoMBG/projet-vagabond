@@ -759,4 +759,149 @@ body {
   background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+/* Conteneur global */
+.admin-view-container {
+  width: 100%;
+  padding: 40px 5%;
+  margin: 0 auto;
+  /* Message Aucune donnée à afficher. */
+}
+.admin-view-container p {
+  color: #666;
+  /* Lien de retour */
+}
+.admin-view-container p .link-articlEdit {
+  display: inline-block;
+  margin-top: 20px;
+  color: #1A2A3A;
+  text-decoration: none;
+  font-weight: bold;
+}
+.admin-view-container p .link-articlEdit:hover {
+  text-decoration: underline;
+}
+
+/*  Tableau (liste) */
+.table-article {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+.table-article thead {
+  background-color: #1A2A3A;
+  color: #fff;
+}
+.table-article thead th {
+  padding: 15px;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+.table-article tbody td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  /*Bouton Modifier */
+}
+.table-article tbody td .btn-warning {
+  background-color: #F2994A;
+  color: #F8F9FA;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  transition: 0.3s;
+}
+.table-article tbody td .btn-warning:hover {
+  background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
+}
+.table-article tbody td {
+  /* Bouton Supprimer */
+}
+.table-article tbody td .btnDelete {
+  color: #e74c3c;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.table-article tbody td .btnDelete:hover {
+  text-decoration: underline;
+}
+
+/* Formulaire de modification */
+.update-article {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* Formulaire */
+}
+.update-article form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.update-article form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.update-article form p label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+.update-article form p {
+  /* Tous les input, select et textarea */
+}
+.update-article form p input[type=text],
+.update-article form p select,
+.update-article form p textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.update-article form p textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+.update-article form p {
+  /* input file */
+}
+.update-article form p #image_article {
+  padding: 10px 0;
+}
+.update-article form p .btn-update-article {
+  background-color: #1A2A3A;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: 0.3s;
+}
+.update-article form p .btn-update-article:hover {
+  background: rgb(10.2142857143, 16.5, 22.7857142857);
+}
+.update-article form {
+  /* message d'erreur */
+}
+.update-article form .error-message {
+  color: #e74c3c;
+}
+
 /*# sourceMappingURL=style.css.map */

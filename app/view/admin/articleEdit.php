@@ -24,67 +24,72 @@
 ?>
 
 <?php // Vérifie si la liste des articles existe (affichage du tableau) ?>
-<?php if (isset($articles)): ?>
-    <h2>Gestion des articles</h2>
-
-    <!-- Tableau affichant la liste des articles -->
-    <table class="">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titre</th>
-                <th>Destination</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php // Boucle sur tous les articles ?>
-            <?php foreach ($articles as $article): ?>
-            <tr>
-                <!-- Affichage de l'ID -->
-                <td><?= $article['id_recit'] ?></td>
-
-                <!-- Affichage du titre -->
-                <td><?= htmlspecialchars($article['titre']) ?></td>
-
-                <!-- Affichage du nom de la destination -->
-                <td><?= htmlspecialchars($article['nom_destination']) ?></td>
-                <td>
-                     <?php // Lien vers la page de modification avec l'ID de l'article  ?> 
-                    <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="btn btn-warning">Modifier</a>
-
-                    <?php // Lien vers la page de suppression avec l'ID de l'article  ?>
-                    <a href="index.php?action=articleDelete&id=<?= $article['id_recit'] ?>" 
-                    class="btnDelete">
-                    Supprimer
-                    </a>
-                </td>
-            </tr>
-            <?php endforeach; // Fin de la boucle?>
-        </tbody>
-    </table>
-
-<?php // Si aucun tableau mais un formulaire de modification est disponible ?>
-<?php elseif (isset($formEdit)): ?>
-    <h2>Modifier le récit</h2>
-    
-    <!-- Conteneur du formulaire de modification -->
-    <div class="">
-        <?= $formEdit ?>
-    </div>
+<div class="admin-view-container">
+    <?php if (isset($articles)): ?>
+        <!-- <h2>Gestion des articles</h2> -->
 
 
-    <!-- Lien pour revenir à la liste des articles -->
-    <p><a href="index.php?action=articleManagement">Retour à la liste</a></p>
+        <!-- Tableau affichant la liste des articles -->
+        <table class="table-article">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Destination</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
 
-<?php else: ?>
-    <!-- Message affiché si aucune donnée n'est disponible -->
-    <p>Aucune donnée à afficher.</p>
+                <?php // Boucle sur tous les articles 
+                ?>
+                <?php foreach ($articles as $article): ?>
+                    <tr>
+                        <!-- Affichage de l'ID -->
+                        <td><?= $article['id_recit'] ?></td>
 
-<?php endif; // Fin de la condition principale?>
+                        <!-- Affichage du titre -->
+                        <td><?= htmlspecialchars($article['titre']) ?></td>
 
+                        <!-- Affichage du nom de la destination -->
+                        <td><?= htmlspecialchars($article['nom_destination']) ?></td>
+                        <td>
+                            <?php // Lien vers la page de modification avec l'ID de l'article  
+                            ?>
+                            <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="btn btn-warning">Modifier</a>
+
+                            <?php // Lien vers la page de suppression avec l'ID de l'article  
+                            ?>
+                            <a href="index.php?action=articleDelete&id=<?= $article['id_recit'] ?>"
+                                class="btnDelete">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; // Fin de la boucle ?>
+            </tbody>
+        </table>
+
+        <?php // Si aucun tableau mais un formulaire de modification est disponible ?>
+    <?php elseif (isset($formEdit)): ?>
+        <h2>Modifier le récit</h2>
+
+        <!-- Conteneur du formulaire de modification -->
+        <div class="update-article">
+            <?= $formEdit ?>
+        </div>
+
+
+        <!-- Lien pour revenir à la liste des articles -->
+        <p><a href="index.php?action=articleManagement" class="link-articlEdit">Retour à la liste</a></p>
+
+    <?php else: ?>
+        <!-- Message affiché si aucune donnée n'est disponible -->
+        <p>Aucune donnée à afficher.</p>
+
+    <?php endif; // Fin de la condition principale ?>
+</div>
 <?php
-    // Footer
-    require RACINE. "/app/view/partials/footer.php"; 
+// Footer
+require RACINE . "/app/view/partials/footer.php";
 ?>

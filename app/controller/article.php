@@ -399,7 +399,7 @@ function articleEdit(): void
     $form->setFile("image_article", "");
 
     $form->setTextarea("texte", "Contenu", 10, $article['contenu']);
-    $form->setSubmit("Enregistrer les modifications");
+    $form->setSubmit("Enregistrer les modifications", "btn-update-article");
 
     $formEdit = $form->getForm();
     require_once RACINE . '/app/view/admin/articleEdit.php';
