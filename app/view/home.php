@@ -6,14 +6,10 @@
  */
 ?>
 
-<?php // Section hero ?>
-<section class="hero-video">
-    <video autoplay muted loop playsinline poster="img/hero-fallback.jpg" class="hero-bg-video">
-        <source src="public/videos/voyage.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la lecture de vidéos.
-    </video>
-    <div class="hero-video-overlay"></div>
-</section>
+<?php // Section hero 
+    require RACINE . "/app/view/partials/hero.php";
+?>
+
 
 <?php // Section des derniers articles ?>
 <section class="last-articles-container">
