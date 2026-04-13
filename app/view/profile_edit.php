@@ -7,11 +7,16 @@
  */
 
 ?>
-<h1>Modifier mon profil</h1>
+<!-- <h1>Modifier mon profil</h1> -->
 <?php // ==================== Formulaire ==================== ?>
-<section>
-    <?= $formEdit; ?>
-</section>
+
+<div class="admin-view-container">
+    <h1>Modifier mon profil</h1>
+
+    <section class="profile-edit-section">
+        <?= $formEdit; ?>
+    </section>
+</div>
 
 <?php
     // Footer

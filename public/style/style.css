@@ -904,4 +904,89 @@ body {
   color: #e74c3c;
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+/* Utilisation du conteneur global pour l'alignement 5% */
+.admin-view-container h1 {
+  font-family: "Poppins", sans-serif;
+  color: #1A2A3A;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+/* Section formulaire */
+.profile-edit-section {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  margin-bottom: 50px;
+  /* formulaire */
+}
+.profile-edit-section form {
+  display: flex;
+  flex-direction: column;
+}
+.profile-edit-section form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.profile-edit-section form p label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+}
+.profile-edit-section form p {
+  /* Tous les inputs */
+}
+.profile-edit-section form p input[type=text],
+.profile-edit-section form p input[type=email],
+.profile-edit-section form p input[type=password] {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.profile-edit-section form p input[type=text]:focus,
+.profile-edit-section form p input[type=email]:focus,
+.profile-edit-section form p input[type=password]:focus {
+  outline: none;
+  border-color: #F2994A;
+}
+.profile-edit-section form p {
+  /* Bouton Enregistrer */
+}
+.profile-edit-section form p .btn-profile_edit {
+  background-color: #1A2A3A;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.profile-edit-section form p .btn-profile_edit:hover {
+  background: rgb(10.2142857143, 16.5, 22.7857142857);
+}
+.profile-edit-section form {
+  /* Message d'erreur généré par setError() */
+}
+.profile-edit-section form .error-message {
+  color: #e74c3c;
+}
+.profile-edit-section form {
+  /* Message de succès généré par setSuccess() */
+}
+.profile-edit-section form .success-message {
+  color: #16a34a;
+}
+
 /*# sourceMappingURL=style.css.map */

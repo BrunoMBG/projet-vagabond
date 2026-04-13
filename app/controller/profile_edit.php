@@ -78,8 +78,9 @@
 
         // Message d'erreur
         $form->setError($error);
-
-        $form->setSubmit("Enregistrer les modifications", "");
+        // Message success
+        $form->setSuccess($success, "success-message");
+        $form->setSubmit("Enregistrer les modifications", "btn-profile_edit");
         // Affichage du formulaire
         $formEdit = $form->getForm();
         require_once RACINE . '/app/view/profile_edit.php';
