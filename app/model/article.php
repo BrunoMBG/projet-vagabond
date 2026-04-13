@@ -17,21 +17,23 @@
  * Ajout un nouveau article dans la base de données.
  * @param PDO $db Connexion à la base de données.
  * @param string $titre Le titre du récit.
+ * @param string $ville Nom de la ville
  * @param string $contenu Le texte du récit.
  * @param string|null $image Le nom du fichier image.
  * @param int $id_user L'identifiant de l'auteur (clé étrangère utilisateurs).
  * @param int $id_destination L'identifiant de la destination (clé étrangère destination).
  * @return bool Retourne true si l'insertion a réussi, false sinon.
  */
-function addArticle(PDO $db, string $titre, string $contenu, ?string $image, int $id_user, int $id_destination): bool
+function addArticle(PDO $db, string $titre, string $ville, string $contenu, ?string $image, int $id_user, int $id_destination): bool
 {
-    $sql = "INSERT INTO recits (titre, contenu, image, id_destination, id_utilisateur) 
-            VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO recits (titre, ville, contenu, image, id_destination, id_utilisateur) 
+            VALUES (?, ?, ?, ?, ?, ?)";
 
     $query = $db->prepare($sql);
 
     return $query->execute([
         $titre,
+        $ville,
         $contenu,
         $image,
         $id_destination,
@@ -127,17 +129,18 @@ function getLatestArticles($db, $limit = 3)
  * @param PDO $db Connexion à la base de données.
  * @param int $id L'identifiant unique du récit à modifier.
  * @param string $titre Le titre du récit.
+ * @param string $ville Nom de la ville
  * @param string $contenu Le corps du texte.
  * @param string|null $image Le nom du fichier image.
  * @param int $id_destination L'identifiant de la destination associée.
  * @return bool Retourne true si la mise à jour a réussi, false en cas d'échec.
  */
-function updateArticle(PDO $db, int $id, string $titre, string $contenu, ?string $image, int $id_destination): bool
+function updateArticle(PDO $db, int $id, string $titre, string $ville, string $contenu, ?string $image, int $id_destination): bool
 {
     $sql = "UPDATE recits 
-            SET titre = ?, contenu = ?, image = ?, id_destination = ? 
+            SET titre = ?, ville = ?, contenu = ?, image = ?, id_destination = ? 
             WHERE id_recit = ?";
 
     $query = $db->prepare($sql);
-    return $query->execute([$titre, $contenu, $image, $id_destination, $id]);
+    return $query->execute([$titre, $ville, $contenu, $image, $id_destination, $id]);
 }

@@ -45,6 +45,7 @@ function articleAdd(): void
         $_SESSION['errors'] = [];
 
         $titre = trim(htmlspecialchars($_POST['titre']));
+        $ville = trim(htmlspecialchars($_POST['ville']));
         $contenu = trim(htmlspecialchars($_POST['texte']));
         $id_user = (int)$_SESSION['user_id'];
         $id_destination = isset($_POST['id_destination']) ? $_POST['id_destination'] : 0;
@@ -52,7 +53,7 @@ function articleAdd(): void
         $image_name = null;
 
         // Vérifier si les champs obligatoires sont remplis
-        if (empty($titre) || empty($contenu)) {
+        if (empty($titre) || empty($contenu) || empty($ville)) {
             $_SESSION['errors'][] = "Le titre et le contenu sont obligatoires.";
         }
 
@@ -97,7 +98,7 @@ function articleAdd(): void
 
         // Si aucune erreur n'a été détectée
         if (empty($_SESSION['errors'])) {
-            if (addArticle($db, $titre, $contenu, $image_name, $id_user, $id_destination)) {
+            if (addArticle($db, $titre, $ville, $contenu, $image_name, $id_user, $id_destination)) {
 
                 // Message de succès et redirection
                 $_SESSION['displayMessage'] = "Votre récit a été publié avec succès !";
@@ -117,6 +118,7 @@ function articleAdd(): void
 
 
     $form->setInput("titre", "Titre du récit", "text");
+    $form->setInput("ville", "Ville", "text");
     $form->setSelect("id_destination", "Destination", $destinations, "id_destination", "nom_destination");
     $form->setFile("image_article", "Image d'illustration");
     $form->setTextarea("texte", "Votre récit", 10);
@@ -338,6 +340,7 @@ function articleEdit(): void
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $titre = htmlspecialchars($_POST['titre']);
+        $ville = htmlspecialchars($_POST['ville']);
 
         if (!empty($_POST['texte'])) {
             $texte = $_POST['texte'];
@@ -376,7 +379,7 @@ function articleEdit(): void
         }
 
         // Mise à jour en base de données
-        if (updateArticle($db, $id, $titre, $texte, $image_name, $id_dest)) {
+        if (updateArticle($db, $id, $titre, $ville, $texte, $image_name, $id_dest)) {
             $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
             header('Location: index.php?action=articleManagement');
             exit;
@@ -388,6 +391,7 @@ function articleEdit(): void
 
 
     $form->setInput("titre", "Titre", "text", $article['titre']);
+    $form->setInput("ville", "Ville", "text", $article['ville']);
     $form->setSelect("id_destination", "Destination", $destinations, "id_destination", "nom_destination", $article['id_destination']);
 
 
