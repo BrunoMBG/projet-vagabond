@@ -77,22 +77,20 @@ class Form
      * @param string $message Le texte de l'erreur à afficher
      * @return void
      */
-    public function setError(string $message = "", string $class =""): void
+    public function setError(string $message = "", string $class = "error-message"): void
     {
         if (!empty($message)) {
-            $this->html .= "<p class=\"error-message\">";
-            $this->html .= $message;
-            $this->html .= "</p>\n";
+            $this->html .= "<p class=\"$class\">" . htmlspecialchars($message) . "</p>\n";
         }
     }
 
     /**
      * Ajoute un message de success au formulaire
      * @param string $messageSuccess Le texte de succès à afficher.
-    * @param string $class classe CSS.
+     * @param string $class classe CSS.
      * @return void
      */
-    public function setSuccess(string $messageSuccess, string $class =""): void
+    public function setSuccess(string $messageSuccess, string $class = ""): void
     {
         if (!empty($messageSuccess)) {
             $this->html .= "<p class ='$class'>$messageSuccess</p>";

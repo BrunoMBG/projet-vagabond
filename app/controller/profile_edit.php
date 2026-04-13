@@ -77,7 +77,7 @@
         $form->setInput("password", "Nouveau mot de passe :", "password");
 
         // Message d'erreur
-        $form->setError($error);
+        $form->setError($error, "error-message");
         // Message success
         $form->setSuccess($success, "success-message");
         $form->setSubmit("Enregistrer les modifications", "btn-profile_edit");
