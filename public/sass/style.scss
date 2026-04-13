@@ -141,10 +141,71 @@
 
       .icon-burger {
         display: none;
-      }
+      }        // margin: 0;
 
       .icon-close {
         display: block;
+      }
+    }
+  }
+}
+
+/* ===================== Header PC ===================== */
+@media (min-width: 992px) {
+  /* Header */
+  .header {
+    justify-content: space-between;
+
+    .menuIconeLogo {
+      width: auto; 
+      
+      /*Cache le menu burger*/
+      .menuBurger {
+        display: none; 
+      }
+    }
+
+     /* Menu liens */
+    .navMenu {
+      position: static; 
+      display: block;   
+      width: auto;
+      background-color: transparent;
+      box-shadow: none;
+
+      ul {
+        flex-direction: row; 
+        gap: 30px;           
+
+        li {
+          width: auto;
+
+          a {
+            color: $couleurTertiaire; 
+
+            &:hover {
+              color: $couleurSecondaire;
+            }
+          }
+          
+        }
+      }
+
+      /* sous-menu "Mon Compte" */
+      .underMenu {
+        position: absolute;
+        top: 70px;
+        background-color: $couleurPrimaire;
+      
+        min-width: 200px;
+        padding: 10px;
+
+
+        li {
+            text-align: left;
+            padding: 5px 15px;
+        }
+        
       }
     }
   }

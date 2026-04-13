@@ -153,4 +153,56 @@
   display: block;
 }
 
+/* ===================== Header PC ===================== */
+@media (min-width: 992px) {
+  /* Header */
+  .header {
+    justify-content: space-between;
+  }
+  .header .menuIconeLogo {
+    width: auto;
+    /*Cache le menu burger*/
+  }
+  .header .menuIconeLogo .menuBurger {
+    display: none;
+  }
+  .header {
+    /* Menu liens */
+  }
+  .header .navMenu {
+    position: static;
+    display: block;
+    width: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .header .navMenu ul {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .header .navMenu ul li {
+    width: auto;
+  }
+  .header .navMenu ul li a {
+    color: #F8F9FA;
+  }
+  .header .navMenu ul li a:hover {
+    color: #F2994A;
+  }
+  .header .navMenu {
+    /* sous-menu "Mon Compte" */
+  }
+  .header .navMenu .underMenu {
+    position: absolute;
+    top: 70px;
+    background-color: #1A2A3A;
+    min-width: 200px;
+    padding: 10px;
+  }
+  .header .navMenu .underMenu li {
+    text-align: left;
+    padding: 5px 15px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
