@@ -71,7 +71,7 @@ function contact()
     $form->setTextarea("message", "Votre Message", 5);
     $form->setError($messageError);
     $form->setSuccess($messageSuccess);
-    $form->setSubmit("Envoyer le message");
+    $form->setSubmit("Envoyer le message", "btn-contact");
 
     // Affichage du formulaire
     $contactFormHtml = $form->getForm();

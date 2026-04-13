@@ -11,10 +11,10 @@
 ?>
 
 <?php // Formulaire ?>
-<section class="">
+<section class="contact-section">
     <h1>Contactez-nous</h1>
 
-    <div class="">
+    <div class="contact-form-container">
         <?= $contactFormHtml; ?>
     </div>
 </section>
