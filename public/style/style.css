@@ -158,6 +158,57 @@ body {
   display: block;
 }
 
+/* ===================== Header PC ===================== */
+@media (min-width: 992px) {
+  /* Header */
+  .header {
+    justify-content: space-between;
+  }
+  .header .menuIconeLogo {
+    width: auto;
+    /*Cache le menu burger*/
+  }
+  .header .menuIconeLogo .menuBurger {
+    display: none;
+  }
+  .header {
+    /* Menu liens */
+  }
+  .header .navMenu {
+    position: static;
+    display: block;
+    width: auto;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .header .navMenu ul {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .header .navMenu ul li {
+    width: auto;
+  }
+  .header .navMenu ul li a {
+    color: #F8F9FA;
+  }
+  .header .navMenu ul li a:hover {
+    color: #F2994A;
+  }
+  .header .navMenu {
+    /* sous-menu "Mon Compte" */
+  }
+  .header .navMenu .underMenu {
+    position: absolute;
+    top: 70px;
+    background-color: #1A2A3A;
+    min-width: 200px;
+    padding: 10px;
+  }
+  .header .navMenu .underMenu li {
+    text-align: left;
+    padding: 5px 15px;
+  }
+}
 /* ===================== Section hero ===================== */
 .hero-video {
   position: relative;
@@ -279,6 +330,119 @@ body {
   background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
 
+/* ===================== Page de blog ===================== */
+.blog-filtered-title,
+.blog-article-title {
+  width: 100%;
+  font-size: 1.8rem;
+  color: #1A2A3A;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Filtres */
+.filterContainer {
+  padding: 20px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.filterContainer a {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #F2994A;
+  color: #F8F9FA;
+  border-radius: 25px;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+.filterContainer a.active, .filterContainer a:hover {
+  background-color: #1A2A3A;
+  transform: scale(1.05);
+}
+
+/* Articles */
+.blog-container {
+  padding: 40px 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+@media (min-width: 992px) {
+  .blog-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+.blog-container .blog-article {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  /* Image*/
+}
+.blog-container .blog-article .articles-images {
+  width: 100%;
+  height: 200px;
+}
+.blog-container .blog-article .articles-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-container .blog-article {
+  /* Contenu */
+}
+.blog-container .blog-article .last-article-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.blog-container .blog-article .last-article-content h3 {
+  font-size: 1.2rem;
+  color: #000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
+.blog-container .blog-article .last-article-content p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.blog-container .blog-article .last-article-content {
+  /* Lien */
+}
+.blog-container .blog-article .last-article-content .last-article-btn {
+  margin-top: auto;
+  text-align: right;
+}
+.blog-container .blog-article .last-article-content .last-article-btn .btn-read {
+  display: inline-block;
+  background-color: #F2994A;
+  color: #F8F9FA;
+  padding: 8px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.blog-container .blog-article .last-article-content .last-article-btn .btn-read:hover {
+  background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
+}
+.blog-container .blog-article {
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .blog-container .blog-article {
+    width: calc(50% - 15px);
+    max-width: 500px;
+  }
+}
+
 /* ===================== Footer ===================== */
 .footer-container {
   background-color: #1A2A3A;
@@ -302,58 +466,6 @@ body {
 }
 .footer-container .footer-content .footer-link:hover {
   color: #F2994A;
-}
-
-/* ===================== Header PC ===================== */
-@media (min-width: 992px) {
-  /* Header */
-  .header {
-    justify-content: space-between;
-  }
-  .header .menuIconeLogo {
-    width: auto;
-    /*Cache le menu burger*/
-  }
-  .header .menuIconeLogo .menuBurger {
-    display: none;
-  }
-  .header {
-    /* Menu liens */
-  }
-  .header .navMenu {
-    position: static;
-    display: block;
-    width: auto;
-    background-color: transparent;
-    box-shadow: none;
-  }
-  .header .navMenu ul {
-    flex-direction: row;
-    gap: 30px;
-  }
-  .header .navMenu ul li {
-    width: auto;
-  }
-  .header .navMenu ul li a {
-    color: #F8F9FA;
-  }
-  .header .navMenu ul li a:hover {
-    color: #F2994A;
-  }
-  .header .navMenu {
-    /* sous-menu "Mon Compte" */
-  }
-  .header .navMenu .underMenu {
-    position: absolute;
-    top: 70px;
-    background-color: #1A2A3A;
-    min-width: 200px;
-    padding: 10px;
-  }
-  .header .navMenu .underMenu li {
-    text-align: left;
-    padding: 5px 15px;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

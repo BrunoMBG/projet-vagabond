@@ -16,6 +16,7 @@
 
 <?php // Section système de filtres ?>
 <section class="filterContainer">
+    <h2 class="blog-filtered-title">Destinations</h2>
 
     <?php // Bouton par défaut, affiché comme 'active' si aucune destination n'est sélectionnée dans l'URL ?>
     <a href="index.php?action=blog"
@@ -33,7 +34,8 @@
 </section>
 
 <?php // Section affichage des articles ?>
-<section class="">
+<section class="blog-container">
+    <h2 class="blog-article-title">Mes Voyages</h2>
 
     <?php // Si la destination sélectionnée n'a aucun article ?>
     <?php if (empty($articles)): ?>
@@ -44,16 +46,19 @@
         <?php foreach ($articles as $article): ?>
 
             <?php // Article ?>
-            <article class="article">
+            <article class="blog-article">
 
                 <?php // Image ?>
-                <?php if (!empty($article['image'])): ?>
-                    <img src="index.php?action=viewImage&name=<?= htmlspecialchars($article['image']) ?>"
-                        alt="Image du récit">
-                <?php endif; ?>
+                <div class="articles-images">
+                    <?php if (!empty($article['image'])): ?>
+                        <img src="index.php?action=viewImage&name=<?= htmlspecialchars($article['image']) ?>"
+                            alt="Image du récit">
+                    <?php endif; ?>
+                </div>
+
                 
                 <?php // Contenu de l'article ?>
-                <div class="">
+                <div class="last-article-content">
 
                     <?php // titre de l'article ?>
                     <h2><?= htmlspecialchars($article['titre']) ?></h2>
@@ -62,7 +67,10 @@
                     <p><?= nl2br(htmlspecialchars(substr($article['contenu'], 0, 100))) ?>...</p>
                     
                     <?php // Lien de l'article ?>
-                    <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" class="">Lire plus</a>
+                    <div class="last-article-btn">
+                        <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" class="btn-read">Lire plus</a>
+                    </div>
+                    
                 </div>
             </article>
         <?php endforeach; // Fin de la boucle ?>
