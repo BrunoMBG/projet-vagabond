@@ -1,0 +1,207 @@
+/* ===================== Header ===================== */
+@use "variables" as *;
+
+.header {
+    background-color: $couleurPrimaire;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+
+    /* Menu et logo*/
+    .menuIconeLogo {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        /* Logo */
+        a {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: $fontTitreLogo;
+        }
+
+        /* Menu burger */
+        .menuBurger {
+            background-color: $couleurTertiaire;
+            border: none;
+            border-radius: 5px;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: $couleurPrimaire;
+
+            &:hover {
+                background-color: $couleurSecondaire;
+                color: $couleurTertiaire;
+            }
+
+            .icon-close {
+                display: none;
+            }
+        }
+    }
+
+    /* Menu liens */
+    .navMenu {
+        position: absolute;
+        top: 65px;
+        right: 30px;
+        width: 50%;
+        background-color: $couleurTertiaire;
+        display: none;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+
+                a {
+                    color: $couleurPrimaire;
+                    font-size: 1.1rem;
+
+                    &:hover {
+                        color: $couleurSecondaire;
+                    }
+                }
+
+                /* sous-menu "Mon Compte" */
+                .underMenu {
+                    display: none;
+                    margin-top: 20px;
+
+                    li {
+                        margin: 15px 0;
+
+                        a {
+                            font-size: 1.1rem;
+                        }
+                    }
+
+                    /* Sous-menu administrateur */
+                    .adminMenu {
+                        display: none;
+                        margin-top: 20px;
+
+                        li {
+                            margin: 15px 0;
+
+                            a {
+                                font-size: 1.0rem;
+
+
+                            }
+                        }
+
+                        &.open {
+                            display: block;
+                        }
+                    }
+
+                    /* Affichage s'il y a un clique */
+                    &.open {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Classe activée pour "Mon Compte" */
+    &.active {
+        .navMenu {
+            display: block;
+        }
+
+        .menuIconeLogo .menuBurger {
+            background-color: $couleurSecondaire;
+            color: $couleurTertiaire;
+
+            .icon-burger {
+                display: none;
+            }
+
+            .icon-close {
+                display: block;
+            }
+        }
+    }
+}
+
+/* ===================== Header PC ===================== */
+@media (min-width: 992px) {
+
+    /* Header */
+    .header {
+        justify-content: space-between;
+
+        .menuIconeLogo {
+            width: auto;
+
+            /*Cache le menu burger*/
+            .menuBurger {
+                display: none;
+            }
+        }
+
+        /* Menu liens */
+        .navMenu {
+            position: static;
+            display: block;
+            width: auto;
+            background-color: transparent;
+            box-shadow: none;
+
+            ul {
+                flex-direction: row;
+                gap: 30px;
+
+                li {
+                    width: auto;
+
+                    a {
+                        color: $couleurTertiaire;
+
+                        &.active,
+                        &:hover {
+                            color: $couleurSecondaire;
+                        }
+                    }
+
+                }
+            }
+
+            /* sous-menu "Mon Compte" */
+            .underMenu {
+                position: absolute;
+                top: 70px;
+                background-color: $couleurPrimaire;
+
+                min-width: 200px;
+                padding: 10px;
+
+
+                li {
+                    text-align: left;
+                    padding: 5px 15px;
+                }
+
+            }
+        }
+    }
+}

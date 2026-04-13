@@ -1,0 +1,38 @@
+/* ===================== Section des derniers articles ===================== */
+@use "variables" as *;
+@use "mixins" as *;
+
+/* Section*/
+.last-articles-container {
+    padding: 40px 5%;
+
+    /* Section titre */
+    .last-articles-title {
+        margin-bottom: 30px;
+
+        h2 {
+            font-size: 1.8rem;
+            color: $couleurPrimaire;
+            text-align: left;
+            text-transform: uppercase;
+            font-family: $fontTitreLogo;
+        }
+    }
+
+    /* Div de l'article */
+    .articles-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        /* Version PC */
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Article */
+    .last-article {
+        @include article;
+    }
+}
