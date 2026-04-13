@@ -11,6 +11,7 @@
  * favorites : Système de "Like/Unlike" pour mettre en favoris.
  * articleManagement : Récupére la liste des récit 
  * articleEdit : Gère la modification d'un article
+ * showMyFavorites : Gère l'affichage de la page des favoris de l'utilisateur.
  */
 
 /**
@@ -448,4 +449,29 @@ function articleDelete(): void
     // Redirection vers la page de gestion
     header('Location: index.php?action=articleManagement');
     exit;
+}
+
+
+/**
+ * Gère l'affichage de la page des favoris de l'utilisateur.
+ * * Cette fonction vérifie d'abord que l'utilisateur est authentifié. 
+ * Elle récupère ensuite ses articles favoris via le modèle et inclut 
+ * la vue correspondante.
+ *
+ * @return void Redirige vers la page de login si non connecté, sinon affiche la vue.
+ */
+function showMyFavorites()
+{
+    require RACINE . "/app/model/article.php";
+    global $db;
+
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: index.php?action=login');
+        exit();
+    }
+
+    $userId = (int)$_SESSION['user_id'];
+    $favoriteArticles = getFavoriteArticles($db, $userId);
+
+    require RACINE . '/app/view/my-favorites.php';
 }

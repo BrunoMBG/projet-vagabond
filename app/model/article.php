@@ -156,7 +156,7 @@ function updateArticle(PDO $db, int $id, string $titre, string $ville, string $c
  * @return array        Tableau associatif contenant les données des récits favoris.
  */
 function getFavoriteArticles(PDO $db, int $userId) {
-    $sql = "SELECT r.* FROM recit r
+    $sql = "SELECT r.* FROM recits r
             INNER JOIN favoris f ON r.id_recit = f.id_recit
             WHERE f.id_utilisateur = ?
             ORDER BY r.date_creation DESC";

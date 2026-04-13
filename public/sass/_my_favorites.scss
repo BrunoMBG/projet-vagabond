@@ -1,0 +1,18 @@
+/* ===================== Page my favorites ===================== */
+@use "variables" as *;
+@use "mixins" as *; 
+
+.favorites-articles-container {
+    padding: 40px 5%;
+
+    .favorites-articles {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 24px;
+
+        .favorite-article {
+            @include article; 
+        }
+    }
+}

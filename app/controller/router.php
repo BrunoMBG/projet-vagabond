@@ -131,13 +131,19 @@ function handleRequest(string $action = "default"): void
             require RACINE . "/app/controller/forgot_password.php";
             passwordForgotController();
             break;
-        
+
         // Gère le changement du nouveau mot de passe 
         case 'reset_password':
             require RACINE . "/app/controller/forgot_password.php";
             passwordResetController();
             break;
-            
+
+        // Gère l'affichage des favoris
+        case 'showMyFavorites':
+            require RACINE . "/app/controller/article.php";
+            showMyFavorites();
+            break;
+
         // Redirige vers la page d'erreur 404 si l'action est inconnue
         default:
             require RACINE . "/app/controller/page404.php";
