@@ -9,7 +9,8 @@ const displayMenu = () => {
  * @returns {Element} L'élément avec la classe .header
  */
   const getHeader = document.querySelector(".header");
-
+   // 3. Si l'URL contient le href du lien, on ajoute la classe
+        // On vérifie que le href n'est pas juste "#"
   /**
    * Sélectionne le bouton du menu Burger.
    * @returns {Element} L'élément avec la classe .menuBurger
@@ -61,3 +62,26 @@ const displayMenu = () => {
 }
 
 displayMenu();
+
+/**
+ * Gère l'état actif des liens de navigation.
+ * Compare l'URL actuelle avec l'attribut href de chaque lien pour ajouter 
+ * la classe 'active' au lien correspondant à la page consultée.
+ */
+const addClassActive = () => {
+  // Récupère l'URL complète affichée dans la barre d'adresse
+    const currentUrl = window.location.href;
+    
+  // Sélectionne tous les liens à l'intérieur du menu de navigation
+    const navLinks = document.querySelectorAll('.navMenu a');
+
+    // Vérifie si l'URL actuelle contient le chemin du lien
+    // Et s'assure que le lien n'est pas vide
+    navLinks.forEach(link => {
+        if (currentUrl.includes(link.getAttribute('href')) && link.getAttribute('href') !== "#") {
+            link.classList.add('active');
+        }
+    });
+}
+
+addClassActive()

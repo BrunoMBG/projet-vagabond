@@ -191,7 +191,7 @@ body {
   .header .navMenu ul li a {
     color: #F8F9FA;
   }
-  .header .navMenu ul li a:hover {
+  .header .navMenu ul li a.active, .header .navMenu ul li a:hover {
     color: #F2994A;
   }
   .header .navMenu {

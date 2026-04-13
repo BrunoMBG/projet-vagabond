@@ -193,7 +193,7 @@ body {
           a {
             color: $couleurTertiaire;
 
-            &:hover {
+              &.active, &:hover {
               color: $couleurSecondaire;
             }
           }
