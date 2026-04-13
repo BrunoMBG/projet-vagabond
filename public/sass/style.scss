@@ -88,7 +88,7 @@
           }
         }
 
-       /* sous-menu "Mon Compte" */
+        /* sous-menu "Mon Compte" */
         .underMenu {
           display: none;
           margin-top: 20px;
@@ -115,8 +115,9 @@
 
               }
             }
-            &.open{
-               display: block;
+
+            &.open {
+              display: block;
             }
           }
 
@@ -129,7 +130,7 @@
     }
   }
 
-/* Classe activée pour "Mon Compte" */
+  /* Classe activée pour "Mon Compte" */
   &.active {
     .navMenu {
       display: block;
@@ -141,7 +142,9 @@
 
       .icon-burger {
         display: none;
-      }        // margin: 0;
+      }
+
+      // margin: 0;
 
       .icon-close {
         display: block;
@@ -150,44 +153,76 @@
   }
 }
 
+/* ===================== Section hero ===================== */
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+}
+
 /* ===================== Header PC ===================== */
 @media (min-width: 992px) {
+
   /* Header */
   .header {
     justify-content: space-between;
 
     .menuIconeLogo {
-      width: auto; 
-      
+      width: auto;
+
       /*Cache le menu burger*/
       .menuBurger {
-        display: none; 
+        display: none;
       }
     }
 
-     /* Menu liens */
+    /* Menu liens */
     .navMenu {
-      position: static; 
-      display: block;   
+      position: static;
+      display: block;
       width: auto;
       background-color: transparent;
       box-shadow: none;
 
       ul {
-        flex-direction: row; 
-        gap: 30px;           
+        flex-direction: row;
+        gap: 30px;
 
         li {
           width: auto;
 
           a {
-            color: $couleurTertiaire; 
+            color: $couleurTertiaire;
 
             &:hover {
               color: $couleurSecondaire;
             }
           }
-          
+
         }
       }
 
@@ -196,16 +231,16 @@
         position: absolute;
         top: 70px;
         background-color: $couleurPrimaire;
-      
+
         min-width: 200px;
         padding: 10px;
 
 
         li {
-            text-align: left;
-            padding: 5px 15px;
+          text-align: left;
+          padding: 5px 15px;
         }
-        
+
       }
     }
   }
