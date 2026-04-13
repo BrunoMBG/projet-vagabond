@@ -31,3 +31,8 @@
     ?>
     <p><strong>Rôle : <?= htmlspecialchars($roleLibelle) ?></strong> </p>
 </div>
+
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>

@@ -10,3 +10,8 @@
 <h1>
     404 : Page introuvable
 </h1>
+
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>

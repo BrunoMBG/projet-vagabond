@@ -83,3 +83,8 @@
     <p>Aucune donnée à afficher.</p>
 
 <?php endif; // Fin de la condition principale?>
+
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>

@@ -279,6 +279,37 @@ body {
   }
 }
 
+/* ===================== Footer ===================== */
+.footer-container {
+  background-color: $couleurPrimaire;
+  color: #fff; 
+  padding: 20px 0; 
+  width: 100%;
+  
+  
+  .footer-content {
+    padding: 0 5%; 
+    text-align: left; 
+
+    p {
+      margin: 0;
+      font-size: 0.9rem; 
+      display: flex;
+      gap: 5px; 
+    }
+
+    .footer-link {
+      color: #fff; 
+      transition: opacity 0.3s ease; 
+
+      &:hover {
+        color: $couleurSecondaire;
+      }
+    }
+  }
+}
+
+
 /* ===================== Header PC ===================== */
 @media (min-width: 992px) {
 

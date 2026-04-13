@@ -64,3 +64,8 @@
         <?php endforeach; // Fin de la boucle ?>
     <?php endif; // Fin de la condition?>
 </section>
+
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>

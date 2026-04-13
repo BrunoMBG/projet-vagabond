@@ -15,3 +15,7 @@
     <?= $formArticle; ?>
 </section>
 
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>

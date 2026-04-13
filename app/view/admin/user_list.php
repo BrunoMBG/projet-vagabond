@@ -72,3 +72,8 @@
         </table>
     </section>
 <?php endif; ?>
+
+<?php
+    // Footer
+    require RACINE. "/app/view/partials/footer.php"; 
+?>
