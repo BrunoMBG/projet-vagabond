@@ -8,10 +8,16 @@
  */
 ?>
 
-<div class="container">
-    <h2>Réinitialisation de votre mot de passe</h2>
 
-    <div class="form-wrapper">
+<div class="auth-container">
+    <h1>Réinitialisation de votre mot de passe</h1>
+
+    <?php // ==================== Formulaire ==================== ?>
+    <section>
         <?= $formReset ?>
-    </div>
+    </section>
+
+    <p class="back-link">
+        <a href="index.php?action=login">Retour à la connexion</a>
+    </p>
 </div>
