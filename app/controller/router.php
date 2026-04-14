@@ -61,11 +61,6 @@ function handleRequest(string $action = "default"): void
             editProfile();
             break;
 
-        // Affiche le tableau de bord administration
-        case "dashboard":
-            require RACINE . "/app/controller/admin.php";
-            dashboard();
-            break;
         // Gère l'affichage de la liste des utilisateurs 
         case "user_list":
             require RACINE . "/app/controller/admin.php";
