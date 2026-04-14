@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vue Page de Connexion
  * 
@@ -7,7 +8,9 @@
  */
 ?>
 
-<div class="login-view-container">
+
+
+<div class="auth-container">
     <h1>se connecter</h1>
     <?php // ==================== Formulaire ==================== ?>
     <section>

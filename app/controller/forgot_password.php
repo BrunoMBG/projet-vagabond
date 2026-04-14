@@ -25,7 +25,7 @@ function passwordForgotController(): void
 
     // Ajout des champs via la class Form
     $form->setInput("email", "Email :", "email");
-    $form->setSubmit("Envoyer");
+    $form->setSubmit("Envoyer", "btn-auth");
 
     // Traitement si le formulaire est soumis
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -100,7 +100,7 @@ function passwordResetController(): void
     require_once RACINE . '/app/class/form.php';
     $form = new Form("index.php?action=reset_password&token=" . $token, "post");
     $form->setInput("password", "Nouveau mot de passe :", "password");
-    $form->setSubmit("Mettre à jour le mot de passe");
+    $form->setSubmit("Mettre à jour le mot de passe", "btn-auth");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = $_POST['password'] ?? '';

@@ -57,7 +57,7 @@
         $form->setInput("password", "Mot de passe :", "password");
         // Message d'erreur
         $form->setError($error);
-        $form->setSubmit("Créer mon compte", "");
+        $form->setSubmit("Créer mon compte", "btn-auth");
         // Affichage du formulaire
         $formRegister = $form->getForm();
 
