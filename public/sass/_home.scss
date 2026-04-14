@@ -81,3 +81,61 @@
         @include article;
     }
 }
+
+/* ========== Section CTA ========== */
+.home-cta-container {
+    padding: 60px 5%;
+    background-color: $couleurPrimaire;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 64px;
+
+    .home-cta {
+        max-width: 850px;
+
+        h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-family: $fontTitreLogo;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* Bouton */
+        .btn-cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            color: $couleurPrimaire;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #f0f0f0;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    /* Tablette et PC */
+    @media (min-width: 768px) {
+        padding: 80px 5%;
+
+        h3 {
+            font-size: 2.2rem;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+    }
+}

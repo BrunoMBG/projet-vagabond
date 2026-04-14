@@ -77,3 +77,14 @@
         </div>
     </div>
 </section>
+
+<?php // Section CTA ?>
+<section class="home-cta-container">
+    <div class="home-cta">
+        <h3>Prêt pour le départ ?</h3>
+        <p>Découvrez l'intégralité de nos aventures et trouvez l'inspiration pour votre prochain voyage.</p>
+        <a href="index.php?action=blog" class="btn-cta" aria-label="Voir tous les articles du blog">
+            Explorer tous les récits
+        </a>
+    </div>
+</section>
