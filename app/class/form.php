@@ -138,6 +138,7 @@ class Form
      * @param array  $options Le tableau contenant les données 
      * @param string $value La clé du tableau correspondant à l'ID
      * @param string $valueLabel La clé du tableau correspondant au texte à afficher
+     * @param string|null $selectedValue La valeur à sélectionner par défaut
      * @return void
      */
     public function setSelect(string $name, string $label, array $options, string $value, string $valueLabel, string $selectedValue = null): void
