@@ -69,10 +69,10 @@
         // Message d'erreur
         $form->setError($error);
 
-        $form->setSubmit("Se connecter", "");
+        $form->setSubmit("Se connecter", "btn-login");
         // Ajout des liens utilitaires
         $form->setLink("index.php?action=forgotten", "Mot de passe oublié ?", "");
-        $form->setText("Pas encore de compte ? ", "");
+        $form->setText("Pas encore de compte ? ", "create_account");
         $form->setLink("index.php?action=register", "Créer un compte", "");
         // Affichage du formulaire
         $formLogin = $form->getForm();

@@ -1,0 +1,120 @@
+@use "variables" as *;
+
+
+.login-view-container {
+    padding: 40px 5%;
+    min-height: calc(108vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        font-family: $fontTitreLogo;
+        color: $couleurPrimaire;
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    /* Formulaire */
+    section {
+        width: 100%;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            p {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+
+                label {
+                    font-weight: bold;
+                    margin-bottom: 8px;
+                    font-family: $fontBase;
+                }
+                /* Tous les inputs */
+                input {
+                    padding: 12px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    transition: border-color 0.3s;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $couleurSecondaire;
+                    }
+                }
+
+                /* Bouton Se Connecter */
+                .btn-login {
+                    background-color: $couleurPrimaire;
+                    color: white;
+                    border: none;
+                    padding: 15px;
+                    font-size: 1.1rem;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    margin-top: 10px;
+
+                    &:hover {
+                        background: darken($couleurPrimaire, 10%);
+                    }
+                }
+            }
+
+            /* Liens */
+            a {
+                color: $couleurPrimaire;
+                text-decoration: none;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+                text-align: center;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: $couleurSecondaire;
+                }
+            }
+
+            /* Texte "Pas encore de compte ?" */
+            .create_account {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 0.9rem;
+                color: #666;
+                background-color: reds;
+            }
+
+            /* Messages d'erreur */
+            .error-message {
+                color: #e74c3c;
+            }
+        }
+    }
+}
+
+/* Tablette / PC */
+@media (min-width: 769px) {
+    .login-view-container {
+        padding: 60px 5%;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        section {
+            max-width: 450px;
+            padding: 40px;
+        }
+    }
+}

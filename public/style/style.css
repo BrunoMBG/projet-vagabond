@@ -1179,4 +1179,123 @@ body {
   }
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+.login-view-container {
+  padding: 40px 5%;
+  min-height: calc(108vh - 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-view-container h1 {
+  font-family: "Poppins", sans-serif;
+  color: #1A2A3A;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.login-view-container {
+  /* Formulaire */
+}
+.login-view-container section {
+  width: 100%;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.login-view-container section form {
+  display: flex;
+  flex-direction: column;
+}
+.login-view-container section form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.login-view-container section form p label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-family: "Roboto", sans-serif;
+}
+.login-view-container section form p {
+  /* Tous les inputs */
+}
+.login-view-container section form p input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.login-view-container section form p input:focus {
+  outline: none;
+  border-color: #F2994A;
+}
+.login-view-container section form p {
+  /* Bouton Se Connecter */
+}
+.login-view-container section form p .btn-login {
+  background-color: #1A2A3A;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.login-view-container section form p .btn-login:hover {
+  background: rgb(10.2142857143, 16.5, 22.7857142857);
+}
+.login-view-container section form {
+  /* Liens */
+}
+.login-view-container section form a {
+  color: #1A2A3A;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.login-view-container section form a:hover {
+  text-decoration: underline;
+  color: #F2994A;
+}
+.login-view-container section form {
+  /* Texte "Pas encore de compte ?" */
+}
+.login-view-container section form .create_account {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+  background-color: reds;
+}
+.login-view-container section form {
+  /* Messages d'erreur */
+}
+.login-view-container section form .error-message {
+  color: #e74c3c;
+}
+
+/* Tablette / PC */
+@media (min-width: 769px) {
+  .login-view-container {
+    padding: 60px 5%;
+  }
+  .login-view-container h1 {
+    font-size: 2.5rem;
+  }
+  .login-view-container section {
+    max-width: 450px;
+    padding: 40px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

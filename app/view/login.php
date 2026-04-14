@@ -7,8 +7,10 @@
  */
 ?>
 
-<h1>se connecter</h1>
-<?php // ==================== Formulaire ==================== ?>
-<section>
-    <?= $formLogin; ?>
-</section>
+<div class="login-view-container">
+    <h1>se connecter</h1>
+    <?php // ==================== Formulaire ==================== ?>
+    <section>
+        <?= $formLogin; ?>
+    </section>
+</div>
