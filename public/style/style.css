@@ -957,7 +957,7 @@ body {
 /*
 * Importation des variables, mixins et fonts
 */
-/* ===================== Page  profile ===================== */
+/* ===================== Page modifier profil ===================== */
 .admin-view-container h1 {
   font-family: "Poppins", sans-serif;
   color: #1A2A3A;
@@ -1328,6 +1328,61 @@ body {
     max-width: 450px;
     padding: 40px;
   }
+}
+/*
+* Importation des variables, mixins et fonts
+*/
+/* Page informations personnelles (profile) */
+/* titre */
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2rem;
+  margin-top: 32px;
+}
+
+.profile-user {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  max-width: 500px;
+  margin: 32px auto 32px auto;
+  /* informations */
+}
+.profile-user p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+  margin: 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #eee;
+  /* Retour à la ligne */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  /* Dernier élément sans bordure */
+}
+.profile-user p:last-child {
+  border-bottom: none;
+  margin-top: 25px;
+  border-radius: 8px;
+  color: #e67e22;
+  font-weight: bold;
+}
+.profile-user p {
+  /* information en gras */
+}
+.profile-user p strong {
+  color: #2c3e50;
+  width: 100px;
+  display: inline-block;
+  /* Dernier élément en gras */
+}
+.profile-user p strong:last-child {
+  display: inline;
 }
 
 /*# sourceMappingURL=style.css.map */

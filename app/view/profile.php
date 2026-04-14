@@ -10,7 +10,7 @@
 <h1>
     Mes informations personnelles
 </h1>
-<div class="profile-card">
+<div class="profile-user">
     <p><strong>Nom :</strong> <?= htmlspecialchars($user['nom']) ?></p>
     <p><strong>Prénom :</strong> <?= htmlspecialchars($user['prenom']) ?></p>
     <p><strong>Email :</strong> <?= htmlspecialchars($user['email']) ?></p>
