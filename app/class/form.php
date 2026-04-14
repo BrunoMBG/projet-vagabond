@@ -140,7 +140,7 @@ class Form
      * @param string $valueLabel La clé du tableau correspondant au texte à afficher
      * @return void
      */
-    public function setSelect(string $name, string $label, array $options, string $value, string $valueLabel): void
+    public function setSelect(string $name, string $label, array $options, string $value, string $valueLabel, string $selectedValue = null): void
     {
         $this->html .= "<label for='$name'>$label</label>";
         $this->html .= "<select name='$name' id='$name' required>";
@@ -150,7 +150,10 @@ class Form
 
             $id = $option[$value];
             $val = $option[$valueLabel];
-            $this->html .= "<option value='$id'>" . htmlspecialchars($val) . "</option>";
+
+            $selected = ($id == $selectedValue) ? "selected" : "";
+
+            $this->html .= "<option value='$id' $selected>" . htmlspecialchars($val) . "</option>";
         }
 
         $this->html .= "</select>";
