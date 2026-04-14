@@ -64,16 +64,16 @@ const displayMenu = () => {
 displayMenu();
 
 /**
- * Gère l'état actif des liens de navigation.
- * Compare l'URL actuelle avec l'attribut href de chaque lien pour ajouter 
- * la classe 'active' au lien correspondant à la page consultée.
+ * Gère l'état actif des liens de navigation (Header et Footer).
+ * Parcourt les liens du menu et du footer pour comparer leur 'href' avec l'URL actuelle.
+ * Ajoute la classe 'active' au lien correspondant pour permettre un retour visuel à l'utilisateur.
  */
 const addClassActive = () => {
   // Récupère l'URL complète affichée dans la barre d'adresse
     const currentUrl = window.location.href;
     
   // Sélectionne tous les liens à l'intérieur du menu de navigation
-    const navLinks = document.querySelectorAll('.navMenu a');
+    const navLinks = document.querySelectorAll('.navMenu a, .footer-link');
 
     // Vérifie si l'URL actuelle contient le chemin du lien
     // Et s'assure que le lien n'est pas vide

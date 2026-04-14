@@ -23,7 +23,7 @@
             color: #fff;
             transition: opacity 0.3s ease;
 
-            &:hover {
+            &:hover, &.active {
                 color: $couleurSecondaire;
             }
         }

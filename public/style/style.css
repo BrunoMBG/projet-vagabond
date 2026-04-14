@@ -247,7 +247,7 @@ body {
   color: #fff;
   transition: opacity 0.3s ease;
 }
-.footer-container .footer-content .footer-link:hover {
+.footer-container .footer-content .footer-link:hover, .footer-container .footer-content .footer-link.active {
   color: #F2994A;
 }
 
