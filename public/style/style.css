@@ -436,6 +436,23 @@ body {
   background-color: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
 
+/* Tablette / pc */
+@media (min-width: 769px) {
+  .contact-section {
+    padding: 60px 10%;
+    max-width: 800px;
+    margin: 40px auto;
+  }
+  .contact-section h1 {
+    font-size: 2.5rem;
+    text-align: left;
+  }
+  .contact-section form .btn-contact {
+    width: max-content;
+    padding: 15px 40px;
+    align-self: flex-start;
+  }
+}
 /*
 * Importation des variables, mixins et fonts
 */

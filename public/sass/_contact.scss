@@ -59,3 +59,26 @@
         }
     }
 }
+
+/* Tablette / pc */
+@media (min-width: 769px) {
+    .contact-section {
+        padding: 60px 10%;
+        max-width: 800px; 
+        margin: 40px auto;
+  
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: left;
+        }
+
+        form {
+            .btn-contact {
+                width: max-content; 
+                padding: 15px 40px;
+                align-self: flex-start; 
+            }
+        }
+    }
+}
