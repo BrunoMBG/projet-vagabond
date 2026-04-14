@@ -1385,4 +1385,48 @@ h1 {
   display: inline;
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+/* Page de mentions légales - Mobile First */
+.legal-container {
+  width: 100%;
+  margin: 20px 0;
+  padding: 1rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+.legal-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+.legal-container section {
+  margin-bottom: 1.5rem;
+}
+.legal-container section h2 {
+  margin-bottom: 0.8rem;
+  color: #F2994A;
+  font-size: 1.3rem;
+}
+.legal-container section p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.legal-container {
+  /* Tablette / PC */
+}
+@media (min-width: 768px) {
+  .legal-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 2rem;
+  }
+  .legal-container h1 {
+    font-size: 2.2rem;
+  }
+  .legal-container section h2 {
+    font-size: 1.5rem;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

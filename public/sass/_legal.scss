@@ -1,0 +1,45 @@
+/* Page de mentions légales - Mobile First */
+@use "variables" as *;
+
+.legal-container {
+    width: 100%;
+    margin: 20px 0;
+    padding: 1rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    section {
+        margin-bottom: 1.5rem;
+
+        h2 {
+            margin-bottom: 0.8rem;
+            color: $couleurSecondaire;
+            font-size: 1.3rem;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+    }
+
+    /* Tablette / PC */
+    @media (min-width: 768px) {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 2rem;
+
+        h1 {
+            font-size: 2.2rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+        }
+    }
+}

@@ -139,6 +139,12 @@ function handleRequest(string $action = "default"): void
             showMyFavorites();
             break;
 
+        // Gère l'affichage des mentions legales
+        case 'legal_Notice':
+            require RACINE . "/app/controller/legal_Notice.php";
+            mentionsLegales();
+            break;
+
         // Redirige vers la page d'erreur 404 si l'action est inconnue
         default:
             require RACINE . "/app/controller/page404.php";
