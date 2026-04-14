@@ -325,6 +325,9 @@ function articleManagement(): void
 function articleEdit(): void
 {
     global $db;
+
+    $errorUpdate = "";
+
     require_once RACINE . '/app/model/article.php';
     require_once RACINE . '/app/model/destinations.php';
     require_once RACINE . '/app/class/form.php';
@@ -339,58 +342,58 @@ function articleEdit(): void
         exit;
     }
 
+    $destinations = getAllDestinations($db);
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $titre = htmlspecialchars($_POST['titre']);
-        $ville = htmlspecialchars($_POST['ville']);
+        $titre = trim(htmlspecialchars($_POST['titre']));
+        $ville = trim(htmlspecialchars($_POST['ville']));
+        $texte = trim($_POST['texte']);
+        $id_dest = $_POST['id_destination'];
 
-        if (!empty($_POST['texte'])) {
-            $texte = $_POST['texte'];
-        } else {
-            $texte = $article['contenu'];
-        }
-
-        $id_dest = (int)$_POST['id_destination'];
 
         // Garde l'anchien nom de l'image 
         $image_name = $article['image'];
 
-        //  Vérifie si une image a bien éte ajouté
-        if (isset($_FILES['image_article']) && $_FILES['image_article']['error'] === 0) {
-            $uploadDir = RACINE . '/app/data/images/';
-            $extension = strtolower(pathinfo($_FILES['image_article']['name'], PATHINFO_EXTENSION));
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+        if (empty($titre) || empty($ville) || empty($texte) || empty($id_dest)) {
+            $errorUpdate = "Tous les champs sont obligatoires";
+        } else {
 
-            // Vérification du format d
-            if (in_array($extension, $allowedExtensions)) {
-                // Générer un nouveau nom
-                $new_image_name = uniqid('art_') . '.' . $extension;
-                $destinationPath = $uploadDir . $new_image_name;
+            //  Vérifie si une image a bien éte ajouté
+            if (isset($_FILES['image_article']) && $_FILES['image_article']['error'] === 0) {
+                $uploadDir = RACINE . '/app/data/images/';
+                $extension = strtolower(pathinfo($_FILES['image_article']['name'], PATHINFO_EXTENSION));
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
 
-                // Déplacement du fichier vers le dossier 
-                if (move_uploaded_file($_FILES['image_article']['tmp_name'], $destinationPath)) {
+                // Vérification du format d
+                if (in_array($extension, $allowedExtensions)) {
+                    // Générer un nouveau nom
+                    $new_image_name = uniqid('art_') . '.' . $extension;
+                    $destinationPath = $uploadDir . $new_image_name;
 
-                    // Supprimer l'ancienne image du dossier si elle existe
-                    if (!empty($article['image']) && file_exists($uploadDir . $article['image'])) {
-                        unlink($uploadDir . $article['image']);
+                    // Déplacement du fichier vers le dossier 
+                    if (move_uploaded_file($_FILES['image_article']['tmp_name'], $destinationPath)) {
+
+                        // Supprimer l'ancienne image du dossier si elle existe
+                        if (!empty($article['image']) && file_exists($uploadDir . $article['image'])) {
+                            unlink($uploadDir . $article['image']);
+                        }
+                        // U!tilise le nouveau nom de l'image
+                        $image_name = $new_image_name;
                     }
-                    // U!tilise le nouveau nom de l'image
-                    $image_name = $new_image_name;
                 }
             }
-        }
 
-        // Mise à jour en base de données
-        if (updateArticle($db, $id, $titre, $ville, $texte, $image_name, $id_dest)) {
-            $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
-            header('Location: index.php?action=articleManagement');
-            exit;
+            // Mise à jour en base de données
+            if (updateArticle($db, $id, $titre, $ville, $texte, $image_name, $id_dest)) {
+                $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
+                header('Location: index.php?action=articleManagement');
+                exit;
+            }
         }
     }
-    // Formulaire
-    $destinations = getAllDestinations($db);
+
+    /* formulaire */
     $form = new Form("index.php?action=articleEdit&id=$id", "post", true);
-
-
     $form->setInput("titre", "Titre", "text", $article['titre']);
     $form->setInput("ville", "Ville", "text", $article['ville']);
     $form->setSelect("id_destination", "Destination", $destinations, "id_destination", "nom_destination", $article['id_destination']);
@@ -399,6 +402,7 @@ function articleEdit(): void
     $form->setFile("image_article", "");
 
     $form->setTextarea("texte", "Contenu", 10, $article['contenu']);
+    $form->setError($errorUpdate);
     $form->setSubmit("Enregistrer les modifications", "btn-update-article");
 
     $formEdit = $form->getForm();
