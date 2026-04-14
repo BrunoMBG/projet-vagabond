@@ -1,8 +1,8 @@
 @use "variables" as *;
 
-/* Article */
+
 .article-detail {
-    padding: 40px 5%;
+    padding: 20px 5%; 
     font-family: $fontBase;
     width: 100%;
 
@@ -12,38 +12,38 @@
 
         h1 {
             font-family: $fontTitreLogo;
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             color: #000;
             text-transform: uppercase;
             margin-bottom: 5px;
+            line-height: 1.2;
         }
     }
 
     /* Image */
     .imageArticle {
         width: 100%;
-        margin-bottom: 30px;
-
+        margin-bottom: 20px;
         img {
             width: 100%;
             height: auto;
             border-radius: 5px;
-            object-fit: cover;
+            object-fit: contain;
         }
     }
 
     /* Contenu */
     .article_content {
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 1rem;
+        line-height: 1.5;
         color: #333;
-        margin-bottom: 40px;
-        text-align: justify;
+        margin-bottom: 30px;
+        text-align: left;
     }
 
     /* ====== Favoris ====== */
     .favorites-action {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
 
         a {
             color: $couleurPrimaire;
@@ -53,12 +53,8 @@
             align-items: center;
             gap: 10px;
 
-            span {
-                color: $couleurPrimaire;
-
-                i.fa-solid.fa-heart {
-                    color: #e74c3c;
-                }
+            span i.fa-solid.fa-heart {
+                color: #e74c3c;
             }
         }
     }
@@ -66,28 +62,29 @@
     /* ====== Commentaires ====== */
     .comments {
         border-top: 2px solid $couleurPrimaire;
-        padding-top: 30px;
-        margin-top: 24px;
+        padding-top: 20px;
+        margin-top: 20px;
 
         h3 {
             font-family: $fontTitreLogo;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
         }
 
         .comment {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #f9f9f9;
 
             strong {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 color: #000;
             }
 
             .date-post {
                 color: #777;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+                display: block; 
             }
 
             p {
@@ -99,52 +96,72 @@
 
         /* ====== Formulaire de commentaire ====== */
         .comment-form {
-            margin-top: 40px;
+            margin-top: 30px;
 
             h4 {
-                font-family: $fontBase;
                 font-weight: bold;
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
 
             textarea {
                 width: 100%;
-                padding: 15px;
+                padding: 12px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
-                font-family: $fontBase;
                 font-size: 1rem;
                 resize: vertical;
                 background-color: #fdfdfd;
-                // outline: none;
-
             }
 
             .btn-submit {
+                width: 100%;
                 margin-top: 15px;
                 background-color: $couleurSecondaire;
                 color: #fff;
                 border: none;
-                padding: 12px 25px;
+                padding: 15px; 
                 border-radius: 8px;
                 cursor: pointer;
-                font-family: $fontBase;
-                font-size: 0.9rem;
-
-
-                &:hover {
-                    background-color: darken($couleurSecondaire, 10%);
-                }
+                font-weight: bold;
             }
         }
     }
 }
 
-// Responsive
-@media (max-width: 768px) {
+/* Tablettes / PC */
+@media (min-width: 769px) {
     .article-detail {
+        padding: 40px 5%; 
+
         header h1 {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
+        }
+
+        .imageArticle {
+            margin-bottom: 30px;
+            img {
+                height: 500px;
+            }
+        }
+
+        .article_content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .comments {
+            h3 { font-size: 1.5rem; }
+            
+            .comment .date-post {
+                display: inline; 
+                margin-left: 10px;
+            }
+        }
+
+        .comment-form .btn-submit {
+            width: auto; 
+            padding: 12px 25px;
         }
     }
 }
