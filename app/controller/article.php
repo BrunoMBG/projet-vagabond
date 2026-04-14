@@ -134,7 +134,7 @@ function articleAdd(): void
         unset($_SESSION['errors']);
     }
 
-    $form->setSubmit("Publier le récit");
+    $form->setSubmit("Publier le récit", "btn-update-article ");
 
     // Affichage du formulaire
     $formArticle = $form->getForm();

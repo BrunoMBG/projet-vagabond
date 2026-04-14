@@ -9,8 +9,12 @@
  */
 
 ?>
-<h1>Ajouter un article</h1>
 
-<section>
-    <?= $formArticle; ?>
-</section>
+
+<div class="admin-view-container">
+    <h1>Ajouter un article</h1>
+
+    <section class="update-article">
+        <?= $formArticle; ?>
+    </section>
+</div>

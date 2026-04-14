@@ -57,7 +57,7 @@
         color: #333;
 
         /*Bouton Modifier */
-        .btn-warning {
+        .btn-update {
             background-color: $couleurSecondaire;
             color: $couleurTertiaire;
             padding: 6px 12px;
@@ -111,9 +111,7 @@
             }
 
             /* Tous les input, select et textarea */
-            input[type="text"],
-            select,
-            textarea {
+            input{
                 padding: 12px;
                 border: 1px solid #ddd;
                 border-radius: 4px;

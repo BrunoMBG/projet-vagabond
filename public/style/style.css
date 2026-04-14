@@ -859,7 +859,7 @@ body {
   color: #333;
   /*Bouton Modifier */
 }
-.table-article tbody td .btn-warning {
+.table-article tbody td .btn-update {
   background-color: #F2994A;
   color: #F8F9FA;
   padding: 6px 12px;
@@ -870,7 +870,7 @@ body {
   display: inline-block;
   transition: 0.3s;
 }
-.table-article tbody td .btn-warning:hover {
+.table-article tbody td .btn-update:hover {
   background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
 .table-article tbody td {
@@ -911,18 +911,14 @@ body {
 .update-article form p {
   /* Tous les input, select et textarea */
 }
-.update-article form p input[type=text],
-.update-article form p select,
-.update-article form p textarea {
+.update-article form p input {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s;
 }
-.update-article form p input[type=text]:focus,
-.update-article form p select:focus,
-.update-article form p textarea:focus {
+.update-article form p input:focus {
   outline: none;
   border-color: #F2994A;
 }

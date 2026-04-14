@@ -56,7 +56,7 @@
                         <td>
                             <?php // Lien vers la page de modification avec l'ID de l'article  
                             ?>
-                            <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="btn btn-warning">Modifier</a>
+                            <a href="index.php?action=articleEdit&id=<?= $article['id_recit'] ?>" class="btn btn-update">Modifier</a>
 
                             <?php // Lien vers la page de suppression avec l'ID de l'article  
                             ?>
