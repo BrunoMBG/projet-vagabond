@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Page Mes Favoris
  * 
@@ -15,11 +16,17 @@
     <div class="favorites-articles">
         <?php if (!empty($favoriteArticles)): ?>
             <?php foreach ($favoriteArticles as $article): ?>
-                <article class="favorite-article"> <div class="articles-images"> <img src="index.php?action=viewImage&name=<?= urlencode($article['image']) ?>" alt="<?= htmlspecialchars($article['titre']) ?>">
+                <article class="favorite-article">
+                    <div class="articles-images"> 
+                        <img src="index.php?action=viewImage&name=<?= urlencode($article['image']) ?>" 
+                        alt="<?= htmlspecialchars($article['titre']) ?>">
                     </div>
 
-                    <div class="last-article-content"> <h3><?= htmlspecialchars($article['titre']) ?></h3>
-                        <div class="last-article-btn"> <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" class="btn-read">Lire plus</a>
+                    <div class="last-article-content">
+                        <h3><?= htmlspecialchars($article['titre']) ?></h3>
+                        <div class="last-article-btn"> 
+                            <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" 
+                            class="btn-read">Lire plus</a>
                         </div>
                     </div>
 
