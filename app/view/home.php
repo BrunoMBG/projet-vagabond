@@ -10,6 +10,24 @@
     require RACINE . "/app/view/partials/hero.php";
 ?>
 
+<?php // Section intro ?>
+<section class="intro-home-container">
+    <div class="intro-home">
+        <h1>Vagabond : L'art de voyager et de partager</h1>
+        
+        <p>
+            Bienvenue sur <strong>Vagabond</strong>, un espace dédié à tous ceux pour qui voyager est bien plus qu'un simple déplacement. C'est une quête de sens, une immersion dans l'inconnu et une rencontre avec l'autre. À travers nos <strong>récits de voyage</strong>, nous vous invitons à découvrir le monde avec un regard neuf et curieux.
+        </p>
+
+        <p>
+            Que ce soit pour une escapade sauvage au cœur de la nature, une exploration urbaine ou la découverte de traditions lointaines, chaque article est conçu pour vous offrir une <strong>expérience authentique</strong>. Nous croyons que chaque chemin parcouru mérite d'être raconté, car c'est dans le partage que l'aventure prend tout son sens.
+        </p>
+
+        <p>
+            Laissez-vous inspirer par nos dernières <strong>aventures</strong>, préparez vos futurs itinéraires et rejoignez une communauté de passionnés qui, comme vous, ont l'âme d'un vagabond.
+        </p>
+    </div>
+</section>
 
 <?php // Section des derniers articles ?>
 <section class="last-articles-container">
@@ -45,7 +63,9 @@
                             
                             <?php // Lien vers la page détaillée de l'article ?>
                             <div class="last-article-btn">
-                                <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" class="btn-read">
+                                <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" 
+                                class="btn-read" 
+                                aria-label="Lire la suite : <?= htmlspecialchars($article['titre']) ?>">
                                     Lire la suite
                                 </a>
                             </div>
