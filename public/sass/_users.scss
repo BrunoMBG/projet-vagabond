@@ -1,3 +1,4 @@
+/* ===================== Page Gestion des utisateurs ===================== */
 @use "variables" as *;
 
 .admin-view-container {
@@ -23,7 +24,7 @@
     /* ================= Table ================= */
     .table-article {
         width: 100%;
-        display: block; 
+        display: block;
         border-collapse: collapse;
 
         thead {
