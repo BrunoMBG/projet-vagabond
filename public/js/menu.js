@@ -63,25 +63,38 @@ const displayMenu = () => {
 
 displayMenu();
 
+
 /**
- * Gère l'état actif des liens de navigation (Header et Footer).
- * Parcourt les liens du menu et du footer pour comparer leur 'href' avec l'URL actuelle.
- * Ajoute la classe 'active' au lien correspondant pour permettre un retour visuel à l'utilisateur.
+ * Gère l'état actif des liens de navigation en comparant les paramètres d'URL.
+ * Identifie le paramètre 'action' de la page actuelle et le compare à celui de chaque lien
+ * (Header et Footer) pour appliquer la classe 'active' de manière précise.
  */
 const addClassActive = () => {
-  // Récupère l'URL complète affichée dans la barre d'adresse
-    const currentUrl = window.location.href;
-    
-  // Sélectionne tous les liens à l'intérieur du menu de navigation
+ 
+    /* Récupére le paramètre action de l'URL actuelle */
+    const currentParams = new URLSearchParams(window.location.search);
+    const currentAction = currentParams.get('action');
+
+    /* Sélection des liens de navigation du header et du footer */
     const navLinks = document.querySelectorAll('.navMenu a, .footer-link');
 
-    // Vérifie si l'URL actuelle contient le chemin du lien
-    // Et s'assure que le lien n'est pas vide
     navLinks.forEach(link => {
-        if (currentUrl.includes(link.getAttribute('href')) && link.getAttribute('href') !== "#") {
+        const href = link.getAttribute('href');
+
+        // Ignore le lien s'il est vide ou s'il s'agit d'une ancre (#)
+        if (!href || href === "#") return;
+
+        /* Récupération du paramètre action dans l'attribut href du lien */
+        const linkParams = new URLSearchParams(href.split('?')[1]);
+        const linkAction = linkParams.get('action');
+
+        /* Comparaison entre l'action de la page et celle du lien */
+        if (currentAction === linkAction) {
             link.classList.add('active');
+        } else {
+            link.classList.remove('active');
         }
     });
 }
 
-addClassActive()
+addClassActive();
