@@ -19,8 +19,3 @@
     
     <p><a href="index.php?action=login">Retour à la connexion</a></p>
 </div>
-
-<?php
-    // Footer
-    require RACINE. "/app/view/partials/footer.php"; 
-?>

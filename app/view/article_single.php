@@ -84,8 +84,3 @@
         </div>
     </section>
 </article>
-
-<?php
-    // Footer
-    require RACINE. "/app/view/partials/footer.php"; 
-?>

@@ -89,7 +89,3 @@
 
     <?php endif; // Fin de la condition principale ?>
 </div>
-<?php
-// Footer
-require RACINE . "/app/view/partials/footer.php";
-?>
