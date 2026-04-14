@@ -40,8 +40,12 @@
 
     <?php // Ajouter/retirer des favoris?>
     <div class="favorites-action">
-        <?php if (isset($_SESSION['user'])): ?>
-            <a href="index.php?action=favorites&id=<?= (int)$article['id_recit'] ?>" >
+        <?php if (isset($_SESSION['user'])): 
+            $isFav = isFavorite($db, (int)$_SESSION['user']['id'], (int)$article['id_recit']);
+            $label = $isFav ? "Retirer des favoris" : "Ajouter aux favoris";    
+        ?>
+            <a href="index.php?action=favorites&id=<?= (int)$article['id_recit'] ?>"
+            aria-label="<?= $label ?>">
                 <?php if (isFavorite($db, (int)$_SESSION['user']['id'], (int)$article['id_recit'])): ?>
                     <span title="Retirer des favoris"><i class="fa-solid fa-heart"></i> Retirer des favoris</span>
                 <?php else: ?>
@@ -52,9 +56,9 @@
     </div>
 
     <?php // Commentaires ?>
-    <section class="comments">
+    <section class="comments" aria-labelledby="comments-title">
         <?php // Affiche le nombre total de commentaires ?>
-        <h3><?= count($comments) ?> Commentaires</h3>
+        <h3 id="comments-title"><?= count($comments) ?> Commentaires</h3>
 
         <?php if (!empty($comments)): ?>
             <?php foreach ($comments as $comment): ?>
@@ -79,7 +83,7 @@
             <h4>Laisser un commentaire</h4>
             <form action="index.php?action=addComment&id=<?= (int)$article['id_recit'] ?>" method="POST">
                 <textarea name="comment" rows="5" required placeholder="Votre message..."></textarea>
-                <button type="submit" class="btn-submit">Laisser un commentaire</button>
+                <button type="submit" class="btn-submit" aria-label="Envoyer mon commentaire">Laisser un commentaire</button>
             </form>
         </div>
     </section>
