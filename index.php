@@ -15,14 +15,16 @@
 
 
 
-  // On récupère l'action de l'URL, sinon on utilise "default"
+  // On récupère l'action de l'URL, sinon on utilise "default".
   $action = $_GET["action"] ?? "default";
-    
+  
+  // Vérifie si c'est une image si c'est le cas le script arrête.
   if ($action === 'viewImage') {
       handleRequest($action); 
-      exit; // On arrête tout ici si c'est une image
+      exit; 
   }
-  // Exécute le contrôleur avant d'afficher le HTML
+  
+  // Exécute le contrôleur avant d'afficher le HTML.
   ob_start();
   handleRequest($action);
   $content = ob_get_clean();
@@ -39,8 +41,8 @@
 
     <main role="main">
       <?php
-      // Affhiche le contenu généré par le contrôleur
-      echo $content;
+        // Affhiche le contenu généré par le contrôleur.
+        echo $content;
       ?>
     </main>
 
