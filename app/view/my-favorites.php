@@ -8,9 +8,9 @@
  */
 ?>
 
-<section class="favorites-articles-container">
+<section class="favorites-articles-container" aria-labelledby="favorites-title">
     <div class="last-articles-title">
-        <h2>Mes Récits Favoris</h2>
+        <h2 id="favorites-title">Mes Récits Favoris</h2>
     </div>
 
     <div class="favorites-articles">
@@ -19,14 +19,16 @@
                 <article class="favorite-article">
                     <div class="articles-images"> 
                         <img src="index.php?action=viewImage&name=<?= urlencode($article['image']) ?>" 
-                        alt="<?= htmlspecialchars($article['titre']) ?>">
+                        alt="Illustration du récit : <?= htmlspecialchars($article['titre']) ?>">
                     </div>
 
                     <div class="last-article-content">
                         <h3><?= htmlspecialchars($article['titre']) ?></h3>
                         <div class="last-article-btn"> 
                             <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" 
-                            class="btn-read">Lire plus</a>
+                            class="btn-read"
+                            aria-label="Lire le récit : <?= htmlspecialchars($article['titre']) ?>">
+                            Lire plus</a>
                         </div>
                     </div>
 
