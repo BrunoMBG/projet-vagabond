@@ -36,7 +36,7 @@ function contact()
         // Vérification que tous les champs obligatoires sont bien remplis et valides
         if ($nom && $prenom && $email && $sujet && $message) {
             // Configuration de l'email
-            $to = $_ENV['SMTP_USER'];
+            $to = $_ENV['ADMIN_EMAIL'];
 
             // Construction du sujet
             $subject = "Nouveau message de : " . $nom . " " . $prenom . " - " . $sujet;
