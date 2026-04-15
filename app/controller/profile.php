@@ -16,11 +16,13 @@
      * * @return void
      */
     function showProfile() {
+        global $title;
         if (!isset($_SESSION['user'])) {
             header("Location: index.php?action=login");
             exit;
         }
 
+        $title = "Mon Profil - Vagabond";
         $user = $_SESSION['user'];
 
         require_once RACINE . '/app/view/profile.php';

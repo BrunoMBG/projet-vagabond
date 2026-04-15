@@ -155,6 +155,7 @@ function handleRequest(string $action = "default"): void
         // Redirige vers la page d'erreur 404 si l'action est inconnue
         default:
             require RACINE . "/app/controller/page404.php";
+            error404Page();
             break;
     }
 }

@@ -18,13 +18,15 @@
      */
     function userList()
     {
-        global $db;
+        global $db, $title;
 
         //  Vérifier si l'utilisateur est bien Admin
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
             header('Location: index.php?action=default');
             exit;
         }
+
+        $title = "Gestion des utilisateurs - Vagabond";
 
         // Récupérer tous les utilisateurs via le modèle
         $users = getAllUsers($db);

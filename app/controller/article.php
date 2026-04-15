@@ -25,7 +25,8 @@
  */
 function articleAdd(): void
 {
-    global $db;
+    global $db , $title;
+    $title = "Publier un récit - Vagabond";
 
     require_once RACINE . '/app/model/article.php';
     require_once RACINE . '/app/model/destinations.php';
@@ -153,9 +154,11 @@ function articleAdd(): void
  */
 function articleList()
 {
-    global $db;
+    global $db, $title;
     require_once RACINE . '/app/model/article.php';
     require_once RACINE . '/app/model/destinations.php';
+
+    $title = "Blog - Vagabond";
 
     // Récupèration la destination choisie dans l'URL si elle existe
     $id_dest = isset($_GET['dest']) ? (int)$_GET['dest'] : null;
@@ -179,7 +182,7 @@ function articleList()
  */
 function articleView(): void
 {
-    global $db;
+    global $db, $title;
 
 
     require_once RACINE . '/app/model/article.php';
@@ -198,6 +201,9 @@ function articleView(): void
         header('Location: index.php?action=blog');
         exit;
     }
+
+    $title = $article['titre'] . " - Vagabond";
+
     $comments = getCommentsByArticle($db, $id);
 
     require_once RACINE . '/app/view/article_single.php';
@@ -304,7 +310,8 @@ function favorites()
  */
 function articleManagement(): void
 {
-    global $db;
+    global $db, $title;
+    $title = "Gestion des articles - Vagabond";
     require_once RACINE . '/app/model/article.php';
 
     // Récupère tous les articles
@@ -324,7 +331,8 @@ function articleManagement(): void
  */
 function articleEdit(): void
 {
-    global $db;
+    global $db, $title;
+    $title = "Modifier le récit - Vagabond";
 
     $errorUpdate = "";
 
@@ -467,8 +475,9 @@ function articleDelete(): void
 function showMyFavorites()
 {
     require RACINE . "/app/model/article.php";
-    global $db;
-
+    global $db, $title;
+    $title = "Mes favoris - Vagabond";
+    
     if (!isset($_SESSION['user_id'])) {
         header('Location: index.php?action=login');
         exit();

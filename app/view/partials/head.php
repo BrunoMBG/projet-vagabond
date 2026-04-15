@@ -26,5 +26,5 @@
     <!-- Scrip général -->
     <script src="./public/js/app.js" defer></script>
 
-    <title>Vagabond</title>
+    <title><?php echo isset($title) ? $title : "Vagabond - blog de voyage"; ?></title>
 </head>

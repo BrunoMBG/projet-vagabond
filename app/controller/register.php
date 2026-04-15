@@ -22,8 +22,10 @@
      */
     function register()
     {
-        global $db;
+        global $db, $title;
         $error = "";
+        $title = "Créer un compte - Vagabond";
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 

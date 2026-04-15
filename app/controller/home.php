@@ -14,7 +14,7 @@
  */
 function homePage(): void 
 {
-    global $db;
+    global $db, $title;
     require_once RACINE . "/app/model/article.php";
 
     $title = "Accueil - Vagabond";

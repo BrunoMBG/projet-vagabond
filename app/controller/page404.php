@@ -7,4 +7,15 @@
      * Il est appelé par le routeur lorsqu'une action inconnue est demandée.
      */
 
-    require RACINE . "/app/view/page404.php";
+/**
+ * Affiche la page d'erreur 404.
+ * @return void
+ */
+function error404Page(): void
+{
+    global $title;
+    // Titre dynamique pour l'onglet du navigateur
+    $title = "Page introuvable - Vagabond";
+
+    require_once RACINE . "/app/view/page404.php";
+}

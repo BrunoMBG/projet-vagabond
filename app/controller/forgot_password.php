@@ -18,8 +18,11 @@
 
 function passwordForgotController(): void
 {
+    global $title;
     require_once RACINE . '/app/class/form.php';
     require_once RACINE . '/app/utils/mailer.php';
+
+    $title = "Mot de passe oublié - Vagabond";
 
     $form = new Form("index.php?action=forgotten", "post");
 
@@ -83,6 +86,7 @@ function passwordForgotController(): void
  */
 function passwordResetController(): void
 {
+    global $title;
     $token = $_GET['token'] ?? null;
 
     if (!$token) {
@@ -90,6 +94,8 @@ function passwordResetController(): void
         exit;
     }
 
+    $title = "Réinitialisation du mot de passe - Vagabond";
+    
     require_once RACINE . '/app/model/user.php';
     $user = checkResetToken($token);
 

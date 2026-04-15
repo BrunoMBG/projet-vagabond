@@ -21,8 +21,10 @@
      */
     function login()
     {
-        global $db;
+        global $db, $title;
         $error = "";
+
+        $title = "Connexion - Vagabond";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = htmlspecialchars(trim($_POST['email'] ?? ''));

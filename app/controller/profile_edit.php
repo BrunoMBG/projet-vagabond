@@ -24,10 +24,12 @@
      */
     function editProfile() : void
     {
-        global $db;
+        global $db, $title;
         $user = $_SESSION['user'];
         $error = "";
         $success = "";
+
+        $title = "Modifier mon profil - Vagabond";
 
         // Vérifie si l'utilisateur est connecté 
         // Si ce n'est pas le cas il est dirigé vers la page de connexion

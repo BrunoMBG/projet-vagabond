@@ -20,10 +20,12 @@ function contact()
     require RACINE . '/app/class/form.php';
     require RACINE . '/app/utils/mailer.php';
 
-    global $db;
+    global $db, $title;
 
     $messageError = "";
     $messageSuccess = "";
+
+    $title = "Contact - Vagabond";
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
