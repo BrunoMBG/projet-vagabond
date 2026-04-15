@@ -1,3 +1,12 @@
+<?php
+/**
+ * Structure HTML globale
+ * * head définit le squelette HTML5 commun à toutes les pages du site.
+ * Il inclut les polices, d'icônes, les feuilles de style 
+ * et les scripts JavaScript'.
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

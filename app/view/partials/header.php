@@ -1,3 +1,12 @@
+ <?php
+/**
+ * Vue Header 
+ * 
+ * Affiche le logo, le bouton menu burger pour le mobile, et la navigation principale.
+ * Gère l'affichage dynamique des menus selon le rôle de l'utilisateur (Admin, Rédacteur, User).
+ */
+?>
+
  <header class="header">
     <!-- Logo et menu burger -->
      <div class="menuIconeLogo">
