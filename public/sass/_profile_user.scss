@@ -1,56 +1,74 @@
 /* Page informations personnelles (profile) */
 @use "variables" as *;
 
-/* titre */
-h1 {
+/* Titre principal de la page */
+#info-user-title {
     color: #2c3e50;
     text-align: center;
     font-family: $fontTitreLogo;
-    margin-bottom: 2rem;
-    margin-top: 32px;
+    margin: 20px 0;
+    font-size: 1.5rem;
 }
 
+/* Conteneur principal des informations utilisateur */
 .profile-user {
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     border: 1px solid #f0f0f0;
-    max-width: 500px;
-    margin: 32px auto 32px auto;
+    width: 100%;
+    margin: 20px auto;
 
-    /* informations */
     p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #444;
-        line-height: 1.8;
-        margin: 15px 0;
-        padding-bottom: 10px;
+        line-height: 1.6;
+        margin: 12px 0;
+        padding-bottom: 8px;
         border-bottom: 1px dashed #eee;
+        overflow-wrap: break-word;
 
-        /* Retour à la ligne */
-        overflow-wrap: break-word; 
-        word-wrap: break-word;    
-        word-break: break-word;
-
-        /* Dernier élément sans bordure */
+        /* Dernier élément de conteneur */
         &:last-child {
             border-bottom: none;
-            margin-top: 25px;
-            border-radius: 8px;
-            color: #e67e22;
+            margin-top: 20px;
+            color: $couleurSecondaire;
             font-weight: bold;
         }
 
-        /* information en gras */
         strong {
-            color: #2c3e50;
-            width: 100px;
-            display: inline-block;
+            color: $couleurPrimaire;
+            display: block;
+            margin-bottom: 4px;
 
-            /* Dernier élément en gras */
             &:last-child {
                 display: inline;
+            }
+        }
+    }
+}
+
+/* Tablette / PC */
+@media (min-width: 768px) {
+    #info-user-title {
+        margin-top: 32px;
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+    }
+
+    .profile-user {
+        max-width: 500px;
+        padding: 2rem;
+        margin: 32px auto;
+
+        p {
+            font-size: 1.1rem;
+
+            strong {
+                display: inline-block;
+                width: 100px;
+                margin-bottom: 0;
             }
         }
     }
