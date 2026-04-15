@@ -21,7 +21,7 @@
     <?php // ==================== Header ==================== ?>
     <?php require RACINE . '/app/view/partials/header.php'; ?>
 
-    <main>
+    <main role="main">
       <?php
         // Appel de la fonction de routage
         handleRequest($action);

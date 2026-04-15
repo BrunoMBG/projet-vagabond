@@ -7,7 +7,7 @@
  */
 ?>
 
- <header class="header">
+ <header class="header" role="banner">
     <!-- Logo et menu burger -->
      <div class="menuIconeLogo">
         <!-- Logo -->
