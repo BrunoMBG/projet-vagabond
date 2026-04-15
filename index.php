@@ -1,37 +1,50 @@
-  <?php session_start(); ?>
-  <?php // ==================== Config global ==================== ?>
-  <?php require __DIR__ . '/app/config/config.php'; ?>
-
-  <?php // ==================== Connexion à la base de données ==================== ?>
-  <?php require RACINE . '/app/model/db_connection.php'; ?>
-
-  <?php // ==================== Routage ==================== ?>
-  <?php require RACINE . '/app/controller/router.php'; ?>
-
-
   <?php
-    // On récupère l'action de l'URL, sinon on utilise "default"
-    $action = $_GET["action"] ?? "default";
+  /**
+   * Index.php - Point d'entrée 
+   */
+
+  session_start();
+  // ==================== Config global ==================== 
+  require __DIR__ . '/app/config/config.php';
+
+  // ==================== Connexion à la base de données ==================== 
+  require RACINE . '/app/model/db_connection.php';
+
+  // ==================== Routage ==================== 
+  require RACINE . '/app/controller/router.php';
+
+
+
+  // On récupère l'action de l'URL, sinon on utilise "default"
+  $action = $_GET["action"] ?? "default";
+
+  // Exécute le contrôleur avant d'afficher le HTML
+  ob_start();
+  handleRequest($action);
+  $content = ob_get_clean();
+
+  // ==================== Head ====================
+  require RACINE . '/app/view/partials/head.php';
   ?>
 
-  <?php // ==================== Head ==================== ?>
-  <?php require RACINE . '/app/view/partials/head.php'; ?>
 
   <body>
-    <?php // ==================== Header ==================== ?>
+    <?php // ==================== Header ==================== 
+    ?>
     <?php require RACINE . '/app/view/partials/header.php'; ?>
 
     <main role="main">
       <?php
-        // Appel de la fonction de routage
-        handleRequest($action);
+      // Affhiche le contenu généré par le contrôleur
+      echo $content;
       ?>
     </main>
 
   </body>
 
-<?php
-    // Footer
-    require RACINE. "/app/view/partials/footer.php"; 
-?>
+  <?php
+  // Footer
+  require RACINE . "/app/view/partials/footer.php";
+  ?>
+
   </html>
