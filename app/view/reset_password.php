@@ -10,14 +10,14 @@
 
 
 <div class="auth-container">
-    <h1>Réinitialisation de votre mot de passe</h1>
+    <h1 id="reset-password-title">Réinitialisation de votre mot de passe</h1>
 
     <?php // ==================== Formulaire ==================== ?>
-    <section>
+    <section aria-labelledby="reset-password-title">
         <?= $formReset ?>
     </section>
 
     <p class="back-link">
-        <a href="index.php?action=login">Retour à la connexion</a>
+        <a href="index.php?action=login" aria-label="Retourner à la page de connexion">Retour à la connexion</a>
     </p>
 </div>
