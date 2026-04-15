@@ -1534,4 +1534,78 @@ h1 {
   }
 }
 
+/*
+* Importation des variables, mixins et fonts
+*/
+/* ===================== Page 404 ===================== */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 1.5rem;
+  text-align: center;
+  /* Section erreur */
+}
+.error-container .error {
+  width: 100%;
+  max-width: 650px;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.error-container .error h1 {
+  font-size: 1.5rem;
+  color: #1A2A3A;
+  margin-bottom: 1.5rem;
+}
+.error-container .error {
+  /* contenu */
+}
+.error-container .error .error-content .error-code {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #F2994A;
+  margin: 0;
+}
+.error-container .error .error-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 1rem 0 2rem 0;
+}
+.error-container .error {
+  /* Lien */
+}
+.error-container .error .error-actions .btn-read {
+  display: inline-block;
+  padding: 0.8rem 2.5rem;
+  background-color: #1A2A3A;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.error-container .error .error-actions .btn-read:hover {
+  background-color: rgb(41.7857142857, 67.5, 93.2142857143);
+}
+.error-container {
+  /* Tablette / PC */
+}
+@media (min-width: 768px) {
+  .error-container .error {
+    padding: 4rem;
+  }
+  .error-container .error h1 {
+    font-size: 2.2rem;
+  }
+  .error-container .error .error-content .error-code {
+    font-size: 5rem;
+  }
+  .error-container .error .error-content p {
+    font-size: 1.2rem;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

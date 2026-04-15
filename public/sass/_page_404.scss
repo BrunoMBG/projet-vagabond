@@ -1,0 +1,83 @@
+/* ===================== Page 404 ===================== */
+@use "variables" as *;
+
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 1.5rem;
+    text-align: center;
+
+    /* Section erreur */
+    .error {
+        width: 100%;
+        max-width: 650px;
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+        h1 {
+            font-size: 1.5rem;
+            color: $couleurPrimaire;
+            margin-bottom: 1.5rem;
+        }
+
+        /* contenu */
+        .error-content {
+            .error-code {
+                font-size: 3.5rem;
+                font-weight: 800;
+                color: $couleurSecondaire;
+                margin: 0;
+            }
+
+            p {
+                font-size: 1rem;
+                color: #555;
+                line-height: 1.6;
+                margin: 1rem 0 2rem 0;
+            }
+        }
+
+        /* Lien */
+        .error-actions {
+            .btn-read {
+                display: inline-block;
+                padding: 0.8rem 2.5rem;
+                background-color: $couleurPrimaire;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: 600;
+
+
+                &:hover {
+                    background-color: lighten($couleurPrimaire, 10%);
+                }
+            }
+        }
+    }
+
+    /* Tablette / PC */
+    @media (min-width: 768px) {
+        .error {
+            padding: 4rem;
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .error-content {
+                .error-code {
+                    font-size: 5rem;
+                }
+
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
