@@ -20,7 +20,7 @@
     <?php // Titre de l'article ?>
     <header>
         <h1><?= htmlspecialchars($article['titre']) ?></h1>
-
+        <p class="weather" data-city="<?= htmlspecialchars($article['ville']) ?>"> </p>
     </header>
 
    <?php // Vérifie s'il y a une image associée à l'article ?>
