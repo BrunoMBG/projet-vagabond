@@ -13,7 +13,7 @@
 ?>
 
 <?php // Section hero 
-    require RACINE . "/app/view/partials/hero.php";
+    // require RACINE . "/app/view/partials/hero.php";
 ?>
 
 <article class="article-detail">
