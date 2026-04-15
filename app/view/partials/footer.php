@@ -17,6 +17,8 @@
             <a href="index.php?action=legal_Notice" class="footer-link-nav">Mentions légales</a>
             <span class="border">|</span>
             <a href="index.php?action=contact" class="footer-link-nav">Contact</a>
+             <span class="border">|</span>
+            <a href="index.php?action=privacy" class="footer-link-nav">Politique de Confidentialité</a>
         </nav>
     </div>
 </footer>

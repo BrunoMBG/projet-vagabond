@@ -145,6 +145,12 @@ function handleRequest(string $action = "default"): void
             mentionsLegales();
             break;
 
+        // Gère l'affichage de la page politique de Confidentialité
+        case 'privacy':
+            require RACINE . "/app/controller/privacy.php";
+            privacyPage();
+            break;
+
         // Redirige vers la page d'erreur 404 si l'action est inconnue
         default:
             require RACINE . "/app/controller/page404.php";
