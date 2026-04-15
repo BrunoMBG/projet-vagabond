@@ -28,7 +28,7 @@
         <div class="imageArticle">
             <?php // Affichage de l'image ?>
             <img src="index.php?action=viewImage&name=<?= urlencode($article['image']) ?>"
-                alt="<?= htmlspecialchars($article['titre']) ?>"
+                alt="Illustration du récit : <?= htmlspecialchars($article['titre']) ?>"
                 class="img-fluid">
         </div>
     <?php endif; ?>

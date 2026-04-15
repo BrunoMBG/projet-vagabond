@@ -50,7 +50,7 @@
                         <?php if (!empty($article['image'])): ?>
                             <div class="articles-images">
                                 <img src="index.php?action=viewImage&name=<?= urlencode($article['image']) ?>" 
-                                     alt="<?= htmlspecialchars($article['titre']) ?>">
+                                     alt="Illustration du récit : <?= htmlspecialchars($article['titre']) ?>">
                             </div>
                         <?php endif; ?>
 

@@ -54,7 +54,7 @@
                 <div class="articles-images">
                     <?php if (!empty($article['image'])): ?>
                         <img src="index.php?action=viewImage&name=<?= htmlspecialchars($article['image']) ?>"
-                            alt="<?= htmlspecialchars($article['titre']) ?>">
+                            alt="Illustration du récit : <?= htmlspecialchars($article['titre']) ?>">
                     <?php endif; ?>
                 </div>
 
