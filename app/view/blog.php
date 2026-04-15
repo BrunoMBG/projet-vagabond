@@ -15,23 +15,25 @@
 ?>
 
 <?php // Section système de filtres ?>
-<section class="filterContainer">
+<nav class="filterContainer" aria-label="Filtres des destinations">
     <h2 class="blog-filtered-title">Destinations</h2>
 
     <?php // Bouton par défaut, affiché comme 'active' si aucune destination n'est sélectionnée dans l'URL ?>
     <a href="index.php?action=blog"
-        class="<?= !isset($_GET['dest']) ? 'active' : '' ?>">
+        class="<?= !isset($_GET['dest']) ? 'active' : '' ?>"
+        <?= !isset($_GET['dest']) ? 'aria-current="page"' : '' ?>>
         Tous
     </a>
 
     <?php // Boucle de création des filtres par destination ?>
     <?php foreach ($filters as $filter): ?>
         <a href="index.php?action=blog&dest=<?= $filter['id_destination'] ?>"
-            class="filter <?= (isset($_GET['dest']) && $_GET['dest'] == $filter['id_destination']) ? 'active' : '' ?>">
+            class="filter <?= (isset($_GET['dest']) && $_GET['dest'] == $filter['id_destination']) ? 'active' : '' ?>"
+            <?= (isset($_GET['dest']) && $_GET['dest'] == $filter['id_destination']) ? 'aria-current="page"' : '' ?>>
             <?= htmlspecialchars($filter['nom_destination']) ?>
         </a>
     <?php endforeach; ?>
-</section>
+</nav>
 
 <?php // Section affichage des articles ?>
 <section class="blog-container">
@@ -52,7 +54,7 @@
                 <div class="articles-images">
                     <?php if (!empty($article['image'])): ?>
                         <img src="index.php?action=viewImage&name=<?= htmlspecialchars($article['image']) ?>"
-                            alt="Image du récit">
+                            alt="<?= htmlspecialchars($article['titre']) ?>">
                     <?php endif; ?>
                 </div>
 
@@ -68,7 +70,10 @@
                     
                     <?php // Lien de l'article ?>
                     <div class="last-article-btn">
-                        <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" class="btn-read">Lire plus</a>
+                        <a href="index.php?action=articleView&id=<?= $article['id_recit'] ?>" 
+                        class="btn-read"
+                        aria-label="Lire la suite de l'article : <?= htmlspecialchars($article['titre']) ?>">
+                        Lire plus</a>
                     </div>
                     
                 </div>
