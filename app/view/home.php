@@ -11,9 +11,9 @@
 ?>
 
 <?php // Section intro ?>
-<section class="intro-home-container">
+<section class="intro-home-container" aria-labelledby="intro-title">
     <div class="intro-home">
-        <h1>Vagabond : L'art de voyager et de partager</h1>
+        <h1 id="intro-title">Vagabond : L'art de voyager et de partager</h1>
         
         <p>
             Bienvenue sur <strong>Vagabond</strong>, un espace dédié à tous ceux pour qui voyager est bien plus qu'un simple déplacement. C'est une quête de sens, une immersion dans l'inconnu et une rencontre avec l'autre. À travers nos <strong>récits de voyage</strong>, nous vous invitons à découvrir le monde avec un regard neuf et curieux.
@@ -30,12 +30,12 @@
 </section>
 
 <?php // Section des derniers articles ?>
-<section class="last-articles-container">
+<section class="last-articles-container" aria-labelledby="travels-title">
     <div class="last-articles-">
 
         <?php // Titre de la section ?>
         <header class="last-articles-title">
-            <h2>Mes derniers voyages</h2>
+            <h2 id="travels-title">Mes derniers voyages</h2>
         </header>
         
          <?php // Liste des articles ?>
@@ -79,9 +79,9 @@
 </section>
 
 <?php // Section CTA ?>
-<section class="home-cta-container">
+<section class="home-cta-container" aria-labelledby="cta-title">
     <div class="home-cta">
-        <h3>Prêt pour le départ ?</h3>
+        <h2 id="cta-title">Prêt pour le départ ?</h2>
         <p>Découvrez l'intégralité de nos aventures et trouvez l'inspiration pour votre prochain voyage.</p>
         <a href="index.php?action=blog" class="btn-cta" aria-label="Voir tous les articles du blog">
             Explorer tous les récits
