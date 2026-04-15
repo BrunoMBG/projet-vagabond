@@ -36,14 +36,15 @@ function contact()
         // Vérification que tous les champs obligatoires sont bien remplis et valides
         if ($nom && $prenom && $email && $sujet && $message) {
             // Configuration de l'email
-            $to = "ex-email@exemple.com";
+            $to = $_ENV['SMTP_USER'];
 
             // Construction du sujet
             $subject = "Nouveau message de : " . $nom . " " . $prenom . " - " . $sujet;
 
             // Construction du corps du mail
             $body = "<h2>Vous avez reçu un nouveau message de contact</h2>";
-            $body .= "<p><strong>Nom :</strong> {$nom} {$prenom}</p>";
+            $body .= "<p><strong>Nom :</strong> {$nom}</p>";
+            $body .= "<p><strong>Prénom :</strong> {$prenom}</p>";
             $body .= "<p><strong>Email :</strong> {$email}</p>";
             $body .= "<p><strong>Sujet :</strong> {$sujet}</p>";
             $body .= "<p><strong>Message :</strong><br>" . nl2br($message) . "</p>";
