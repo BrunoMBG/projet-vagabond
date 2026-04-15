@@ -10,10 +10,10 @@
 
 <div class="auth-container">
     
-    <h1>Mot de passe oublié</h1>
+    <h1 id="forgot-title">Mot de passe oublié</h1>
 
     <?php // ==================== Formulaire ==================== ?>
-    <section>
+    <section aria-labelledby="forgot-title">
         <?= $formPassword ?>
     </section>
 
