@@ -11,8 +11,8 @@
 ?>
 
 <?php // Formulaire ?>
-<section class="contact-section">
-    <h1>Contactez-nous</h1>
+<section class="contact-section" aria-labelledby="contact-title">
+    <h1 id="contact-title">Contactez-nous</h1>
 
     <div class="contact-form-container">
         <?= $contactFormHtml; ?>
