@@ -8,11 +8,17 @@
      */
 
     
+/**
+ * Affiche la page d'accueil avec les derniers articles.
+ * @return void
+ */
+function homePage(): void 
+{
     global $db;
-
     require_once RACINE . "/app/model/article.php";
 
-    // Récupération des 3 derniers articles
+    $title = "Accueil - Vagabond";
     $articles = getLatestArticles($db, 3);
 
-    require RACINE . "/app/view/home.php";
+    require_once RACINE . "/app/view/home.php";
+}

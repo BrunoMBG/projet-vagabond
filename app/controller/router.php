@@ -18,6 +18,7 @@ function handleRequest(string $action = "default"): void
         // Affiche la page d'accueil
         case "default":
             require RACINE . "/app/controller/home.php";
+            homePage();
             break;
 
         // Gère l'affichage de la liste des articles
