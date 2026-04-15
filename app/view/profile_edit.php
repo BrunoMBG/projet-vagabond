@@ -11,9 +11,9 @@
 <?php // ==================== Formulaire ==================== ?>
 
 <div class="admin-view-container">
-    <h1>Modifier mon profil</h1>
+    <h1 id="profile-title">Modifier mon profil</h1>
 
-    <section class="profile-edit-section">
+    <section class="profile-edit-section" aria-labelledby="profile-title">
         <?= $formEdit; ?>
     </section>
 </div>
