@@ -1,4 +1,4 @@
-## Vagabond - Blog de Voyage
+# Vagabond - Blog de Voyage
 
 Vagabond est un site web de blog construite en PHP suivant l'architecture MVC. Elle permet aux voyageurs de partager leurs récits et aux utilisateurs de commenter les articles.
 
@@ -13,7 +13,7 @@ Vagabond est un site web de blog construite en PHP suivant l'architecture MVC. E
 
 ## Structure du Projet
 
-# app/ Contient le cœur de l'application.
+### app/
 
 * controller/ : Logique de traitement et gestion des requêtes.
 * model/ : Interactions avec la base de données (SQL).
@@ -22,7 +22,7 @@ Vagabond est un site web de blog construite en PHP suivant l'architecture MVC. E
 * data/image/ : Stockage des images de la base de données.
 * utils/ : Outils transversaux.
 
-# public/
+### public/
 
 * scss/ : Fichiers sources Sass.
 * style/ : Fichiers CSS compilés.
