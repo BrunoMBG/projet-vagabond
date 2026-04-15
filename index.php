@@ -17,7 +17,11 @@
 
   // On récupère l'action de l'URL, sinon on utilise "default"
   $action = $_GET["action"] ?? "default";
-
+    
+  if ($action === 'viewImage') {
+      handleRequest($action); 
+      exit; // On arrête tout ici si c'est une image
+  }
   // Exécute le contrôleur avant d'afficher le HTML
   ob_start();
   handleRequest($action);
