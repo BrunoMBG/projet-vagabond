@@ -1322,7 +1322,7 @@ body {
 .auth-container {
   /* Formulaire */
 }
-.auth-container section {
+.auth-container .auth-section {
   width: 100%;
   max-width: 100%;
   background: #fff;
@@ -1331,36 +1331,36 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
 }
-.auth-container section form {
+.auth-container .auth-section form {
   display: flex;
   flex-direction: column;
 }
-.auth-container section form p {
+.auth-container .auth-section form p {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
-.auth-container section form p label {
+.auth-container .auth-section form p label {
   font-weight: bold;
   margin-bottom: 8px;
   font-family: "Roboto", sans-serif;
 }
-.auth-container section form p input {
+.auth-container .auth-section form p input {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
-.auth-container section form p input:focus {
+.auth-container .auth-section form p input:focus {
   outline: none;
   border-color: #F2994A;
   box-shadow: 0 0 5px rgba(242, 153, 74, 0.2);
 }
-.auth-container section form p {
+.auth-container .auth-section form p {
   /* Bouton de soumission */
 }
-.auth-container section form p .btn-auth {
+.auth-container .auth-section form p .btn-auth {
   background-color: #1A2A3A;
   color: white;
   border: none;
@@ -1372,41 +1372,41 @@ body {
   text-transform: uppercase;
   margin-top: 10px;
 }
-.auth-container section form p .btn-auth:hover {
+.auth-container .auth-section form p .btn-auth:hover {
   background: rgb(10.2142857143, 16.5, 22.7857142857);
 }
-.auth-container section form {
+.auth-container .auth-section form {
   /* Liens formulaire */
 }
-.auth-container section form a {
+.auth-container .auth-section form a {
   text-align: center;
   color: #1A2A3A;
   text-decoration: none;
   margin-bottom: 10px;
   font-size: 0.9rem;
 }
-.auth-container section form a:hover {
+.auth-container .auth-section form a:hover {
   text-decoration: underline;
   color: #F2994A;
 }
-.auth-container section form {
+.auth-container .auth-section form {
   /* Texte "Pas encore de compte ?" */
 }
-.auth-container section form .create_account {
+.auth-container .auth-section form .create_account {
   text-align: center;
   margin-top: 15px;
   font-size: 0.9rem;
   color: #666;
 }
-.auth-container section form {
+.auth-container .auth-section form {
   /* Messages */
 }
-.auth-container section form .error-message {
+.auth-container .auth-section form .error-message {
   color: #e74c3c;
   text-align: center;
   margin-bottom: 10px;
 }
-.auth-container section form .success-message {
+.auth-container .auth-section form .success-message {
   color: #16a34a;
   text-align: center;
   margin-bottom: 10px;
@@ -1429,7 +1429,7 @@ body {
   .auth-container h2 {
     font-size: 2.2rem;
   }
-  .auth-container section {
+  .auth-container .auth-section {
     max-width: 450px;
     padding: 40px;
   }

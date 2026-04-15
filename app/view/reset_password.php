@@ -13,7 +13,7 @@
     <h1 id="reset-password-title">Réinitialisation de votre mot de passe</h1>
 
     <?php // ==================== Formulaire ==================== ?>
-    <section aria-labelledby="reset-password-title">
+    <section class="auth-section" aria-labelledby="reset-password-title">
         <?= $formReset ?>
     </section>
 

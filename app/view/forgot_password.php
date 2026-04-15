@@ -13,7 +13,7 @@
     <h1 id="forgot-title">Mot de passe oublié</h1>
 
     <?php // ==================== Formulaire ==================== ?>
-    <section aria-labelledby="forgot-title">
+    <section class="auth-section" aria-labelledby="forgot-title">
         <?= $formPassword ?>
     </section>
 

@@ -13,7 +13,7 @@
 <div class="auth-container">
     <h1 id="login-title">se connecter</h1>
     <?php // ==================== Formulaire ==================== ?>
-    <section aria-labelledby="login-title">
+    <section class="auth-section" aria-labelledby="login-title">
         <?= $formLogin; ?>
     </section>
 </div>
