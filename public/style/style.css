@@ -1119,6 +1119,31 @@ body {
   color: #e74c3c;
 }
 
+/* Tablette / PC */
+@media (min-width: 768px) {
+  .admin-view-container {
+    padding: 60px 5%;
+    min-height: 85vh;
+  }
+  .admin-view-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .table-article thead th, .table-article tbody td {
+    padding: 20px;
+  }
+  .table-article tbody td .btn-update {
+    padding: 8px 16px;
+  }
+  .update-article {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    padding: 50px;
+  }
+  .update-article form .btn-update-article {
+    padding: 15px 50px;
+  }
+}
 /*
 * Importation des variables, mixins et fonts
 */

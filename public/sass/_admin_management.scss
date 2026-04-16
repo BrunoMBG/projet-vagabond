@@ -160,3 +160,42 @@
         }
     }
 }
+
+/* Tablette / PC */
+@media (min-width: 768px) {
+    .admin-view-container {
+        padding: 60px 5%;
+        min-height: 85vh;
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    }
+
+    .table-article {
+        thead th, tbody td {
+            padding: 20px;
+        }
+
+
+        tbody td {
+            .btn-update {
+                padding: 8px 16px;
+            }
+        }
+    }
+
+    .update-article {
+        max-width: 800px;
+        margin: 0 auto 50px;
+        padding: 50px;
+
+        form {
+
+            .btn-update-article {
+                padding: 15px 50px;
+            }
+        }
+    }
+}
