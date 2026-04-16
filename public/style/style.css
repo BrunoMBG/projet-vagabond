@@ -1129,7 +1129,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 90px;
   /* formulaire */
 }
 .profile-edit-section form {
@@ -1150,18 +1150,14 @@ body {
 .profile-edit-section form p {
   /* Tous les inputs */
 }
-.profile-edit-section form p input[type=text],
-.profile-edit-section form p input[type=email],
-.profile-edit-section form p input[type=password] {
+.profile-edit-section form p input {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
-.profile-edit-section form p input[type=text]:focus,
-.profile-edit-section form p input[type=email]:focus,
-.profile-edit-section form p input[type=password]:focus {
+.profile-edit-section form p input:focus {
   outline: none;
   border-color: #F2994A;
 }
@@ -1194,6 +1190,27 @@ body {
   color: #16a34a;
 }
 
+/* Tablette / PC */
+@media (min-width: 768px) {
+  .admin-view-container h1 {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+  .profile-edit-section {
+    max-width: 600px;
+    margin: 0 auto 80px;
+    padding: 50px;
+  }
+  .profile-edit-section form p {
+    margin-bottom: 25px;
+  }
+  .profile-edit-section form .btn-profile_edit {
+    cursor: pointer;
+    width: fit-content;
+    padding: 15px 40px;
+    align-self: center;
+  }
+}
 /*
 * Importation des variables, mixins et fonts
 */

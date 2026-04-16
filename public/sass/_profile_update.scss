@@ -13,14 +13,16 @@
         padding-bottom: 10px;
     }
 }
+
 /* Section formulaire */
 .profile-edit-section {
     background: #fff;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    width: 100%; 
-    margin-bottom: 50px;
+    width: 100%;
+    margin-bottom: 90px;
+
     /* formulaire */
     form {
         display: flex;
@@ -37,10 +39,9 @@
                 color: #333;
                 font-family: $fontBase;
             }
+
             /* Tous les inputs */
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
+            input {
                 padding: 12px;
                 border: 1px solid #ddd;
                 border-radius: 4px;
@@ -66,7 +67,7 @@
 
                 &:hover {
                     background: darken($couleurPrimaire, 10%);
-                   
+
                 }
 
             }
@@ -81,6 +82,35 @@
         .success-message {
             color: #16a34a;
 
+        }
+    }
+}
+
+/* Tablette / PC */
+@media (min-width: 768px) {
+    .admin-view-container {
+        h1 {
+            font-size: 2.8rem;
+            text-align: center;
+        }
+    }
+
+    .profile-edit-section {
+        max-width: 600px;
+        margin: 0 auto 80px;
+        padding: 50px;
+
+        form {
+            p {
+                margin-bottom: 25px;
+            }
+
+            .btn-profile_edit {
+                cursor: pointer;
+                width: fit-content;
+                padding: 15px 40px;
+                align-self: center;
+            }
         }
     }
 }
