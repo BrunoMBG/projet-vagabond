@@ -5,6 +5,7 @@
 .favorites-articles-container {
     padding: 40px 5%;
 
+    min-height: 90vh;
     .favorites-articles {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -13,6 +14,18 @@
 
         .favorite-article {
             @include article; 
+        }
+    }
+}
+
+
+/* Tablette / PC */
+@media (min-width: 768px) {
+    .favorites-articles-container {
+        padding: 60px 10%;
+
+        .favorites-articles {
+            gap: 40px;
         }
     }
 }

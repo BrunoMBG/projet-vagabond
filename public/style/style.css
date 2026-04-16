@@ -895,6 +895,7 @@ body {
 /* ===================== Page my favorites ===================== */
 .favorites-articles-container {
   padding: 40px 5%;
+  min-height: 90vh;
 }
 .favorites-articles-container .favorites-articles {
   display: grid;
@@ -961,6 +962,15 @@ body {
   background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
 
+/* Tablette / PC */
+@media (min-width: 768px) {
+  .favorites-articles-container {
+    padding: 60px 10%;
+  }
+  .favorites-articles-container .favorites-articles {
+    gap: 40px;
+  }
+}
 /*
 * Importation des variables, mixins et fonts
 */
