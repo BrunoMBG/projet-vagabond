@@ -1475,6 +1475,9 @@ body {
 
 /* Tablette / PC  */
 @media (min-width: 769px) {
+  .auth-container {
+    margin-bottom: 45px;
+  }
   .auth-container h1,
   .auth-container h2 {
     font-size: 2.2rem;

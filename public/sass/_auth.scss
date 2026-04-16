@@ -130,13 +130,14 @@
 /* Tablette / PC  */
 @media (min-width: 769px) {
     .auth-container {
+        margin-bottom: 45px;
 
         h1,
         h2 {
             font-size: 2.2rem;
         }
 
-         .auth-section  {
+        .auth-section {
             max-width: 450px;
             padding: 40px;
         }
