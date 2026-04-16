@@ -1508,7 +1508,7 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   border: 1px solid #f0f0f0;
   width: 100%;
-  margin: 20px auto;
+  margin: 20px auto 380px;
 }
 .profile-user p {
   font-size: 1rem;
@@ -1545,7 +1545,7 @@ body {
   .profile-user {
     max-width: 500px;
     padding: 2rem;
-    margin: 32px auto;
+    margin: 32px auto 330px;
   }
   .profile-user p {
     font-size: 1.1rem;
