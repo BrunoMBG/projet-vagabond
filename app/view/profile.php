@@ -40,7 +40,7 @@ $roleLibelle = $nameRoles[$user['role']] ?? "Utilisateur";
         <?php // Lien vers la page de modification de profil 
         ?>
         <div class="profile-actions">
-            <a href="index.php?action=editProfile" class="btn-read" aria-label="Modifier mes informations personnelles">
+            <a href="index.php?action=profile_edit" class="btn-read" aria-label="Modifier mes informations personnelles">
                 Modifier mon profil
             </a>
         </div>
