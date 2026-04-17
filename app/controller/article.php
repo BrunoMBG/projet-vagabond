@@ -14,6 +14,16 @@
  * showMyFavorites : Gère l'affichage de la page des favoris de l'utilisateur.
  */
 
+
+ // Class
+require_once RACINE . '/app/class/form.php';
+
+// Model
+require_once RACINE . '/app/model/article.php';
+require_once RACINE . '/app/model/destinations.php';
+require_once RACINE . '/app/model/comments.php';
+require_once RACINE . '/app/model/favorites.php';
+
 /**
  * Gère l'ajout d'un nouvel article .
  * Vérifie l'authentification de l'utilisateur, récupère les 
@@ -27,10 +37,6 @@ function articleAdd(): void
 {
     global $db , $title;
     $title = "Publier un récit - Vagabond";
-
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/destinations.php';
-    require_once RACINE . '/app/class/form.php';
 
     // Récupération des destinations pour le menu déroulant
     $destinations = getAllDestinations($db);
@@ -155,8 +161,6 @@ function articleAdd(): void
 function articleList()
 {
     global $db, $title;
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/destinations.php';
 
     $title = "Blog - Vagabond";
 
@@ -183,11 +187,6 @@ function articleList()
 function articleView(): void
 {
     global $db, $title;
-
-
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/comments.php';
-    require_once RACINE . '/app/model/favorites.php';
 
     // Récupération de l'ID depuis l'URL
     $id = isset($_GET['id']) ? $_GET['id'] : 0;
@@ -220,8 +219,7 @@ function articleView(): void
 function postComment(): void
 {
     global $db;
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/comments.php';
+
     // Vérifie si l'utilisateur est bien connecté
     if (!isset($_SESSION['user']['id'])) {
         $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];
@@ -273,8 +271,6 @@ function favorites()
 
     global $db;
 
-    require_once RACINE . "/app/model/favorites.php";
-
     //  Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['user'])) {
         header("Location: index.php?action=login");
@@ -312,7 +308,6 @@ function articleManagement(): void
 {
     global $db, $title;
     $title = "Gestion des articles - Vagabond";
-    require_once RACINE . '/app/model/article.php';
 
     // Récupère tous les articles
     $articles = getAllArticles($db);
@@ -335,10 +330,6 @@ function articleEdit(): void
     $title = "Modifier le récit - Vagabond";
 
     $errorUpdate = "";
-
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/destinations.php';
-    require_once RACINE . '/app/class/form.php';
 
     // Récupération de l'id de l'article via L'URL
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -430,9 +421,6 @@ function articleEdit(): void
 function articleDelete(): void
 {
     global $db;
-    require_once RACINE . '/app/model/article.php';
-    require_once RACINE . '/app/model/comments.php';
-
 
     // Récupère l'id depuis l'URL, 0 par défaut si absent
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -474,7 +462,7 @@ function articleDelete(): void
  */
 function showMyFavorites()
 {
-    require RACINE . "/app/model/article.php";
+
     global $db, $title;
     $title = "Mes favoris - Vagabond";
     
