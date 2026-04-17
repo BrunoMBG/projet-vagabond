@@ -25,7 +25,13 @@ const fetchWeather = () => {
     const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=10&language=fr&format=json`;
 
     fetch(geoUrl)
-        .then((geoResponse) => geoResponse.json())
+        .then((geoResponse) => {
+            // Vérification du statut de la réponse avant extraction
+            if (!geoResponse.ok) {
+                throw new Error("Erreur réseau lors du géocodage");
+            }
+            return geoResponse.json();
+        })
         .then((geoData) => {
             // Si l'API Geocoding envoie des résultats
             if (geoData.results && geoData.results.length > 0) {
@@ -39,15 +45,23 @@ const fetchWeather = () => {
             }
             throw new Error("City not found");
         })
-        .then((weatherResponse) => weatherResponse.json())
+        .then((weatherResponse) => {
+            // Vérification du statut de la réponse avant extraction
+            if (weatherResponse && !weatherResponse.ok) {
+                throw new Error("Erreur réseau lors de la récupération météo");
+            }
+            return weatherResponse ? weatherResponse.json() : null;
+        })
         .then((weatherData) => {
-            const weather = weatherData.current_weather;
+            if (weatherData) {
+                const weather = weatherData.current_weather;
 
-            weatherDisplay.style.display = 'block';
-            // Affichage de la météo
-            weatherDisplay.innerHTML = `
-                Météo à ${cityName} : <strong>${weather.temperature}°C</strong> 
-            `;
+                weatherDisplay.style.display = 'block';
+                // Affichage de la météo
+                weatherDisplay.innerHTML = `
+                    Météo à ${cityName} : <strong>${weather.temperature}°C</strong> 
+                `;
+            }
         })
         // En cas d'erreur
         .catch((error) => {
@@ -55,4 +69,4 @@ const fetchWeather = () => {
         });
 };
 
-document.addEventListener("DOMContentLoaded", fetchWeather);
+fetchWeather();
