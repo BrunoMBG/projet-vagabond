@@ -321,7 +321,7 @@ function articleManagement(): void
     // Récupère tous les articles
     $articles = getAllArticles($db);
 
-    require_once RACINE . '/app/view/admin/articleEdit.php';
+    require_once RACINE . '/app/view/admin/article_list.php';
 }
 
 
@@ -421,7 +421,7 @@ function articleEdit(): void
     $form->setSubmit("Enregistrer les modifications", "btn-update-article");
 
     $formEdit = $form->getForm();
-    require_once RACINE . '/app/view/admin/articleEdit.php';
+    require_once RACINE . '/app/view/admin/article_edit.php';
 }
 
 
