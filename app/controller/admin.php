@@ -8,8 +8,6 @@
      * userUpdateRole : Modification des permissions des utilisateurs.
      */
 
-    require RACINE . "/app/model/user.php";
-
 
     /**
      * Affiche la page de gestion des utilisateurs
@@ -19,6 +17,7 @@
     function userList()
     {
         global $db, $title;
+        require RACINE . "/app/model/user.php";
 
         //  Vérifier si l'utilisateur est bien Admin
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
@@ -50,7 +49,7 @@
     function userUpdateRole()
     {
         global $db;
-        require_once RACINE . '/app/model/user.php';
+        require RACINE . '/app/model/user.php';
 
         // Vérifie si l'utilisateur est connecté et possède le rôle Admin
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
