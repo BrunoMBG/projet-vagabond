@@ -41,9 +41,10 @@ function articleAdd(): void
     // Récupération des destinations pour le menu déroulant
     $destinations = getAllDestinations($db);
 
-    // Vérifie si l'utilisateur est connecté
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: index.php?action=login');
+    // Vérifie l'authentification et les droits d'accès
+    if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], [1, 2])) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Accès refusé : zone réservée à l'administration."];
+        header('Location: index.php?action=default');
         exit;
     }
 
@@ -220,7 +221,7 @@ function postComment(): void
 {
     global $db;
 
-    // Vérifie si l'utilisateur est bien connecté
+   // Vérifie l'authentification et les droits d'accès
     if (!isset($_SESSION['user']['id'])) {
         $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];
         header('Location: index.php?action=login');
@@ -307,6 +308,14 @@ function favorites()
 function articleManagement(): void
 {
     global $db, $title;
+
+    // Vérifie l'authentification et les droits d'accès
+    if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], [1, 2])) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Accès refusé : zone réservée à l'administration."];
+        header('Location: index.php?action=default');
+        exit;
+    }
+
     $title = "Gestion des articles - Vagabond";
 
     // Récupère tous les articles
@@ -330,6 +339,13 @@ function articleEdit(): void
     $title = "Modifier le récit - Vagabond";
 
     $errorUpdate = "";
+    
+    // Vérifie l'authentification et les droits d'accès
+    if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], [1, 2])) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Accès refusé : zone réservée à l'administration."];
+        header('Location: index.php?action=default');
+        exit;
+    }
 
     // Récupération de l'id de l'article via L'URL
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
