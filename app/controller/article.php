@@ -56,7 +56,7 @@ function articleAdd(): void
         $titre = trim(htmlspecialchars($_POST['titre']));
         $ville = trim(htmlspecialchars($_POST['ville']));
         $contenu = trim(htmlspecialchars($_POST['texte']));
-        $id_user = (int)$_SESSION['user_id'];
+        $id_user = (int)$_SESSION['user']['id'];
         $id_destination = isset($_POST['id_destination']) ? $_POST['id_destination'] : 0;
 
         $image_name = null;
@@ -339,7 +339,7 @@ function articleEdit(): void
     $title = "Modifier le récit - Vagabond";
 
     $errorUpdate = "";
-    
+
     // Vérifie l'authentification et les droits d'accès
     if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], [1, 2])) {
         $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Accès refusé : zone réservée à l'administration."];
@@ -438,6 +438,13 @@ function articleDelete(): void
 {
     global $db;
 
+    // Vérifie l'authentification et les droits d'accès
+    if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], [1, 2])) {
+        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Accès refusé : zone réservée à l'administration."];
+        header('Location: index.php?action=default');
+        exit;
+    }
+    
     // Récupère l'id depuis l'URL, 0 par défaut si absent
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
     $article = getArticleById($db, $id);
@@ -482,12 +489,12 @@ function showMyFavorites()
     global $db, $title;
     $title = "Mes favoris - Vagabond";
     
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         header('Location: index.php?action=login');
         exit();
     }
 
-    $userId = (int)$_SESSION['user_id'];
+    $userId = (int)$_SESSION['user']['id'];
     $favoriteArticles = getFavoriteArticles($db, $userId);
 
     require RACINE . '/app/view/my-favorites.php';

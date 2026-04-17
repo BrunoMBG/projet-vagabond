@@ -20,7 +20,7 @@
         require RACINE . "/app/model/user.php";
 
         //  Vérifier si l'utilisateur est bien Admin
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
             header('Location: index.php?action=default');
             exit;
         }
@@ -52,7 +52,7 @@
         require RACINE . '/app/model/user.php';
 
         // Vérifie si l'utilisateur est connecté et possède le rôle Admin
-        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
+        if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
             header('Location: index.php?action=default');
             exit;
         }
@@ -63,7 +63,7 @@
             $new_role = $_POST['changeRole'];
 
             // Vérifie si l'utilisateur tente de modifier son propre rôle.
-            if ($id_user == $_SESSION['user_id']) {
+           if ($id_user == $_SESSION['user']['id']){
                 $_SESSION['displayMessage'] = [
                     'type' => 'error',
                     'message' => "Vous ne pouvez pas modifier votre propre rôle."
