@@ -4,7 +4,7 @@
  * affiche une boîte de dialogue et interrompt l'action
  * de redirection si l'utilisateur choisit d'annuler.
  */
-document.addEventListener('DOMContentLoaded', () => {
+const confirmDelete = () => {
     // Récupèration de tous les boutons de suppression
     const deleteButtons = document.querySelectorAll('.btnDelete');
 
@@ -19,4 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
+};
+
+confirmDelete();
