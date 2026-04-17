@@ -10,7 +10,7 @@
  */
 
 ?>
-<?php if ($_SESSION['user_role'] === 1): ?>
+
 <div class="admin-view-container">
     <section>
         <h2>Gestion des Utilisateurs</h2>
@@ -73,4 +73,3 @@
         </table>
     </section>
 </div>
-<?php endif; ?>
