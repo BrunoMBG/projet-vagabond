@@ -223,7 +223,7 @@ function postComment(): void
 
    // Vérifie l'authentification et les droits d'accès
     if (!isset($_SESSION['user']['id'])) {
-        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];
+        $_SESSION['displayMessageComments'] = ["type" => "danger", "message" => "Vous devez être connecté pour laisser un commentaire."];
         header('Location: index.php?action=login');
         exit;
     }
@@ -242,13 +242,13 @@ function postComment(): void
     if (!empty($texte) && $id_recit > 0) {
         // Appelle le modèle pour ajouter le commentaire 
         if (addComment($db, $id_recit, $id_user, $texte)) {
-            $_SESSION['displayMessage'] = ["type" => "success", "message" => "Votre commentaire a été publié !"];
+            $_SESSION['displayMessageComments'] = ["type" => "success", "message" => "Votre commentaire a été publié !"];
         } else {
-            $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Une erreur est survenue lors de l'envoi."];
+            $_SESSION['displayMessageComments'] = ["type" => "danger", "message" => "Une erreur est survenue lors de l'envoi."];
         }
     } else {
         // Message d'erreur si l'utilisateur tente d'envoyer un message vide
-        $_SESSION['displayMessage'] = [
+        $_SESSION['displayMessageComments'] = [
             "type" => "warning",
             "message" => "Votre commentaire ne peut pas être vide."
         ];

@@ -20,9 +20,15 @@
  */
 function getAllDestinations(PDO $db): array
 {
-    $sql = "SELECT id_destination, nom_destination FROM destinations ORDER BY nom_destination ASC";
-    $query = $db->query($sql);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $sql = "SELECT id_destination, nom_destination FROM destinations ORDER BY nom_destination ASC";
+        $query = $db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getAllDestinations : " . $e->getMessage());
+        return [];
+    }
 }
 
 
@@ -34,11 +40,17 @@ function getAllDestinations(PDO $db): array
  */
 function getVisitedDestinations(PDO $db): array
 {
-    $sql = "SELECT DISTINCT d.id_destination, d.nom_destination 
-            FROM destinations d
-            INNER JOIN recits r ON d.id_destination = r.id_destination
-            ORDER BY d.nom_destination ASC";
+    try {
+        $sql = "SELECT DISTINCT d.id_destination, d.nom_destination 
+                FROM destinations d
+                INNER JOIN recits r ON d.id_destination = r.id_destination
+                ORDER BY d.nom_destination ASC";
 
-    $query = $db->query($sql);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getVisitedDestinations : " . $e->getMessage());
+        return [];
+    }
 }

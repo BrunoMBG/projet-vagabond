@@ -27,19 +27,15 @@
  */
 function addArticle(PDO $db, string $titre, string $ville, string $contenu, ?string $image, int $id_user, int $id_destination): bool
 {
-    $sql = "INSERT INTO recits (titre, ville, contenu, image, id_destination, id_utilisateur) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-
-    $query = $db->prepare($sql);
-
-    return $query->execute([
-        $titre,
-        $ville,
-        $contenu,
-        $image,
-        $id_destination,
-        $id_user
-    ]);
+    try {
+        $sql = "INSERT INTO recits (titre, ville, contenu, image, id_destination, id_utilisateur) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+        $query = $db->prepare($sql);
+        return $query->execute([$titre, $ville, $contenu, $image, $id_destination, $id_user]);
+    } catch (PDOException $e) {
+        error_log("Erreur addArticle : " . $e->getMessage());
+        return false;
+    }
 }
 
 /**
@@ -50,9 +46,14 @@ function addArticle(PDO $db, string $titre, string $ville, string $contenu, ?str
  */
 function deleteArticle(PDO $db, int $id): bool
 {
-    $sql = "DELETE FROM recits WHERE id_recit = ?";
-    $query = $db->prepare($sql);
-    return $query->execute([$id]);
+    try {
+        $sql = "DELETE FROM recits WHERE id_recit = ?";
+        $query = $db->prepare($sql);
+        return $query->execute([$id]);
+    } catch (PDOException $e) {
+        error_log("Erreur deleteArticle : " . $e->getMessage());
+        return false;
+    }
 }
 
 /**
@@ -64,25 +65,24 @@ function deleteArticle(PDO $db, int $id): bool
  */
 function getAllArticles(PDO $db, ?int $id_dest = null): array
 {
-    $sql = "SELECT r.*, d.nom_destination 
-            FROM recits r
-            JOIN destinations d ON r.id_destination = d.id_destination";
+    try {
+        $sql = "SELECT r.*, d.nom_destination 
+                FROM recits r
+                JOIN destinations d ON r.id_destination = d.id_destination";
 
-    if ($id_dest !== null) {
-        $sql .= " WHERE r.id_destination = ?";
+        if ($id_dest !== null) {
+            $sql .= " WHERE r.id_destination = ?";
+        }
+
+        $sql .= " ORDER BY r.date_creation DESC";
+        $query = $db->prepare($sql);
+
+        $id_dest !== null ? $query->execute([$id_dest]) : $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getAllArticles : " . $e->getMessage());
+        return [];
     }
-
-    $sql .= " ORDER BY r.date_creation DESC";
-
-    $query = $db->prepare($sql);
-    
-    if ($id_dest !== null) {
-        $query->execute([$id_dest]);
-    } else {
-        $query->execute();
-    }
-
-    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
@@ -94,15 +94,19 @@ function getAllArticles(PDO $db, ?int $id_dest = null): array
  */
 function getArticleById(PDO $db, int $id)
 {
-    $sql = "SELECT r.*, d.nom_destination 
-            FROM recits r
-            JOIN destinations d ON r.id_destination = d.id_destination
-            WHERE r.id_recit = ?";
+    try {
+        $sql = "SELECT r.*, d.nom_destination 
+                FROM recits r
+                JOIN destinations d ON r.id_destination = d.id_destination
+                WHERE r.id_recit = ?";
 
-    $query = $db->prepare($sql);
-    $query->execute([$id]);
-
-    return $query->fetch(PDO::FETCH_ASSOC);
+        $query = $db->prepare($sql);
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getArticleById : " . $e->getMessage());
+        return false;
+    }
 }
 
 
@@ -114,14 +118,22 @@ function getArticleById(PDO $db, int $id)
  */
 function getLatestArticles($db, $limit = 3)
 {
-    $sql = "SELECT r.*, d.nom_destination 
-            FROM recits r
-            JOIN destinations d ON r.id_destination = d.id_destination
-            ORDER BY r.date_creation DESC
-            LIMIT $limit";
+    try {
+        // Utilisation de bindValue pour sécuriser le LIMIT
+        $sql = "SELECT r.*, d.nom_destination 
+                FROM recits r
+                JOIN destinations d ON r.id_destination = d.id_destination
+                ORDER BY r.date_creation DESC
+                LIMIT :limit";
 
-    $query = $db->query($sql);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $db->prepare($sql);
+        $query->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getLatestArticles : " . $e->getMessage());
+        return [];
+    }
 }
 
 
@@ -138,12 +150,17 @@ function getLatestArticles($db, $limit = 3)
  */
 function updateArticle(PDO $db, int $id, string $titre, string $ville, string $contenu, ?string $image, int $id_destination): bool
 {
-    $sql = "UPDATE recits 
-            SET titre = ?, ville = ?, contenu = ?, image = ?, id_destination = ? 
-            WHERE id_recit = ?";
+    try {
+        $sql = "UPDATE recits 
+                SET titre = ?, ville = ?, contenu = ?, image = ?, id_destination = ? 
+                WHERE id_recit = ?";
 
-    $query = $db->prepare($sql);
-    return $query->execute([$titre, $ville, $contenu, $image, $id_destination, $id]);
+        $query = $db->prepare($sql);
+        return $query->execute([$titre, $ville, $contenu, $image, $id_destination, $id]);
+    } catch (PDOException $e) {
+        error_log("Erreur updateArticle : " . $e->getMessage());
+        return false;
+    }
 }
 
 /**
@@ -155,15 +172,19 @@ function updateArticle(PDO $db, int $id, string $titre, string $ville, string $c
  * @param int $userId   Identifiant de l'utilisateur dont on veut les favoris.
  * @return array        Tableau associatif contenant les données des récits favoris.
  */
-function getFavoriteArticles(PDO $db, int $userId) {
-    $sql = "SELECT r.* FROM recits r
-            INNER JOIN favoris f ON r.id_recit = f.id_recit
-            WHERE f.id_utilisateur = ?
-            ORDER BY r.date_creation DESC";
-            
-    $query= $db->prepare($sql);
-    
-    $query->execute([$userId]);
-    
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+function getFavoriteArticles(PDO $db, int $userId)
+{
+    try {
+        $sql = "SELECT r.* FROM recits r
+                INNER JOIN favoris f ON r.id_recit = f.id_recit
+                WHERE f.id_utilisateur = ?
+                ORDER BY r.date_creation DESC";
+
+        $query = $db->prepare($sql);
+        $query->execute([$userId]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getFavoriteArticles : " . $e->getMessage());
+        return [];
+    }
 }

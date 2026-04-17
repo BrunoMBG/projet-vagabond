@@ -51,10 +51,17 @@ function registerUser(PDO $db, string $lastName, string $firstName, string $emai
  */
 function isEmailExists(PDO $db, string $email): bool
 {
-    $sql = "SELECT COUNT(*) FROM utilisateurs WHERE email = ?";
-    $query = $db->prepare($sql);
-    $query->execute([$email]);
-    return $query->fetchColumn() > 0;
+    try {
+        $sql = "SELECT COUNT(*) FROM utilisateurs WHERE email = ?";
+        $query = $db->prepare($sql);
+
+        $query->execute([$email]);
+        
+        return $query->fetchColumn() > 0;
+    } catch (PDOException $e) {
+        error_log("Erreur isEmailExists : " . $e->getMessage());
+        return true;
+    }
 }
 
 /**
@@ -90,15 +97,20 @@ function getUserByEmail(PDO $db, string $email): array|false
  */
 function updateProfil($db, $id, $nom, $prenom, $email, $password = null): bool
 {
-    if (!empty($password)) {
-        $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id_utilisateur = ?";
-        $update = [$nom, $prenom, $email, password_hash($password, PASSWORD_DEFAULT), $id];
-    } else {
-        $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ? WHERE id_utilisateur = ?";
-        $update = [$nom, $prenom, $email, $id];
+    try {
+        if (!empty($password)) {
+            $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id_utilisateur = ?";
+            $params = [$nom, $prenom, $email, password_hash($password, PASSWORD_DEFAULT), $id];
+        } else {
+            $sql = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ? WHERE id_utilisateur = ?";
+            $params = [$nom, $prenom, $email, $id];
+        }
+        $query = $db->prepare($sql);
+        return $query->execute($params);
+    } catch (PDOException $e) {
+        error_log("Erreur updateProfil : " . $e->getMessage());
+        return false;
     }
-    $query = $db->prepare($sql);
-    return $query->execute($update);
 }
 
 /**
@@ -110,13 +122,18 @@ function updateProfil($db, $id, $nom, $prenom, $email, $password = null): bool
  */
 function getAllUsers(PDO $db): array
 {
-    $sql = "SELECT u.id_utilisateur, u.nom, u.prenom, u.email, u.id_role, r.libelle 
-            FROM utilisateurs u
-            INNER JOIN role r ON u.id_role = r.id_role 
-            ORDER BY u.nom ASC";
-    $query = $db->prepare($sql);
-    $query->execute();
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $sql = "SELECT u.id_utilisateur, u.nom, u.prenom, u.email, u.id_role, r.libelle 
+                FROM utilisateurs u
+                INNER JOIN role r ON u.id_role = r.id_role 
+                ORDER BY u.nom ASC";
+        $query = $db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getAllUsers : " . $e->getMessage());
+        return [];
+    }
 }
 
 /**
@@ -126,9 +143,15 @@ function getAllUsers(PDO $db): array
  */
 function getAllRoles(PDO $db): array
 {
-    $sql = "SELECT id_role, libelle FROM role ORDER BY id_role ASC";
-    $query = $db->query($sql);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $sql = "SELECT id_role, libelle FROM role ORDER BY id_role ASC";
+        $query = $db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur getAllRoles : " . $e->getMessage());
+        return [];
+    }
 }
 
 /**
@@ -139,33 +162,36 @@ function getAllRoles(PDO $db): array
  */
 function updateUserRole(PDO $db, int $id_user, int $id_role): bool
 {
-    $sql = "UPDATE utilisateurs SET id_role = ? WHERE id_utilisateur = ?";
-    $query = $db->prepare($sql);
-    return $query->execute([$id_role, $id_user]);
+    try {
+        $sql = "UPDATE utilisateurs SET id_role = ? WHERE id_utilisateur = ?";
+        $query = $db->prepare($sql);
+        return $query->execute([$id_role, $id_user]);
+    } catch (PDOException $e) {
+        error_log("Erreur updateUserRole : " . $e->getMessage());
+        return false;
+    }
 }
 
 
 /**
  * Enregistre le token de réinitialisation et sa date d'expiration pour un utilisateur.
+ * @param PDO $db Connexion à la base de données
  * @param string $email L'email de l'utilisateur.
  * @param string $token Le token généré.
  * @return bool True si la mise à jour a réussi, sinon false.
  */
-function storeResetToken(string $email, string $token): bool {
-
-    global $db;
-
-    $sql = "UPDATE utilisateurs 
-            SET token = ?, 
-                token_expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) 
-            WHERE email = ?";
+function storeResetToken(PDO $db, string $email, string $token): bool
+{
 
     try {
+        $sql = "UPDATE utilisateurs 
+                SET token = ?, 
+                    token_expiration = DATE_ADD(NOW(), INTERVAL 1 HOUR) 
+                WHERE email = ?";
         $query = $db->prepare($sql);
-        
         return $query->execute([$token, $email]);
     } catch (PDOException $e) {
-  
+        error_log("Erreur storeResetToken : " . $e->getMessage());
         return false;
     }
 }
@@ -174,35 +200,45 @@ function storeResetToken(string $email, string $token): bool {
 /**
  * Cette fonction interroge la base de données pour trouver un utilisateur possédant
  * le token fourni, à condition que celui-ci n'ait pas dépassé sa date d'expiration.
+ * @param PDO $db Connexion à la base de données
  * @param string $token Le token de sécurité unique envoyé par email.
  * @return array|false Retourne les données de l'utilisateur si le token est valide, 
  * ou false si le token est inexistant ou expiré.
  */
-function checkResetToken(string $token) {
+function checkResetToken(PDO $db, string $token)
+{
 
-    global $db;
-    
-    $sql = "SELECT id_utilisateur FROM utilisateurs 
-            WHERE token = ? AND token_expiration > NOW()";
-    $query = $db->prepare($sql);
-    $query->execute([$token]);   
-    return $query->fetch(PDO::FETCH_ASSOC);
+    try {
+        $sql = "SELECT id_utilisateur FROM utilisateurs 
+                WHERE token = ? AND token_expiration > NOW()";
+        $query = $db->prepare($sql);
+        $query->execute([$token]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Erreur checkResetToken : " . $e->getMessage());
+        return false;
+    }
 }
 
 /**
  * Cette fonction enregistre le nouveau hash du mot de passe en base de données.
  * Elle force également la suppression du token et de sa date d'expiration afin
  * de rendre le lien de récupération à usage unique.
+ * @param PDO $db Connexion à la base de données
  * @param int $id L'identifiant unique de l'utilisateur.
  * @param string $hash Le nouveau mot de passe haché.
  * @return bool Retourne true si la mise à jour a réussi, false en cas d'erreur.
  */
-function updateUserPassword(int $id, string $hash) {
-    global $db;
-    // Ajout le nouveau mot de passe et vide le token pour qu'il ne soit plus réutilisable
-    $sql = "UPDATE utilisateurs 
-            SET password = ?, token = NULL, token_expiration = NULL 
-            WHERE id_utilisateur = ?";
-    $query = $db->prepare($sql);
-    return $query->execute([$hash, $id]);
+function updateUserPassword(PDO $db, int $id, string $hash)
+{
+    try {
+        $sql = "UPDATE utilisateurs 
+                SET password = ?, token = NULL, token_expiration = NULL 
+                WHERE id_utilisateur = ?";
+        $query = $db->prepare($sql);
+        return $query->execute([$hash, $id]);
+    } catch (PDOException $e) {
+        error_log("Erreur updateUserPassword : " . $e->getMessage());
+        return false;
+    }
 }
