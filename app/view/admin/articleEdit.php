@@ -30,7 +30,7 @@
 
 
         <!-- Tableau affichant la liste des articles -->
-        <table class="table-article">
+        <table class="table-admin-article">
             <thead>
                 <tr>
                     <th>ID</th>

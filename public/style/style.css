@@ -998,7 +998,7 @@ body {
 }
 
 /*  Tableau (liste) */
-.table-article {
+.table-admin-article {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
@@ -1007,24 +1007,24 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
-.table-article thead {
+.table-admin-article thead {
   background-color: #1A2A3A;
   color: #fff;
 }
-.table-article thead th {
+.table-admin-article thead th {
   padding: 15px;
   text-align: left;
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
-.table-article tbody td {
+.table-admin-article tbody td {
   padding: 15px;
   border-bottom: 1px solid #eee;
   color: #333;
   /*Bouton Modifier */
 }
-.table-article tbody td .btn-update {
+.table-admin-article tbody td .btn-update {
   background-color: #F2994A;
   color: #F8F9FA;
   padding: 6px 12px;
@@ -1035,18 +1035,18 @@ body {
   display: inline-block;
   transition: 0.3s;
 }
-.table-article tbody td .btn-update:hover {
+.table-admin-article tbody td .btn-update:hover {
   background: rgb(238.5824742268, 126.1855670103, 26.4175257732);
 }
-.table-article tbody td {
+.table-admin-article tbody td {
   /* Bouton Supprimer */
 }
-.table-article tbody td .btnDelete {
+.table-admin-article tbody td .btnDelete {
   color: #e74c3c;
   text-decoration: none;
   font-size: 0.9rem;
 }
-.table-article tbody td .btnDelete:hover {
+.table-admin-article tbody td .btnDelete:hover {
   text-decoration: underline;
 }
 
@@ -1129,10 +1129,10 @@ body {
     text-align: center;
     margin-bottom: 40px;
   }
-  .table-article thead th, .table-article tbody td {
+  .table-admin-article thead th, .table-admin-article tbody td {
     padding: 20px;
   }
-  .table-article tbody td .btn-update {
+  .table-admin-article tbody td .btn-update {
     padding: 8px 16px;
   }
   .update-article {
@@ -1272,37 +1272,37 @@ body {
 .admin-view-container {
   /* ================= Table ================= */
 }
-.admin-view-container .table-article {
+.admin-view-container .table-admin-role {
   width: 100%;
   display: block;
   border-collapse: collapse;
 }
-.admin-view-container .table-article thead {
+.admin-view-container .table-admin-role thead {
   display: none;
 }
-.admin-view-container .table-article tbody,
-.admin-view-container .table-article tr,
-.admin-view-container .table-article td {
+.admin-view-container .table-admin-role tbody,
+.admin-view-container .table-admin-role tr,
+.admin-view-container .table-admin-role td {
   display: block;
   width: 100%;
 }
-.admin-view-container .table-article tr {
+.admin-view-container .table-admin-role tr {
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
 }
-.admin-view-container .table-article td {
+.admin-view-container .table-admin-role td {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 10px;
   border-bottom: 1px solid #eee;
 }
-.admin-view-container .table-article td:last-child {
+.admin-view-container .table-admin-role td:last-child {
   border-bottom: none;
 }
-.admin-view-container .table-article td::before {
+.admin-view-container .table-admin-role td::before {
   content: attr(data-label);
   font-weight: bold;
   color: #1A2A3A;
@@ -1311,7 +1311,7 @@ body {
   flex: 1;
   text-align: left;
 }
-.admin-view-container .table-article td span {
+.admin-view-container .table-admin-role td span {
   display: inline-block;
   padding: 4px 10px;
   background: #f1f1f1;
@@ -1320,21 +1320,21 @@ body {
   font-weight: bold;
   color: #555;
 }
-.admin-view-container .table-article {
+.admin-view-container .table-admin-role {
   /* Formulaire */
 }
-.admin-view-container .table-article form {
+.admin-view-container .table-admin-role form {
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: flex-end;
 }
-.admin-view-container .table-article form select {
+.admin-view-container .table-admin-role form select {
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-.admin-view-container .table-article form .btn-role {
+.admin-view-container .table-admin-role form .btn-role {
   background-color: #F2994A;
   color: #F8F9FA;
   border: none;
@@ -1347,56 +1347,56 @@ body {
   /* Version PC */
 }
 @media (min-width: 769px) {
-  .admin-view-container .table-article {
+  .admin-view-container .table-admin-role {
     display: table;
     background: #fff;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: hidden;
   }
-  .admin-view-container .table-article thead {
+  .admin-view-container .table-admin-role thead {
     display: table-header-group;
     background-color: #1A2A3A;
     color: #fff;
   }
-  .admin-view-container .table-article thead th {
+  .admin-view-container .table-admin-role thead th {
     padding: 15px;
     text-align: left;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 1px;
   }
-  .admin-view-container .table-article tbody {
+  .admin-view-container .table-admin-role tbody {
     display: table-row-group;
   }
-  .admin-view-container .table-article tr {
+  .admin-view-container .table-admin-role tr {
     display: table-row;
     background: none;
     box-shadow: none;
     border-radius: 0;
     border: none;
   }
-  .admin-view-container .table-article td {
+  .admin-view-container .table-admin-role td {
     display: table-cell;
     padding: 15px;
     border-bottom: 1px solid #eee;
     text-align: left;
     width: auto;
   }
-  .admin-view-container .table-article td::before {
+  .admin-view-container .table-admin-role td::before {
     display: none;
   }
-  .admin-view-container .table-article {
+  .admin-view-container .table-admin-role {
     /* Formulaire */
   }
-  .admin-view-container .table-article form {
+  .admin-view-container .table-admin-role form {
     justify-content: flex-start;
     gap: 8px;
   }
-  .admin-view-container .table-article form select {
+  .admin-view-container .table-admin-role form select {
     padding: 8px 12px;
   }
-  .admin-view-container .table-article form .btn-role {
+  .admin-view-container .table-admin-role form .btn-role {
     padding: 8px 15px;
   }
 }

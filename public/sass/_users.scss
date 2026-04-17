@@ -22,7 +22,7 @@
     }
 
     /* ================= Table ================= */
-    .table-article {
+    .table-admin-role {
         width: 100%;
         display: block;
         border-collapse: collapse;
@@ -104,7 +104,7 @@
 
     /* Version PC */
     @media (min-width: 769px) {
-        .table-article {
+        .table-admin-role {
             display: table;
             background: #fff;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);

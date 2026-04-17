@@ -27,7 +27,7 @@
             <?php unset($_SESSION['displayMessage']); ?>
         <?php endif; ?>
 
-       <table class="table-article">
+       <table class="table-admin-role">
             <thead>
                 <tr>
                     <th>Prénom</th>

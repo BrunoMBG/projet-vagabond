@@ -29,7 +29,7 @@
 }
 
 /*  Tableau (liste) */
-.table-article {
+.table-admin-article {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
@@ -37,7 +37,7 @@
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
-
+    
     thead {
         background-color: $couleurPrimaire;
         color: #fff;
@@ -173,7 +173,7 @@
         }
     }
 
-    .table-article {
+    .table-admin-article {
         thead th, tbody td {
             padding: 20px;
         }
