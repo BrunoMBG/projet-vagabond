@@ -18,7 +18,7 @@
 
 function passwordForgotController(): void
 {
-    global $title;
+    global $db, $title;
     require_once RACINE . '/app/class/form.php';
     require_once RACINE . '/app/utils/mailer.php';
 
@@ -40,7 +40,7 @@ function passwordForgotController(): void
 
             require_once RACINE . '/app/model/user.php';
 
-            if (storeResetToken($email, $token)) {
+            if (storeResetToken($db, $email, $token)) {
                 $subject = "Réinitialisation de mot de passe - Projet Vagabond";
 
                 // Détection du protocole
@@ -86,7 +86,7 @@ function passwordForgotController(): void
  */
 function passwordResetController(): void
 {
-    global $title;
+    global $db, $title;
     $token = $_GET['token'] ?? null;
 
     if (!$token) {
@@ -97,7 +97,7 @@ function passwordResetController(): void
     $title = "Réinitialisation du mot de passe - Vagabond";
     
     require_once RACINE . '/app/model/user.php';
-    $user = checkResetToken($token);
+    $user = checkResetToken($db, $token);
 
     if (!$user) {
         die("Ce lien est invalide ou a expiré.");
@@ -114,7 +114,7 @@ function passwordResetController(): void
         if (!empty($password)) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            if (updateUserPassword($user['id_utilisateur'], $hashedPassword)) {
+            if (updateUserPassword($db, $user['id_utilisateur'], $hashedPassword)) {
                 $form->setSuccess("Mot de passe modifié ! <a href='index.php?action=login'>Connectez-vous</a>");
             } else {
                 $form->setError("Une erreur est survenue lors de la mise à jour.");
