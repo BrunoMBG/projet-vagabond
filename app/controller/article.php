@@ -50,9 +50,6 @@ function articleAdd(): void
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // tableau d'erreurs en session
-        $_SESSION['errors'] = [];
-
         $titre = trim(htmlspecialchars($_POST['titre']));
         $ville = trim(htmlspecialchars($_POST['ville']));
         $contenu = trim(htmlspecialchars($_POST['texte']));
@@ -63,12 +60,12 @@ function articleAdd(): void
 
         // Vérifier si les champs obligatoires sont remplis
         if (empty($titre) || empty($contenu) || empty($ville)) {
-            $_SESSION['errors'][] = "Le titre et le contenu sont obligatoires.";
+             $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Le titre et le contenu sont obligatoires."];
         }
 
         // Vérifie si une destination a été choisie
         if ($id_destination === 0) {
-            $_SESSION['errors'][] = "Veuillez choisir une destination.";
+              $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Veuillez choisir une destination."];
         }
 
         // Traitement de l'image si un fichier a été ajouté
@@ -94,27 +91,31 @@ function articleAdd(): void
 
                     // Déplacement du fichier vers /app/data/images
                     if (!move_uploaded_file($_FILES['image_article']['tmp_name'], $destinationPath)) {
-                        $_SESSION['errors'][] = "Erreur technique lors du transfert de l'image.";
+                        $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Erreur technique lors du transfert de l'image."];
+
                         $image_name = null;
                     }
                 } else {
-                    $_SESSION['errors'][] = "Format d'image non supporté.";
+                    $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Format d'image non supporté."];
+
                 }
             } else {
-                $_SESSION['errors'][] = "Problème avec le fichier image (Code : " . $_FILES['image_article']['error'] . ")";
+                $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Format d'image non supporté."];
             }
         }
 
         // Si aucune erreur n'a été détectée
-        if (empty($_SESSION['errors'])) {
+        if (empty($_SESSION['displayMessage'])) {
             if (addArticle($db, $titre, $ville, $contenu, $image_name, $id_user, $id_destination)) {
 
                 // Message de succès et redirection
-                $_SESSION['displayMessage'] = "Votre récit a été publié avec succès !";
+                $_SESSION['displayMessage'] = ["type" => "success", "message" => "Votre récit a été publié avec succès !"];
+            
                 header('Location: index.php?action=articleAdd');
                 exit;
             } else {
-                $_SESSION['errors'][] = "Erreur SQL : Impossible d'enregistrer le récit.";
+                $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Erreur SQL : Impossible d'enregistrer le récit."];
+
             }
         }
 
@@ -400,7 +401,8 @@ function articleEdit(): void
 
             // Mise à jour en base de données
             if (updateArticle($db, $id, $titre, $ville, $texte, $image_name, $id_dest)) {
-                $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
+                // $_SESSION['displayMessage'] = "Le récit a été modifié avec succès !";
+                $_SESSION['displayMessage'] = ["type" => "success", "message" => "Le récit a été modifié avec succès !"];
                 header('Location: index.php?action=articleManagement');
                 exit;
             }
@@ -464,9 +466,11 @@ function articleDelete(): void
 
         // Supprime l'article en base de données
         if (deleteArticle($db, $id)) {
-            $_SESSION['displayMessage'] = "Le récit a été supprimé avec succès.";
+            $_SESSION['displayMessage'] = ["type" => "success", "message" => "Le récit a été supprimé avec succès."];
+
         } else {
-            $_SESSION['displayMessage'] = "Erreur lors de la suppression.";
+            $_SESSION['displayMessage'] = ["type" => "danger", "message" => "Erreur lors de la suppression."];
+
         }
     }
     // Redirection vers la page de gestion

@@ -68,3 +68,19 @@
          </ul>
      </nav>
  </header>
+
+ 
+<?php if (isset($_SESSION['displayMessage'])): ?>
+    <div>
+        <?php 
+            $type = $_SESSION['displayMessage']['type'];
+            if ($type === 'error') $type = 'danger';
+        ?>
+        <div role="alert">
+            <?= htmlspecialchars($_SESSION['displayMessage']['message']) ?>
+        </div>
+    </div>
+    <?php 
+        unset($_SESSION['displayMessage']); 
+    ?>
+<?php endif; ?>
