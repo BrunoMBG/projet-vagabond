@@ -3,7 +3,12 @@
    * Index.php - Point d'entrée 
    */
 
-  session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_name('VAGABOND_SESSION'); 
+
+    session_start();
+}
+
   // ==================== Config global ==================== 
   require __DIR__ . '/app/config/config.php';
 
